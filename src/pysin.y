@@ -42,7 +42,7 @@ MAST *asTree= new MAST;
 %token MAS MENOS POR ENTRE MOD DIV POT FALSE CLASS FINALLY IS RETURN NONE CONTINUE FOR LAMBDA TRY TRUE DEF FROM WHILE AND DEL NOT WITH AS ELIF IF OR ELSE IMPORT PASS BREAK EXCEPT IN PRINT COMMA DOT ASSIGN TWODOTS DOTCOMMA BINLEFT  BINRIGHT ANDPAND PIPE EXP TILDE LESSTHAN MORETHAN LESSEQUAL MOREEQUAL EQUALS DIFFERENT PICOPARENTESIS OPENPAR CLOSEPAR OPENCOR CLOSECOR OPENKEY CLOSEKEY AT RIGHT MASIGUAL MENOSIGUAL PORIGUAL ENTREIGUAL DIVIGUAL MODIGUAL ANDIGUAL ORIGUAL EXPIGUAL BINRIGHTIGUAL BINLEFTIGUAL POTIGUAL GLOBAL APOSTROFE
 
 /*Aquí van los tipos*/
-%type <nodo> file_input atom string_plus
+%type <nodo> file_input atom string_plus testlist_comp listmaker dictorsetmaker testlist1 boolean
 
 %%
 file_input: /* (NEWLINE | stmt)* ENDMARKER*/
@@ -234,22 +234,22 @@ atom:/* ('(' [testlist_comp] ')'
 	| '{' [dictorsetmaker] '}' 
 	|  '`' testlist1 '`' 
 	| NAME | NUMBER | STRING+)*/
-	OPENPAR CLOSEPAR
-	|OPENCOR CLOSECOR
-	|OPENPAR testlist_comp CLOSEPAR		
-	|OPENCOR listmaker CLOSECOR
-	|OPENKEY CLOSEKEY
-	|OPENKEY dictorsetmaker CLOSEKEY	
-	|APOSTROFE testlist1 APOSTROFE
-	|NAME					{cout<<"IDENTIFICADOR";}
-	|INTEGER				{Node *intn = asTree->bIntNode($1); $$=intn;}
-	|FLOATNUMBER			{cout<<"FLOATNUMBER";}
-	|string_plus			{cout <<"STRING"}
-	|NONE					{cout<<"NONE";}
-	|boolean;
+	OPENPAR CLOSEPAR					{$$=NULL;}
+	|OPENCOR CLOSECOR					{$$=NULL;}
+	|OPENPAR testlist_comp CLOSEPAR		{$$=$2;}
+	|OPENCOR listmaker CLOSECOR			{$$=$2;}
+	|OPENKEY CLOSEKEY					{$$=NULL;}
+	|OPENKEY dictorsetmaker CLOSEKEY	{$$=$2;}
+	|APOSTROFE testlist1 APOSTROFE		{$$=$2;}
+	|NAME								{cout<<"IDENTIFICADOR";}
+	|INTEGER							{Node *intn = asTree->bIntNode($1); $$=intn;}
+	|FLOATNUMBER						{Node *floatn = asTree->bFloatNode($1); $$=floatn;}
+	|string_plus						{$$=$1;}
+	|NONE								{$$=NULL;}
+	|boolean							{};
 	
-boolean: TRUE {cout<<"TRUE";} 
-	|FALSE {cout<<"FALSE";};
+boolean: TRUE {Node *booln = asTree->bIntNode(1); $$=booln;} 
+		|FALSE {Node *booln = asTree->bIntNode(0); $$=booln;};
 	
 
 	
@@ -274,7 +274,7 @@ testlist1: /*test (',' test)**/
 	
 string_plus: 
 	STRING					{Node *strn = asTree->bStrNode($1); $$=strn;}
-	|STRING string_plus;
+	|STRING string_plus		{;}
 
 /*LO QUE ESTA ARRIBA ES DE ARITHMETIC EXP*/
 listmaker: 	/*test ( list_for | (',' test)* [','] )*/

@@ -2414,6 +2414,48 @@ yyreduce:
     {cout<<":";}
     break;
 
+  case 106:
+/* Line 1787 of yacc.c  */
+#line 237 "pysin.y"
+    {(yyval.nodo)=NULL;}
+    break;
+
+  case 107:
+/* Line 1787 of yacc.c  */
+#line 238 "pysin.y"
+    {(yyval.nodo)=NULL;}
+    break;
+
+  case 108:
+/* Line 1787 of yacc.c  */
+#line 239 "pysin.y"
+    {(yyval.nodo)=(yyvsp[(2) - (3)].nodo);}
+    break;
+
+  case 109:
+/* Line 1787 of yacc.c  */
+#line 240 "pysin.y"
+    {(yyval.nodo)=(yyvsp[(2) - (3)].nodo);}
+    break;
+
+  case 110:
+/* Line 1787 of yacc.c  */
+#line 241 "pysin.y"
+    {(yyval.nodo)=NULL;}
+    break;
+
+  case 111:
+/* Line 1787 of yacc.c  */
+#line 242 "pysin.y"
+    {(yyval.nodo)=(yyvsp[(2) - (3)].nodo);}
+    break;
+
+  case 112:
+/* Line 1787 of yacc.c  */
+#line 243 "pysin.y"
+    {(yyval.nodo)=(yyvsp[(2) - (3)].nodo);}
+    break;
+
   case 113:
 /* Line 1787 of yacc.c  */
 #line 244 "pysin.y"
@@ -2429,31 +2471,37 @@ yyreduce:
   case 115:
 /* Line 1787 of yacc.c  */
 #line 246 "pysin.y"
-    {cout<<"FLOATNUMBER";}
+    {Node *floatn = asTree->bFloatNode((yyvsp[(1) - (1)].flotante)); (yyval.nodo)=floatn;}
     break;
 
   case 116:
 /* Line 1787 of yacc.c  */
 #line 247 "pysin.y"
-    {cout <<"STRING";}
+    {(yyval.nodo)=(yyvsp[(1) - (1)].nodo);}
     break;
 
   case 117:
 /* Line 1787 of yacc.c  */
 #line 248 "pysin.y"
-    {cout<<"NONE";}
+    {(yyval.nodo)=NULL;}
+    break;
+
+  case 118:
+/* Line 1787 of yacc.c  */
+#line 249 "pysin.y"
+    {}
     break;
 
   case 119:
 /* Line 1787 of yacc.c  */
 #line 251 "pysin.y"
-    {cout<<"TRUE";}
+    {Node *booln = asTree->bIntNode(1); (yyval.nodo)=booln;}
     break;
 
   case 120:
 /* Line 1787 of yacc.c  */
 #line 252 "pysin.y"
-    {cout<<"FALSE";}
+    {Node *booln = asTree->bIntNode(0); (yyval.nodo)=booln;}
     break;
 
   case 121:
@@ -2472,6 +2520,12 @@ yyreduce:
 /* Line 1787 of yacc.c  */
 #line 276 "pysin.y"
     {Node *strn = asTree->bStrNode((yyvsp[(1) - (1)].cadena)); (yyval.nodo)=strn;}
+    break;
+
+  case 132:
+/* Line 1787 of yacc.c  */
+#line 277 "pysin.y"
+    {;}
     break;
 
   case 133:
@@ -2710,7 +2764,7 @@ yyreduce:
 
 
 /* Line 1787 of yacc.c  */
-#line 2714 "pysin.cpp"
+#line 2768 "pysin.cpp"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
