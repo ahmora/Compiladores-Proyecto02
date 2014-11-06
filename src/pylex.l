@@ -3,7 +3,7 @@
 #include "pysin.hpp"
 #include "../lib/Stack.h"
 #include "../lib/SymbolTable.hpp"
-#include "../lib/MAST.h"
+//#include "../lib/MAST.h"
 
 
 stack stack;

@@ -68,7 +68,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include "../lib/MAST.h"
+//#include "../lib/MAST.h"
 
 using namespace std;
 #define YYDEBUG 1
