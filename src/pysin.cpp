@@ -68,7 +68,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-
+#include "../lib/MAST.h"
+#include "../lib/SymbolTable.hpp"
 
 using namespace std;
 #define YYDEBUG 1
@@ -82,7 +83,7 @@ MAST *asTree= new MAST;
 
 
 /* Line 371 of yacc.c  */
-#line 86 "pysin.cpp"
+#line 87 "pysin.cpp"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -111,16 +112,6 @@ MAST *asTree= new MAST;
 #if YYDEBUG
 extern int yydebug;
 #endif
-/* "%code requires" blocks.  */
-/* Line 387 of yacc.c  */
-#line 19 "pysin.y"
-
-#include "../lib/MAST.h"
-#include "../lib/SymbolTable.hpp"
-
-
-/* Line 387 of yacc.c  */
-#line 124 "pysin.cpp"
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -219,7 +210,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 25 "pysin.y"
+#line 22 "pysin.y"
 
 	int entero;
 	double flotante;
@@ -229,7 +220,7 @@ typedef union YYSTYPE
 
 
 /* Line 387 of yacc.c  */
-#line 233 "pysin.cpp"
+#line 224 "pysin.cpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -257,7 +248,7 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 261 "pysin.cpp"
+#line 252 "pysin.cpp"
 
 #ifdef short
 # undef short
@@ -660,31 +651,31 @@ static const yytype_int16 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    45,    45,    47,    48,    49,    53,    56,    57,    59,
-      62,    64,    65,    68,    70,    71,    74,    75,    79,    82,
-      83,    86,    87,    88,    89,    90,    91,    92,    93,    94,
-      95,    96,    99,   101,   102,   105,   107,   108,   111,   114,
-     115,   118,   120,   121,   122,   126,   128,   129,   130,   136,
-     138,   139,   140,   141,   142,   148,   149,   150,   151,   154,
-     155,   157,   158,   161,   162,   163,   164,   167,   169,   170,
-     172,   173,   174,   175,   176,   178,   179,   182,   183,   184,
-     187,   188,   191,   192,   195,   196,   199,   200,   202,   203,
-     206,   207,   208,   209,   210,   211,   212,   213,   214,   215,
-     218,   219,   222,   223,   225,   226,   233,   234,   235,   236,
-     237,   238,   239,   240,   241,   242,   243,   244,   245,   247,
-     248,   255,   256,   257,   258,   261,   262,   263,   265,   266,
-     269,   272,   273,   277,   278,   281,   282,   285,   286,   289,
-     290,   293,   294,   295,   297,   298,   301,   302,   305,   306,
-     307,   308,   311,   312,   314,   315,   318,   319,   322,   323,
-     326,   327,   329,   330,   333,   334,   337,   338,   342,   343,
-     344,   345,   346,   347,   349,   350,   354,   356,   357,   359,
-     360,   364,   365,   366,   367,   368,   369,   370,   371,   372,
-     373,   374,   375,   378,   379,   381,   382,   384,   385,   387,
-     388,   390,   391,   393,   394,   398,   402,   404,   407,   408,
-     409,   411,   413,   416,   417,   421,   423,   424,   429,   432,
-     433,   437,   438,   439,   440,   441,   443,   444,   445,   447,
-     448,   449,   451,   452,   453,   456,   457,   460,   461,   463,
-     464
+       0,    42,    42,    44,    45,    46,    50,    53,    54,    56,
+      59,    61,    62,    65,    67,    68,    71,    72,    76,    79,
+      80,    83,    84,    85,    86,    87,    88,    89,    90,    91,
+      92,    93,    96,    98,    99,   102,   104,   105,   108,   111,
+     112,   115,   117,   118,   119,   123,   125,   126,   127,   133,
+     135,   136,   137,   138,   139,   145,   146,   147,   148,   151,
+     152,   154,   155,   158,   159,   160,   161,   164,   166,   167,
+     169,   170,   171,   172,   173,   175,   176,   179,   180,   181,
+     184,   185,   188,   189,   192,   193,   196,   197,   199,   200,
+     203,   204,   205,   206,   207,   208,   209,   210,   211,   212,
+     215,   216,   219,   220,   222,   223,   230,   231,   232,   233,
+     234,   235,   236,   237,   238,   239,   240,   241,   242,   244,
+     245,   252,   253,   254,   255,   258,   259,   260,   262,   263,
+     266,   269,   270,   274,   275,   278,   279,   282,   283,   286,
+     287,   290,   291,   292,   294,   295,   298,   299,   302,   303,
+     304,   305,   308,   309,   311,   312,   315,   316,   319,   320,
+     323,   324,   326,   327,   330,   331,   334,   335,   339,   340,
+     341,   342,   343,   344,   346,   347,   351,   353,   354,   356,
+     357,   361,   362,   363,   364,   365,   366,   367,   368,   369,
+     370,   371,   372,   375,   376,   378,   379,   381,   382,   384,
+     385,   387,   388,   390,   391,   395,   399,   401,   404,   405,
+     406,   408,   410,   413,   414,   418,   420,   421,   426,   429,
+     430,   434,   435,   436,   437,   438,   440,   441,   442,   444,
+     445,   446,   448,   449,   450,   453,   454,   457,   458,   460,
+     461
 };
 #endif
 
@@ -1968,745 +1959,745 @@ yyreduce:
     {
         case 2:
 /* Line 1787 of yacc.c  */
-#line 45 "pysin.y"
+#line 42 "pysin.y"
     {cout<<"\nCOMPILATION COMPLETE :)\n";}
     break;
 
   case 4:
 /* Line 1787 of yacc.c  */
-#line 48 "pysin.y"
+#line 45 "pysin.y"
     {cout<<"\n";}
     break;
 
   case 6:
 /* Line 1787 of yacc.c  */
-#line 53 "pysin.y"
+#line 50 "pysin.y"
     {/*Nada xD*/}
     break;
 
   case 7:
 /* Line 1787 of yacc.c  */
-#line 56 "pysin.y"
+#line 53 "pysin.y"
     {}
     break;
 
   case 8:
 /* Line 1787 of yacc.c  */
-#line 57 "pysin.y"
+#line 54 "pysin.y"
     {cout<<"IF __ ELSE __ ";}
     break;
 
   case 10:
 /* Line 1787 of yacc.c  */
-#line 62 "pysin.y"
+#line 59 "pysin.y"
     {}
     break;
 
   case 11:
 /* Line 1787 of yacc.c  */
-#line 64 "pysin.y"
+#line 61 "pysin.y"
     {}
     break;
 
   case 12:
 /* Line 1787 of yacc.c  */
-#line 65 "pysin.y"
+#line 62 "pysin.y"
     {cout<<"OR";}
     break;
 
   case 13:
 /* Line 1787 of yacc.c  */
-#line 68 "pysin.y"
+#line 65 "pysin.y"
     {}
     break;
 
   case 14:
 /* Line 1787 of yacc.c  */
-#line 70 "pysin.y"
+#line 67 "pysin.y"
     {}
     break;
 
   case 15:
 /* Line 1787 of yacc.c  */
-#line 71 "pysin.y"
+#line 68 "pysin.y"
     {cout<<"AND";}
     break;
 
   case 16:
 /* Line 1787 of yacc.c  */
-#line 74 "pysin.y"
+#line 71 "pysin.y"
     {cout<<"NOT";}
     break;
 
   case 17:
 /* Line 1787 of yacc.c  */
-#line 75 "pysin.y"
+#line 72 "pysin.y"
     {}
     break;
 
   case 21:
 /* Line 1787 of yacc.c  */
-#line 86 "pysin.y"
+#line 83 "pysin.y"
     {cout<<"<";}
     break;
 
   case 22:
 /* Line 1787 of yacc.c  */
-#line 87 "pysin.y"
+#line 84 "pysin.y"
     {cout<<">";}
     break;
 
   case 23:
 /* Line 1787 of yacc.c  */
-#line 88 "pysin.y"
+#line 85 "pysin.y"
     {cout<<"==";}
     break;
 
   case 24:
 /* Line 1787 of yacc.c  */
-#line 89 "pysin.y"
+#line 86 "pysin.y"
     {cout<<">=";}
     break;
 
   case 25:
 /* Line 1787 of yacc.c  */
-#line 90 "pysin.y"
+#line 87 "pysin.y"
     {cout<<"<=";}
     break;
 
   case 26:
 /* Line 1787 of yacc.c  */
-#line 91 "pysin.y"
+#line 88 "pysin.y"
     {cout<<"<>";}
     break;
 
   case 27:
 /* Line 1787 of yacc.c  */
-#line 92 "pysin.y"
+#line 89 "pysin.y"
     {cout<<"!=";}
     break;
 
   case 28:
 /* Line 1787 of yacc.c  */
-#line 93 "pysin.y"
+#line 90 "pysin.y"
     {cout<<"IN";}
     break;
 
   case 29:
 /* Line 1787 of yacc.c  */
-#line 94 "pysin.y"
+#line 91 "pysin.y"
     {cout<<"NOT IN";}
     break;
 
   case 30:
 /* Line 1787 of yacc.c  */
-#line 95 "pysin.y"
+#line 92 "pysin.y"
     {cout<<"IS";}
     break;
 
   case 31:
 /* Line 1787 of yacc.c  */
-#line 96 "pysin.y"
+#line 93 "pysin.y"
     {cout<<"IS NOT";}
     break;
 
   case 32:
 /* Line 1787 of yacc.c  */
-#line 99 "pysin.y"
+#line 96 "pysin.y"
     {}
     break;
 
   case 33:
 /* Line 1787 of yacc.c  */
-#line 101 "pysin.y"
+#line 98 "pysin.y"
     {}
     break;
 
   case 35:
 /* Line 1787 of yacc.c  */
-#line 105 "pysin.y"
+#line 102 "pysin.y"
     {}
     break;
 
   case 36:
 /* Line 1787 of yacc.c  */
-#line 107 "pysin.y"
+#line 104 "pysin.y"
     {}
     break;
 
   case 38:
 /* Line 1787 of yacc.c  */
-#line 111 "pysin.y"
+#line 108 "pysin.y"
     {}
     break;
 
   case 39:
 /* Line 1787 of yacc.c  */
-#line 114 "pysin.y"
+#line 111 "pysin.y"
     {}
     break;
 
   case 41:
 /* Line 1787 of yacc.c  */
-#line 118 "pysin.y"
+#line 115 "pysin.y"
     {}
     break;
 
   case 42:
 /* Line 1787 of yacc.c  */
-#line 120 "pysin.y"
+#line 117 "pysin.y"
     {}
     break;
 
   case 43:
 /* Line 1787 of yacc.c  */
-#line 121 "pysin.y"
+#line 118 "pysin.y"
     {cout<<">>";}
     break;
 
   case 44:
 /* Line 1787 of yacc.c  */
-#line 122 "pysin.y"
+#line 119 "pysin.y"
     {cout<<"<<";}
     break;
 
   case 45:
 /* Line 1787 of yacc.c  */
-#line 126 "pysin.y"
+#line 123 "pysin.y"
     {}
     break;
 
   case 46:
 /* Line 1787 of yacc.c  */
-#line 128 "pysin.y"
+#line 125 "pysin.y"
     {}
     break;
 
   case 47:
 /* Line 1787 of yacc.c  */
-#line 129 "pysin.y"
+#line 126 "pysin.y"
     {cout<<"Suma";}
     break;
 
   case 48:
 /* Line 1787 of yacc.c  */
-#line 130 "pysin.y"
+#line 127 "pysin.y"
     {cout<<"Resta";}
     break;
 
   case 49:
 /* Line 1787 of yacc.c  */
-#line 136 "pysin.y"
+#line 133 "pysin.y"
     {}
     break;
 
   case 50:
 /* Line 1787 of yacc.c  */
-#line 138 "pysin.y"
+#line 135 "pysin.y"
     {}
     break;
 
   case 51:
 /* Line 1787 of yacc.c  */
-#line 139 "pysin.y"
+#line 136 "pysin.y"
     {cout<<"Multiplicacion";}
     break;
 
   case 52:
 /* Line 1787 of yacc.c  */
-#line 140 "pysin.y"
+#line 137 "pysin.y"
     {cout<<"Division";}
     break;
 
   case 53:
 /* Line 1787 of yacc.c  */
-#line 141 "pysin.y"
+#line 138 "pysin.y"
     {cout<<"Modulo";}
     break;
 
   case 54:
 /* Line 1787 of yacc.c  */
-#line 142 "pysin.y"
+#line 139 "pysin.y"
     {cout<<"Division Entera";}
     break;
 
   case 55:
 /* Line 1787 of yacc.c  */
-#line 148 "pysin.y"
+#line 145 "pysin.y"
     {cout<<"SUMA";}
     break;
 
   case 56:
 /* Line 1787 of yacc.c  */
-#line 149 "pysin.y"
+#line 146 "pysin.y"
     {cout<<"RESTA";}
     break;
 
   case 59:
 /* Line 1787 of yacc.c  */
-#line 154 "pysin.y"
+#line 151 "pysin.y"
     {}
     break;
 
   case 60:
 /* Line 1787 of yacc.c  */
-#line 155 "pysin.y"
+#line 152 "pysin.y"
     {}
     break;
 
   case 61:
 /* Line 1787 of yacc.c  */
-#line 157 "pysin.y"
+#line 154 "pysin.y"
     {}
     break;
 
   case 62:
 /* Line 1787 of yacc.c  */
-#line 158 "pysin.y"
+#line 155 "pysin.y"
     {}
     break;
 
   case 63:
 /* Line 1787 of yacc.c  */
-#line 161 "pysin.y"
+#line 158 "pysin.y"
     {cout<<"()";}
     break;
 
   case 64:
 /* Line 1787 of yacc.c  */
-#line 162 "pysin.y"
+#line 159 "pysin.y"
     {cout<<"(ARGLIST)";}
     break;
 
   case 65:
 /* Line 1787 of yacc.c  */
-#line 163 "pysin.y"
+#line 160 "pysin.y"
     {cout<<"(SUBSCRIPTLIST)";}
     break;
 
   case 66:
 /* Line 1787 of yacc.c  */
-#line 164 "pysin.y"
+#line 161 "pysin.y"
     {cout<<".NAME";}
     break;
 
   case 69:
 /* Line 1787 of yacc.c  */
-#line 170 "pysin.y"
+#line 167 "pysin.y"
     {cout<<",";}
     break;
 
   case 71:
 /* Line 1787 of yacc.c  */
-#line 173 "pysin.y"
+#line 170 "pysin.y"
     {cout<<",";}
     break;
 
   case 72:
 /* Line 1787 of yacc.c  */
-#line 174 "pysin.y"
+#line 171 "pysin.y"
     {cout<<"*";}
     break;
 
   case 73:
 /* Line 1787 of yacc.c  */
-#line 175 "pysin.y"
+#line 172 "pysin.y"
     {cout<<"*";}
     break;
 
   case 74:
 /* Line 1787 of yacc.c  */
-#line 176 "pysin.y"
+#line 173 "pysin.y"
     {cout<<"**";}
     break;
 
   case 79:
 /* Line 1787 of yacc.c  */
-#line 184 "pysin.y"
+#line 181 "pysin.y"
     {cout<<"=";}
     break;
 
   case 80:
 /* Line 1787 of yacc.c  */
-#line 187 "pysin.y"
+#line 184 "pysin.y"
     {cout<<"FOR";}
     break;
 
   case 81:
 /* Line 1787 of yacc.c  */
-#line 188 "pysin.y"
+#line 185 "pysin.y"
     {cout<<"FOR";}
     break;
 
   case 84:
 /* Line 1787 of yacc.c  */
-#line 195 "pysin.y"
+#line 192 "pysin.y"
     {cout<<"IF";}
     break;
 
   case 85:
 /* Line 1787 of yacc.c  */
-#line 196 "pysin.y"
+#line 193 "pysin.y"
     {cout<<"IF";}
     break;
 
   case 92:
 /* Line 1787 of yacc.c  */
-#line 208 "pysin.y"
+#line 205 "pysin.y"
     {cout<<":";}
     break;
 
   case 93:
 /* Line 1787 of yacc.c  */
-#line 209 "pysin.y"
+#line 206 "pysin.y"
     {cout<<":";}
     break;
 
   case 94:
 /* Line 1787 of yacc.c  */
-#line 210 "pysin.y"
+#line 207 "pysin.y"
     {cout<<":";}
     break;
 
   case 95:
 /* Line 1787 of yacc.c  */
-#line 211 "pysin.y"
+#line 208 "pysin.y"
     {cout<<":";}
     break;
 
   case 96:
 /* Line 1787 of yacc.c  */
-#line 212 "pysin.y"
+#line 209 "pysin.y"
     {cout<<":";}
     break;
 
   case 97:
 /* Line 1787 of yacc.c  */
-#line 213 "pysin.y"
+#line 210 "pysin.y"
     {cout<<":";}
     break;
 
   case 98:
 /* Line 1787 of yacc.c  */
-#line 214 "pysin.y"
+#line 211 "pysin.y"
     {cout<<":";}
     break;
 
   case 99:
 /* Line 1787 of yacc.c  */
-#line 215 "pysin.y"
+#line 212 "pysin.y"
     {cout<<":";}
     break;
 
   case 100:
 /* Line 1787 of yacc.c  */
-#line 218 "pysin.y"
+#line 215 "pysin.y"
     {cout<<":";}
     break;
 
   case 101:
 /* Line 1787 of yacc.c  */
-#line 219 "pysin.y"
+#line 216 "pysin.y"
     {cout<<":";}
     break;
 
   case 113:
 /* Line 1787 of yacc.c  */
-#line 240 "pysin.y"
+#line 237 "pysin.y"
     {cout<<"IDENTIFICADOR";}
     break;
 
   case 114:
 /* Line 1787 of yacc.c  */
-#line 241 "pysin.y"
+#line 238 "pysin.y"
     {cout<<"INTEGER";}
     break;
 
   case 115:
 /* Line 1787 of yacc.c  */
-#line 242 "pysin.y"
+#line 239 "pysin.y"
     {cout<<"FLOATNUMBER";}
     break;
 
   case 116:
 /* Line 1787 of yacc.c  */
-#line 243 "pysin.y"
-    {Node *strn = new asTree->BStrNode((yyvsp[(1) - (1)].nodo)); (yyval.nodo)=strn;}
+#line 240 "pysin.y"
+    {Node *strn = asTree->bStrNode((yyvsp[(1) - (1)].nodo)); (yyval.nodo)=strn;}
     break;
 
   case 117:
 /* Line 1787 of yacc.c  */
-#line 244 "pysin.y"
+#line 241 "pysin.y"
     {cout<<"NONE";}
     break;
 
   case 119:
 /* Line 1787 of yacc.c  */
-#line 247 "pysin.y"
+#line 244 "pysin.y"
     {cout<<"TRUE";}
     break;
 
   case 120:
 /* Line 1787 of yacc.c  */
-#line 248 "pysin.y"
+#line 245 "pysin.y"
     {cout<<"FALSE";}
     break;
 
   case 121:
 /* Line 1787 of yacc.c  */
-#line 255 "pysin.y"
+#line 252 "pysin.y"
     {cout<<":";}
     break;
 
   case 129:
 /* Line 1787 of yacc.c  */
-#line 266 "pysin.y"
+#line 263 "pysin.y"
     {cout<<":";}
     break;
 
   case 131:
 /* Line 1787 of yacc.c  */
-#line 272 "pysin.y"
+#line 269 "pysin.y"
     {}
     break;
 
   case 133:
 /* Line 1787 of yacc.c  */
-#line 277 "pysin.y"
+#line 274 "pysin.y"
     {}
     break;
 
   case 134:
 /* Line 1787 of yacc.c  */
-#line 278 "pysin.y"
+#line 275 "pysin.y"
     {}
     break;
 
   case 137:
 /* Line 1787 of yacc.c  */
-#line 285 "pysin.y"
+#line 282 "pysin.y"
     {cout<<"FOR";}
     break;
 
   case 138:
 /* Line 1787 of yacc.c  */
-#line 286 "pysin.y"
+#line 283 "pysin.y"
     {cout<<"FOR";}
     break;
 
   case 146:
 /* Line 1787 of yacc.c  */
-#line 301 "pysin.y"
+#line 298 "pysin.y"
     {cout<<"IF___";}
     break;
 
   case 147:
 /* Line 1787 of yacc.c  */
-#line 302 "pysin.y"
+#line 299 "pysin.y"
     {cout<<"IF___";}
     break;
 
   case 152:
 /* Line 1787 of yacc.c  */
-#line 311 "pysin.y"
+#line 308 "pysin.y"
     {cout<<"IF___:___ELSE:";}
     break;
 
   case 153:
 /* Line 1787 of yacc.c  */
-#line 312 "pysin.y"
+#line 309 "pysin.y"
     {cout<<"IF___:___";}
     break;
 
   case 155:
 /* Line 1787 of yacc.c  */
-#line 315 "pysin.y"
+#line 312 "pysin.y"
     {cout<<"ELIF___:";}
     break;
 
   case 156:
 /* Line 1787 of yacc.c  */
-#line 318 "pysin.y"
+#line 315 "pysin.y"
     {cout<<"WHILE___:___ ELSE :";}
     break;
 
   case 157:
 /* Line 1787 of yacc.c  */
-#line 319 "pysin.y"
+#line 316 "pysin.y"
     {cout<<"WHILE___:";}
     break;
 
   case 158:
 /* Line 1787 of yacc.c  */
-#line 322 "pysin.y"
+#line 319 "pysin.y"
     {cout<<"FOR";}
     break;
 
   case 159:
 /* Line 1787 of yacc.c  */
-#line 323 "pysin.y"
+#line 320 "pysin.y"
     {cout<<"FOR";}
     break;
 
   case 161:
 /* Line 1787 of yacc.c  */
-#line 327 "pysin.y"
+#line 324 "pysin.y"
     {cout<<"\nINDENT___DEDENT";}
     break;
 
   case 166:
 /* Line 1787 of yacc.c  */
-#line 337 "pysin.y"
+#line 334 "pysin.y"
     {cout<<";\n";}
     break;
 
   case 167:
 /* Line 1787 of yacc.c  */
-#line 338 "pysin.y"
+#line 335 "pysin.y"
     {cout<<"\n";}
     break;
 
   case 179:
 /* Line 1787 of yacc.c  */
-#line 359 "pysin.y"
+#line 356 "pysin.y"
     {cout<<"=";}
     break;
 
   case 181:
 /* Line 1787 of yacc.c  */
-#line 364 "pysin.y"
+#line 361 "pysin.y"
     {cout<<"+=";}
     break;
 
   case 182:
 /* Line 1787 of yacc.c  */
-#line 365 "pysin.y"
+#line 362 "pysin.y"
     {cout<<"-=";}
     break;
 
   case 183:
 /* Line 1787 of yacc.c  */
-#line 366 "pysin.y"
+#line 363 "pysin.y"
     {cout<<"*=";}
     break;
 
   case 184:
 /* Line 1787 of yacc.c  */
-#line 367 "pysin.y"
+#line 364 "pysin.y"
     {cout<<"/=";}
     break;
 
   case 185:
 /* Line 1787 of yacc.c  */
-#line 368 "pysin.y"
+#line 365 "pysin.y"
     {cout<<"%=";}
     break;
 
   case 186:
 /* Line 1787 of yacc.c  */
-#line 369 "pysin.y"
+#line 366 "pysin.y"
     {cout<<"&=";}
     break;
 
   case 187:
 /* Line 1787 of yacc.c  */
-#line 370 "pysin.y"
+#line 367 "pysin.y"
     {cout<<"|=";}
     break;
 
   case 188:
 /* Line 1787 of yacc.c  */
-#line 371 "pysin.y"
+#line 368 "pysin.y"
     {cout<<"^=";}
     break;
 
   case 189:
 /* Line 1787 of yacc.c  */
-#line 372 "pysin.y"
+#line 369 "pysin.y"
     {cout<<">>=";}
     break;
 
   case 190:
 /* Line 1787 of yacc.c  */
-#line 373 "pysin.y"
+#line 370 "pysin.y"
     {cout<<"<<=";}
     break;
 
   case 191:
 /* Line 1787 of yacc.c  */
-#line 374 "pysin.y"
+#line 371 "pysin.y"
     {cout<<"**=";}
     break;
 
   case 192:
 /* Line 1787 of yacc.c  */
-#line 375 "pysin.y"
+#line 372 "pysin.y"
     {cout<<"//=";}
     break;
 
   case 193:
 /* Line 1787 of yacc.c  */
-#line 378 "pysin.y"
+#line 375 "pysin.y"
     {cout<<"PRINT";}
     break;
 
   case 194:
 /* Line 1787 of yacc.c  */
-#line 379 "pysin.y"
+#line 376 "pysin.y"
     {cout<<"PRINT";}
     break;
 
   case 198:
 /* Line 1787 of yacc.c  */
-#line 385 "pysin.y"
+#line 382 "pysin.y"
     {cout<<",";}
     break;
 
   case 199:
 /* Line 1787 of yacc.c  */
-#line 387 "pysin.y"
+#line 384 "pysin.y"
     {cout<<">>";}
     break;
 
   case 200:
 /* Line 1787 of yacc.c  */
-#line 388 "pysin.y"
+#line 385 "pysin.y"
     {cout<<">>";}
     break;
 
   case 202:
 /* Line 1787 of yacc.c  */
-#line 391 "pysin.y"
+#line 388 "pysin.y"
     {cout<<",";}
     break;
 
   case 205:
 /* Line 1787 of yacc.c  */
-#line 398 "pysin.y"
+#line 395 "pysin.y"
     {}
     break;
 
   case 213:
 /* Line 1787 of yacc.c  */
-#line 416 "pysin.y"
+#line 413 "pysin.y"
     {cout<<"RETURN __";}
     break;
 
   case 214:
 /* Line 1787 of yacc.c  */
-#line 417 "pysin.y"
+#line 414 "pysin.y"
     {cout<<"RETURN";}
     break;
 
   case 218:
 /* Line 1787 of yacc.c  */
-#line 429 "pysin.y"
+#line 426 "pysin.y"
     {cout<<"DEF NAME(_):_\n";}
     break;
 
 
 /* Line 1787 of yacc.c  */
-#line 2710 "pysin.cpp"
+#line 2701 "pysin.cpp"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2938,7 +2929,7 @@ yyreturn:
 
 
 /* Line 2050 of yacc.c  */
-#line 466 "pysin.y"
+#line 463 "pysin.y"
 
 
 

@@ -39,16 +39,6 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
-/* "%code requires" blocks.  */
-/* Line 2053 of yacc.c  */
-#line 19 "pysin.y"
-
-#include "../lib/MAST.h"
-#include "../lib/SymbolTable.hpp"
-
-
-/* Line 2053 of yacc.c  */
-#line 52 "pysin.hpp"
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -147,7 +137,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2053 of yacc.c  */
-#line 25 "pysin.y"
+#line 22 "pysin.y"
 
 	int entero;
 	double flotante;
@@ -157,7 +147,7 @@ typedef union YYSTYPE
 
 
 /* Line 2053 of yacc.c  */
-#line 161 "pysin.hpp"
+#line 151 "pysin.hpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

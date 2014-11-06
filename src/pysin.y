@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-
+#include "../lib/MAST.h"
+#include "../lib/SymbolTable.hpp"
 
 using namespace std;
 #define YYDEBUG 1
@@ -16,10 +17,6 @@ MAST *asTree= new MAST;
 
 %}
 
-%code requires {
-#include "../lib/MAST.h"
-#include "../lib/SymbolTable.hpp"
-}
 
 /*Aquí van las uniones*/
 %union {
@@ -240,7 +237,7 @@ atom:/* ('(' [testlist_comp] ')'
 	|NAME					{cout<<"IDENTIFICADOR";}
 	|INTEGER				{cout<<"INTEGER";}
 	|FLOATNUMBER			{cout<<"FLOATNUMBER";}
-	|string_plus			{Node *strn = new asTree->BStrNode($1); $$=strn;}
+	|string_plus			{Node *strn = asTree->bStrNode($1); $$=strn;}
 	|NONE					{cout<<"NONE";}
 	|boolean;
 	
