@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-//#include "../lib/MAST.h"
+
 
 using namespace std;
 #define YYDEBUG 1
@@ -11,11 +11,14 @@ int yyerror(const char *s) { printf ("\nError: %s\n", s); }
 
 extern "C" FILE *yyin;
 
+SymbolTable *st= new SymbolTable;
+MAST *asTree= new MAST;
 
 %}
 
 %code requires {
-#include "../lib/AST.h"
+#include "../lib/MAST.h"
+#include "../lib/SymbolTable.hpp"
 }
 
 /*Aquí van las uniones*/
@@ -237,7 +240,7 @@ atom:/* ('(' [testlist_comp] ')'
 	|NAME					{cout<<"IDENTIFICADOR";}
 	|INTEGER				{cout<<"INTEGER";}
 	|FLOATNUMBER			{cout<<"FLOATNUMBER";}
-	|string_plus
+	|string_plus			{Node *strn = new asTree->BStrNode($1); $$=strn;}
 	|NONE					{cout<<"NONE";}
 	|boolean;
 	
@@ -461,5 +464,6 @@ fpdef_kleene: fpdef_kleene COMMA fpdef
 	| epsilon;
 
 %%
+
 
 
