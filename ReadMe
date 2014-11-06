@@ -1,0 +1,18 @@
+Compiladores 2015-1
+Proyecto 1: Analizador Léxico
+
+Equipo: Paar
+
+Integrantes:
+García García Alan Mauricio 	308639870	mauriciogarciag@ciencias.unam.mx
+Hernández Mora Alejandro	308551392	alejandrohmora@ciencias.unam.mx
+
+Ejecución:
+El programa se puede ejecutar como se pide en la especificación o haciendo uso del makefile, poniendo en la terminal dentro de la carpeta src los comandos:
+make 
+make run
+
+Para limpiar la carpeta de los archivos ejecutables generados se puede ejecutar el comando
+make clean
+
+
