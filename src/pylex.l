@@ -1,14 +1,15 @@
 %{
 #include <iostream>
-#include "pysin.hpp"
 #include "../lib/Stack.h"
 
-
+#include "pysin.hpp"
 stack stack;
 int new_line = 1;
 int newline_dedent = 0;
 
 extern int yyparse();
+
+
 
 %}
 

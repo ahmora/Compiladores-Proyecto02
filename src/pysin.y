@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include "../lib/MAST.h"
+#include "../lib/MAST.hpp"
 #include "../lib/SymbolTable.hpp"
+#include <string>
 
 using namespace std;
 #define YYDEBUG 1
@@ -12,11 +13,17 @@ int yyerror(const char *s) { printf ("\nError: %s\n", s); }
 
 extern "C" FILE *yyin;
 
+
 SymbolTable *st= new SymbolTable;
 MAST *asTree= new MAST;
 
+
 %}
 
+%code requires{
+#include "../lib/CompuestoVisitante.hpp"
+
+}
 
 /*Aquí van las uniones*/
 %union {
@@ -235,9 +242,9 @@ atom:/* ('(' [testlist_comp] ')'
 	|OPENKEY dictorsetmaker CLOSEKEY	
 	|APOSTROFE testlist1 APOSTROFE
 	|NAME					{cout<<"IDENTIFICADOR";}
-	|INTEGER				{cout<<"INTEGER";}
+	|INTEGER				{Node *intn = asTree->bIntNode($1); $$=intn;}
 	|FLOATNUMBER			{cout<<"FLOATNUMBER";}
-	|string_plus			{Node *strn = asTree->bStrNode($1); $$=strn;}
+	|string_plus			{cout <<"STRING"}
 	|NONE					{cout<<"NONE";}
 	|boolean;
 	
@@ -266,7 +273,7 @@ testlist1: /*test (',' test)**/
 	test comma_test_kleene;
 	
 string_plus: 
-	STRING					{}
+	STRING					{Node *strn = asTree->bStrNode($1); $$=strn;}
 	|STRING string_plus;
 
 /*LO QUE ESTA ARRIBA ES DE ARITHMETIC EXP*/

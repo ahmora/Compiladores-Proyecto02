@@ -9,11 +9,12 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include "AST.h"
+#include "AST.hpp"
+#include "CompuestoVisitante.hpp"
 
  using namespace std;
 
- class ForNode;
+ /*class ForNode;
  class WhileNode;
  class IfNode;
  class AssignNode;
@@ -31,7 +32,7 @@
  class MAST;
  class Visitor;
  class NodeVisitor;
-
+*/
  class Visitor
  {
  public:

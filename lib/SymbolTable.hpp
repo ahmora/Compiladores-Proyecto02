@@ -7,6 +7,7 @@
  */
  
 #include "LexList.hpp"
+
 class SymbolTable{
 	/**
 	 * Esta variable modela la Lista léxica que contiene a tabla de símbolos
