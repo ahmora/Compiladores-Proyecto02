@@ -1,10 +1,10 @@
 /*
- * Implementación de clases para un AST con los patrones Builder, Composite y Visitor.
- * La implementación de los patrones de diseño se hacen con las clases Node, NodeList y AST.
- *
- * @author: Alejandro Hernández Mora
- * @author: Alan Mauricio García García
- */
+* Implementación de clases para un AST con los patrones Builder, Composite y Visitor.
+* La implementación de los patrones de diseño se hacen con las clases Node, NodeList y AST.
+*
+* @author: Alejandro Hernández Mora
+* @author: Alan Mauricio García García
+*/
 
 #include <list>
 #include <vector>
@@ -14,84 +14,88 @@
 
 
 
- using namespace std;
+using namespace std;
 
- class Visitor;
- class ForNode;
- class WhileNode;
- class IfNode;
- class AssignNode;
- class StmtListNode;
- class SStmtListNode;
- class ExprNode;
- class PlusNode;
- class MinusNode;
- class DiviNode;
- class MultNode;
- class IdentNode;
- class IntNode;
- class FloatNode;
- class StrNode;
- class BoolNode;
+class Visitor;
+class ForNode;
+class WhileNode;
+class IfNode;
+class AssignNode;
 
- class Node
- {
- public:
- 	~Node();
- 	virtual void accept(Visitor& v);
+class StmtNode;
+class SStmtNode;
+
+class StmtListNode;
+class SStmtListNode;
+
+class ExprNode;
+class PlusNode;
+class MinusNode;
+class DiviNode;
+class MultNode;
+class IdentNode;
+class IntNode;
+class FloatNode;
+class StrNode;
+class BoolNode;
+class StmtNode;
+class SStmtNode;
+
+class Node{
+public:
+	~Node();
+	virtual void accept(Visitor&)=0;
+	virtual void addFChild(Node*)=0;
+	virtual void addLChild(Node*)=0;
+	virtual void setFChild(Node*)=0;
+	virtual void setSChild(Node*)=0;
+	
+protected:
+Node();
+};
+
+
+class NodeList{
+private:
+	union NList {
+		list<Node*> *listas;
+		vector<Node*> *vectores;
+	};
+
+public:
+	NList children;
+
+	virtual Node* getLeftChild();
+	virtual Node* getRightChild();
+	virtual void setLeftChild(Node* node);
+	virtual void setRightChild(Node* node);
+
+	virtual void addFirst(Node* node);
+	virtual void addLast(Node* node);
+};
+
+
+ class VNodeList : public NodeList{
  private:
-	Node();
- };
-
-
- class NodeList
- {
- private:
- 	union NList {
- 		list<Node> *listas;
- 		vector<Node> *vectores;
- 	};
-
+ 	vector<Node*> children;
  public:
- 	NList children;
-
- 	virtual Node getLeftChild();
- 	virtual Node getRightChild();
- 	virtual void setLeftChild(Node node);
- 	virtual void setRightChild(Node node);
-
- 	virtual void addFirst(Node node);
- 	virtual void addLast(Node node);
- };
-
-
- class VNodeList : public NodeList
- {
- private:
- 	vector<Node> children;
- public:
- 	VNodeList(int n)
- 	{
+ 	VNodeList(int n){
  		children.resize(n);
  	}
 
- 	virtual void setLeftChild(Node node)
- 	{
+ 	void setLeftChild(Node* node){
  		children.front() = node;
  	}
 
- 	virtual void setRightChild(Node node)
- 	{
+ 	void setRightChild(Node* node){
  		children.back() = node;
  	}
  	
- 	virtual Node getLeftChild()
- 	{
+ 	Node* getLeftChild(){
  		return children.front();
  	}
 
- 	virtual Node getRightChild()
- 	{
+ 	Node* getRightChild(){
  		return children.back();
  	}
  };
@@ -99,17 +103,15 @@
  class LNodeList : public NodeList
  {
  private:
- 	list<Node> children;
+ 	list<Node*> children;
  public:
  	LNodeList() {}
 
- 	virtual void addFirst(Node node)
- 	{
+ 	void addFirst(Node* node){
  		children.push_front(node);
  	}
 
- 	virtual void addLast(Node node)
- 	{
+ 	void addLast(Node* node){
  		children.push_back(node);
  	}
  };
@@ -124,64 +126,60 @@
 
  	INode(int n);
 
- 	virtual void addFChild(Node* child);
- 	virtual void addLChild(Node* child);
+ 	void addFChild(Node* child){
+ 		children->addFirst(child);
+ 	}
 
- 	virtual void setFChild(Node* first){
+ 	void addLChild(Node* child){
+ 		children->addLast(child);
+ 	}
+
+ 	void setFChild(Node* first)	{
  		throw "Operation not supported for Node";
  	}
 
- 	virtual void setSChild(Node* second)
- 	{
+ 	void setSChild(Node* second){
  		throw "Operation not supported for Node";
  	}
 
+ protected:
  	NodeList* children;
  };
 
 
- class BinNode : public INode
- {
+ class BinNode : public INode{
  public:
- 	BinNode()
- 	{
+ 	BinNode(){
  		children = new VNodeList(2);
  	}
 
- 	virtual void addFChild(Node* first)
- 	{
+ 	void addFChild(Node* first)	{
  		throw "Operation not supported for Node";
  	}
 
- 	virtual void addLChild(Node* second)
- 	{
+ 	void addLChild(Node* second){
  		throw "Operation not supported for Node";
  	}
 
- 	virtual void setFChild(Node first)
- 	{
+ 	void setFChild(Node* first){
  		children->setLeftChild(first);
  	}
 
- 	virtual void setSChild(Node second)
- 	{
+ 	void setSChild(Node* second){
  		children->setRightChild(second);
  	}
 
- 	virtual Node getLeftChild()
- 	{
+ 	Node* getLeftChild(){
  		return children->getLeftChild();
  	}
 
- 	virtual Node getRightChild()
- 	{
+ 	Node* getRightChild(){
  		return children->getRightChild();
  	}
  };
 
 
- class LeafNode : public Node
- {
+ class LeafNode : public Node{
  protected:
  	union NValue {
  		int i;
@@ -196,8 +194,7 @@
  };
 
  // Constructor
- class AST
- {
+ class AST{
  public:
 
  	// BinNode's
@@ -205,8 +202,12 @@
  	virtual MultNode* bMultNode()=0;
  	virtual DiviNode* bDiviNode()=0;
  	virtual MinusNode* bMinusNode()=0;
+ 	virtual AssignNode* bAssignNode()=0;
 
  	// INode's
+ 	virtual StmtNode* bStmtNode()=0;
+ 	virtual SStmtNode* bSStmtNode()=0;
+ 	
  	virtual StmtListNode* bStmtListNode()=0;
  	virtual SStmtListNode* bSStmtListNode()=0;
  	virtual ExprNode* bExprNode()=0;
@@ -222,4 +223,3 @@
  	virtual IdentNode* bIdentNode(string name)=0;
  	virtual BoolNode* bBoolNode(bool val)=0;
  };
-
