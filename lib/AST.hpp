@@ -11,6 +11,9 @@
 #include <string>
 #include <iostream>
 
+
+
+
  using namespace std;
 
  class Visitor;
@@ -34,8 +37,10 @@
  class Node
  {
  public:
- 	Node() {}
- 	virtual void accept(NodeVisitor* v);
+ 	~Node();
+ 	virtual void accept(Visitor& v);
+ private:
+	Node();
  };
 
 
@@ -110,12 +115,10 @@
  };
 
 
- class INode : public Node
- {	
+ class INode : public Node{	
  public:
  	
- 	INode() : Node()
- 	{
+ 	INode() : Node(){
  		children = new LNodeList();
  	}
 
@@ -124,8 +127,7 @@
  	virtual void addFChild(Node* child);
  	virtual void addLChild(Node* child);
 
- 	virtual void setFChild(Node* first)
- 	{
+ 	virtual void setFChild(Node* first){
  		throw "Operation not supported for Node";
  	}
 
@@ -134,7 +136,6 @@
  		throw "Operation not supported for Node";
  	}
 
- protected:
  	NodeList* children;
  };
 
@@ -221,3 +222,4 @@
  	virtual IdentNode* bIdentNode(string name)=0;
  	virtual BoolNode* bBoolNode(bool val)=0;
  };
+
