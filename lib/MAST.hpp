@@ -21,10 +21,8 @@ class BinNode;
  using namespace std;
 
 class Visitor{
-
 public:
-	VisitorNode();
-	SymbolTable* symbolTable;
+	
 	//Node
 	virtual void visit(Node*)=0;
 	virtual void visit(INode*)=0;
@@ -49,12 +47,12 @@ public:
  	virtual void visit(FloatNode*)=0;
  	virtual void visit(StrNode*)=0;
  	virtual void visit(BoolNode*)=0;
+protected:
+	Visitor();
+	SymbolTable* symbolTable;
 
- };
+};
  
- 
- // BinNode's
-
 
 class ForNode : public INode{
 public:
@@ -375,7 +373,8 @@ public:
 
 
 class VisitorNode : public Visitor{
- public:
+public:
+
 	VisitorNode(){
 		symbolTable= new SymbolTable;
 	}
