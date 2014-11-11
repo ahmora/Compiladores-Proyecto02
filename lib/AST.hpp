@@ -53,15 +53,15 @@ Node();
 };
 
 
-class NodeList{
-private:
-	union NList {
-		list<Node*> *listas;
-		vector<Node*> *vectores;
-	};
+union NList {
+	list<Node*> listas;
+	vector<Node*> vectores;
+};
 
+
+class NodeList{
 public:
-	NList children;
+	NList* children;
 
 	virtual Node* getLeftChild();
 	virtual Node* getRightChild();
@@ -70,54 +70,67 @@ public:
 
 	virtual void addFirst(Node* node);
 	virtual void addLast(Node* node);
+	
+	NList* getChildren(){
+		return children;
+	}
 };
 
 
  class VNodeList : public NodeList{
  private:
- 	vector<Node*> children;
+ 	NodeList* children;
  public:
  	VNodeList(int n){
- 		children.resize(n);
+ 		getChildren().resize(n);
  	}
 
  	void setLeftChild(Node* node){
- 		children.front() = node;
+ 		getChildren().front() = node;
  	}
 
  	void setRightChild(Node* node){
- 		children.back() = node;
+ 		getChildren().back() = node;
  	}
  	
  	Node* getLeftChild(){
- 		return children.front();
+ 		return getChildren().front();
  	}
 
  	Node* getRightChild(){
- 		return children.back();
+ 		return getChildren().back();
  	}
+ 	
+ 	vector<Node*> getChildren(){
+		return children->children->vectores;
+	}
  };
 
- class LNodeList : public NodeList
- {
+ class LNodeList : public NodeList{
  private:
- 	list<Node*> children;
+ 	NodeList* children;
  public:
  	LNodeList() {}
 
  	void addFirst(Node* node){
- 		children.push_front(node);
+ 		getChildren().push_front(node);
  	}
 
  	void addLast(Node* node){
- 		children.push_back(node);
+ 		getChildren().push_back(node);
  	}
+ 	
+ 	list<Node*> getChildren(){
+		return children->children->listas;
+	}
  };
 
 
  class INode : public Node{	
+ protected:
+ 	NodeList* children;
+	 
  public:
- 	
  	INode() : Node(){
  		children = new LNodeList();
  	}
@@ -140,8 +153,10 @@ public:
  		throw "Operation not supported for Node";
  	}
 
- protected:
- 	NodeList* children;
+ 	list<Node*> getChildren(){
+ 		return getChildren();
+ 	}
+
  };
 
 

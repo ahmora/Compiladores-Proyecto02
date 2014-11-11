@@ -18,189 +18,187 @@ class BinNode;
 
 #endif
 
- using namespace std;
-
+using namespace std;
+/**
+ * Implementación de la clase abstracta Visitor
+ */
 class Visitor{
 public:
-	
 	//Node
-	virtual void visit(Node*)=0;
-	virtual void visit(INode*)=0;
-	virtual void visit(BinNode*)=0;
+	virtual void visit(Node*);
+	virtual void visit(INode*);
+	virtual void visit(BinNode*);
 
 	//INode
-	virtual void visit(ForNode*)=0;
- 	virtual void visit(WhileNode*)=0;
- 	virtual void visit(IfNode*)=0;
- 	virtual void visit(StmtListNode*)=0;
- 	virtual void visit(SStmtListNode*)=0;
- 	virtual void visit(ExprNode*)=0;
+	virtual void visit(ForNode*);
+ 	virtual void visit(WhileNode*);
+ 	virtual void visit(IfNode*);
+ 	virtual void visit(StmtListNode*);
+ 	virtual void visit(SStmtListNode*);
+ 	virtual void visit(ExprNode*);
  	//BinNode
- 	virtual void visit(AssignNode*)=0;
- 	virtual void visit(PlusNode*)=0;
- 	virtual void visit(MinusNode*)=0;
- 	virtual void visit(DiviNode*)=0;
- 	virtual void visit(MultNode*)=0;
+ 	virtual void visit(AssignNode*);
+ 	virtual void visit(PlusNode*);
+ 	virtual void visit(MinusNode*);
+ 	virtual void visit(DiviNode*);
+ 	virtual void visit(MultNode*);
 	//LeafNode
-	virtual void visit(IdentNode*)=0;
- 	virtual void visit(IntNode*)=0;
- 	virtual void visit(FloatNode*)=0;
- 	virtual void visit(StrNode*)=0;
- 	virtual void visit(BoolNode*)=0;
+	virtual void visit(IdentNode*);
+ 	virtual void visit(IntNode*);
+ 	virtual void visit(FloatNode*);
+ 	virtual void visit(StrNode*);
+ 	virtual void visit(BoolNode*);
 protected:
 	Visitor();
-	SymbolTable* symbolTable;
+	//SymbolTable* symbolTable;
 
 };
  
-
+/**
+ * Implementación de los nodos que heredan de INode
+ * 
+ */
 class ForNode : public INode{
 public:
  	ForNode() : INode() {};
 
  	void accept(Visitor &v)
  	{
-		for (list<Node>::iterator it=children->children.listas->begin(); it != children->children.listas->end(); ++it)
-			v.visit(it);
+		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+			v.visit(*it);
 			
  	}
  };
 
- class WhileNode : public INode
- {
+ class WhileNode : public INode{
  public:
  	WhileNode() : INode() {};
 
- 	void accept(Visitor &v)
- 	{
- 		for (list<Node>::iterator it=children->children.listas->begin(); it != children->children.listas->end(); ++it)
+ 	void accept(Visitor &v){
+		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
 			v.visit(*it);
  	}
  };
+ 
+ class StmtListNode : public INode{
+ public:
+ 	StmtListNode() : INode() {};
 
- class IfNode : public INode
- {
+ 	void accept(Visitor &v)	{
+ 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+			v.visit(*it);
+ 	}
+ }; 
+
+ class SStmtListNode : public INode{
+ public:
+ 	SStmtListNode() : INode() {};
+
+ 	void accept(Visitor &v){
+ 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+			v.visit(*it);
+ 	}
+ }; 
+
+ class ExprNode : public INode{
+ public:
+ 	ExprNode() : INode() {};
+
+ 	void accept(Visitor &v){
+ 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+			v.visit(*it);
+ 	}
+ };
+ 
+ 
+ class IfNode : public INode{
  public:
  	IfNode() : INode() {};
 
- 	void accept(Visitor &v)
- 	{
-		for (list<Node>::iterator it=children->children.listas->begin(); it != children->children.listas->end(); ++it)
+ 	void accept(Visitor &v){
+		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
 			v.visit(*it);
  	}
  };
+ 
+ /**
+  * Implementación de los nodos que heredan de BinNode
+  * 
+  */
 
- class AssignNode : public BinNode
- {
+ class AssignNode : public BinNode{
  public:
  	AssignNode() : BinNode() {};
 
  	void accept(Visitor &v){
-		IdentNode* c = dynamic_cast<IdentNode*>(children[0]);
+		IdentNode* c = dynamic_cast<IdentNode*>(getLeftChild());
 		if(c != 0) {
 			throw "Assignment operation is only for variables";
 		}else{
-			v.visit(children[1]);
-			v.visit(children[0]);
+			v.visit(getLeftChild());
+			v.visit(getRightChild());
 			}
 		}
  };
 
- class StmtListNode : public INode
- {
- public:
- 	StmtListNode() : INode() {};
+ 
 
- 	void accept(Visitor &v)
- 	{
- 		for (list<Node>::iterator it=children->children.listas->begin(); it != children->children.listas->end(); ++it)
-			v.visit(*it);
- 	}
- }; 
-
- class SStmtListNode : public INode
- {
- public:
- 	SStmtListNode() : INode() {};
-
- 	void accept(Visitor &v)
- 	{
- 		for (list<Node>::iterator it=children->children.listas->begin(); it != children->children.listas->end(); ++it)
-			v.visit(*it);
- 	}
- }; 
-
- class ExprNode : public INode
- {
- public:
- 	ExprNode() : INode() {};
-
- 	void accept(Visitor &v)
- 	{
- 		for (list<Node>::iterator it=children->children.listas->begin(); it != children->children.listas->end(); ++it)
-			v.visit(*it);
- 	}
- };
-
- class PlusNode : public BinNode
- {
+ class PlusNode : public BinNode{
  public:
  	PlusNode() : BinNode() {};
 
  	void accept(Visitor &v){
- 		v.visit(&getLeftChild());
- 		v.visit(&getRightChild());
+ 		v.visit(getLeftChild());
+		v.visit(getRightChild());
  	}
  };
 
- class MinusNode : public BinNode
- {
+ class MinusNode : public BinNode{
  public:
  	MinusNode() : BinNode() {};
 
  	void accept(Visitor &v){
- 		v.visit(&getLeftChild());
- 		v.visit(&getRightChild());
+ 		v.visit(getLeftChild());
+		v.visit(getRightChild());
  	}
  };
 
- class DiviNode : public BinNode
- {
+ class DiviNode : public BinNode{
  public:
  	DiviNode() : BinNode() {};
 
  	void accept(Visitor &v){
- 		v.visit(&getLeftChild());
- 		v.visit(&getRightChild());
+ 		v.visit(getLeftChild());
+		v.visit(getRightChild());
  	}
  };
 
- class MultNode : public BinNode
- {
+ class MultNode : public BinNode{
  public:
  	MultNode() : BinNode() {};
 
  	void accept(Visitor &v){
-		v.visit(&getLeftChild());
- 		v.visit(&getRightChild());
+		v.visit(getLeftChild());
+		v.visit(getRightChild());
  	}
  };
+ 
+ /**
+  * 
+  * Implementación de los nodos que heredan de LeafNode
+  */
 
- class IdentNode : public LeafNode
- {
+ class IdentNode : public LeafNode{
  public:
- 	IdentNode(string val) : LeafNode()
- 	{
+ 	IdentNode(string val) : LeafNode(){
  		value.str = &val;
  	}
 
- 	NValue getValue()
- 	{
+ 	NValue getValue(){
  		return value.str;
  	}
 
- 	void accept(Visitor &v)
- 	{
+ 	void accept(Visitor &v)	{
 		Simbolo *s=v.symbolTable->lookUp(*value.str);
 		if(s==NULL)
 			s=new Simbolo(value.str,(int*)NULL);
@@ -210,163 +208,131 @@ public:
  	}
  };
 
- class IntNode : public LeafNode
- {
+ class IntNode : public LeafNode{
  public:
- 	IntNode(int i)
- 	{
+ 	IntNode(int i){
  		value.i = i;
  	}
 
- 	NValue getValue()
- 	{
+ 	NValue getValue(){
  		return value.i;
  		return value.i;
  	}
 
- 	void accept(Visitor &v)
- 	{
+ 	void accept(Visitor &v){
  		cout<<"int aceptado";
  	}
  };
 
- class FloatNode : public LeafNode
- {
+ class FloatNode : public LeafNode{
  public:
- 	FloatNode(float f) : LeafNode()
- 	{
+ 	FloatNode(float f) : LeafNode(){
  		value.f = f;
  	}
 
- 	NValue getValue()
- 	{
+ 	NValue getValue(){
  		return value.f;
  	}
 
- 	void accept(Visitor &v)
- 	{
+ 	void accept(Visitor &v){
  		cout<<"float aceptado";
  	}
  };
 
 
- class StrNode : public LeafNode
- {
+ class StrNode : public LeafNode{
  public:
 
- 	StrNode(string str) : LeafNode()
- 	{
+ 	StrNode(string str) : LeafNode(){
  		value.str = &str;
  	}
 
- 	NValue getValue()
- 	{
+ 	NValue getValue(){
  		return value.str;
  	}
 
- 	void accept(Visitor &v)
- 	{
+ 	void accept(Visitor &v){
  		cout<<"String aceptado";
  	}
  };
 
- class BoolNode : public LeafNode
- {
+ class BoolNode : public LeafNode{
  public:
- 	BoolNode(bool boolean) : LeafNode()
- 	{
+ 	BoolNode(bool boolean) : LeafNode(){
  		value.b = &boolean;
  	}
 
-	NValue getValue()
-	{
+	NValue getValue(){
 		return value.b;
 	}
 
-	void accept(Visitor &v)
- 	{
+	void accept(Visitor &v){
  		cout<<"Boolean aceptado";
  	}
  };
 
- class MAST : public AST
- {
+ class MAST : public AST{
  public:
  	MAST() : AST() {};
 
 
- 	IntNode* bIntNode(int val)
- 	{
+ 	IntNode* bIntNode(int val){
  		return new IntNode(val);
  	}
 
- 	StrNode* bStrNode(string val)
- 	{
+ 	StrNode* bStrNode(string val){
  		return new StrNode(val);
  	}
 
- 	FloatNode* bFloatNode(float val)
- 	{
+ 	FloatNode* bFloatNode(float val){
  		return new FloatNode(val);
  	}
 
- 	BoolNode* bBoolNode(bool val)
- 	{
+ 	BoolNode* bBoolNode(bool val){
  		return new BoolNode(val);
  	}
 
- 	IdentNode* bIdentNode(string name)
- 	{
+ 	IdentNode* bIdentNode(string name){
  		return new IdentNode(name);
  	}
 
- 	PlusNode* bPlusNode()
- 	{
+ 	PlusNode* bPlusNode(){
  		return new PlusNode();
  	}
 
- 	MultNode* bMultNode()
- 	{
+ 	MultNode* bMultNode(){
  		return new MultNode();
  	}
 
- 	DiviNode* bDiviNode()
- 	{
+ 	DiviNode* bDiviNode(){
  		return new DiviNode();
  	}
 
- 	MinusNode* bMinusNode()
- 	{
+ 	MinusNode* bMinusNode(){
  		return new MinusNode();
  	}
 
- 	IfNode* bIfNode()
- 	{
+ 	IfNode* bIfNode(){
  		return new IfNode();
  	}
 
- 	ForNode* bForNode()
- 	{
+ 	ForNode* bForNode(){
  		return new ForNode();
  	}
 
- 	WhileNode* bWhileNode()
- 	{
+ 	WhileNode* bWhileNode(){
  		return new WhileNode();
  	}
 
- 	StmtListNode* bStmtListNode()
- 	{
+ 	StmtListNode* bStmtListNode(){
  		return new StmtListNode();
  	}
 
- 	SStmtListNode* bSStmtListNode()
- 	{
+ 	SStmtListNode* bSStmtListNode(){
  		return new SStmtListNode();
  	}
 
- 	ExprNode* bExprNode()
- 	{
+ 	ExprNode* bExprNode(){
  		return new ExprNode();
  	}
  };
@@ -374,6 +340,7 @@ public:
 
 class VisitorNode : public Visitor{
 public:
+	SymbolTable* symbolTable;
 
 	VisitorNode(){
 		symbolTable= new SymbolTable;
@@ -522,79 +489,66 @@ public:
 			it->accept(this); 
  	}
 
- 	void visit(IfNode* node)
- 	{
+ 	void visit(IfNode* node){
 		for (list<Node>::iterator it=node->children->children.listas->begin(); it != node->children->children.listas->end(); ++it)
 			it->accept(this);
 		
  	}
 
- 	void visit(AssignNode* node)
- 	{
+ 	void visit(AssignNode* node){
 		node->accept(this);
  	}
 
- 	void visit(StmtListNode* node)
- 	{
+ 	void visit(StmtListNode* node){
 		node->accept(this);
  	}
 
- 	void visit(SStmtListNode* node)
- 	{
+ 	void visit(SStmtListNode* node){
 		node->accept(this);
  	}
 
- 	void visit(ExprNode* node)
- 	{
+ 	void visit(ExprNode* node){
 		node->accept(this);
  	}
 
- 	void visit(MinusNode* node)
- 	{
+ 	void visit(MinusNode* node){
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(this);
  		right->accept(this);
  	}
 
- 	void visit(DiviNode* node)
- 	{
+ 	void visit(DiviNode* node){
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(this);
  		right->accept(this);
  	}
 
- 	void visit(MultNode* node)
- 	{
+ 	void visit(MultNode* node){
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(this);
  		right->accept(this);
  	}
 
- 	void visit(IdentNode* node)
- 	{
+ 	void visit(IdentNode* node){
  		node->accept(this);
  	}
 
- 	void visit(IntNode* node)
- 	{
+ 	void visit(IntNode* node){
  		node->accept(this);
  	}
 
- 	void visit(FloatNode* node)
- 	{
+ 	void visit(FloatNode* node){
  		node->accept(this);
  	}
 
- 	void visit(StrNode* node)
- 	{
+ 	void visit(StrNode* node){
  		node->accept(this);
  	}
 
- 	void visit(BoolNode* node)
- 	{
+ 	void visit(BoolNode* node){
 		node->accept(this);
  	}
  };
