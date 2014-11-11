@@ -24,6 +24,7 @@ using namespace std;
  */
 class Visitor{
 public:
+	SymbolTable* symbolTable;
 	//Node
 	virtual void visit(Node*);
 	virtual void visit(INode*);
@@ -62,8 +63,7 @@ class ForNode : public INode{
 public:
  	ForNode() : INode() {};
 
- 	void accept(Visitor &v)
- 	{
+ 	void accept(Visitor &v){
 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
 			v.visit(*it);
 			
@@ -131,7 +131,9 @@ public:
  	AssignNode() : BinNode() {};
 
  	void accept(Visitor &v){
-		IdentNode* c = dynamic_cast<IdentNode*>(getLeftChild());
+		INode* i = dynamic_cast<INode*>(getLeftChild());
+		BinNode* bn = dynamic_cast<BinNode*> (i);
+		IdentNode* c = dynamic_cast<IdentNode*>(bn);
 		if(c != 0) {
 			throw "Assignment operation is only for variables";
 		}else{
@@ -195,15 +197,15 @@ public:
  	}
 
  	NValue getValue(){
- 		return value.str;
+ 		return value;
  	}
 
  	void accept(Visitor &v)	{
-		Simbolo *s=v.symbolTable->lookUp(*value.str);
+		Simbolo *s = v.symbolTable->lookUp(*value.str);
 		if(s==NULL)
 			s=new Simbolo(value.str,(int*)NULL);
 		
-		symbolTable.insertName(s);
+		v.symbolTable->insertName(s);
  		//Aguas!
  	}
  };
@@ -215,8 +217,7 @@ public:
  	}
 
  	NValue getValue(){
- 		return value.i;
- 		return value.i;
+ 		return value;
  	}
 
  	void accept(Visitor &v){
@@ -231,7 +232,7 @@ public:
  	}
 
  	NValue getValue(){
- 		return value.f;
+ 		return value;
  	}
 
  	void accept(Visitor &v){
@@ -248,7 +249,7 @@ public:
  	}
 
  	NValue getValue(){
- 		return value.str;
+ 		return value;
  	}
 
  	void accept(Visitor &v){
@@ -263,7 +264,7 @@ public:
  	}
 
 	NValue getValue(){
-		return value.b;
+		return value;
 	}
 
 	void accept(Visitor &v){
@@ -273,7 +274,7 @@ public:
 
  class MAST : public AST{
  public:
- 	MAST() : AST() {};
+ 	MAST();
 
 
  	IntNode* bIntNode(int val){
@@ -340,7 +341,6 @@ public:
 
 class VisitorNode : public Visitor{
 public:
-	SymbolTable* symbolTable;
 
 	VisitorNode(){
 		symbolTable= new SymbolTable;
@@ -427,7 +427,7 @@ public:
  			visit(ifnode);
  			return;
  		}
- 		ForNode* fnode) = dynamic_cast<ForNode*>(node);
+ 		ForNode* fnode = dynamic_cast<ForNode*>(node);
 		if(fnode!=0){
  			visit(fnode);
  			return;
@@ -471,85 +471,103 @@ public:
 
  	}
 
-
- 	void visit(PlusNode* node){
- 		Node left = node->getLeftChild();
- 		Node right = node->getRightChild();
- 		left.accept(this);
- 		right.accept(this);
- 	}
-
  	void visit(ForNode* node){
-		for (list<Node>::iterator it=node->children->children.listas->begin(); it != node->children->children.listas->end(); ++it)
-			it.accept(this);
+		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
+			Visitor* v = this;
+			(*it)->accept(*v);
+		}
  	}
 
  	void visit(WhileNode* node){
-		for (list<Node>::iterator it=node->children->children.listas->begin(); it != node->children->children.listas->end(); ++it)
-			it->accept(this); 
+		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
+			Visitor* v = this;
+			(*it)->accept(*v);
+		} 
  	}
 
  	void visit(IfNode* node){
-		for (list<Node>::iterator it=node->children->children.listas->begin(); it != node->children->children.listas->end(); ++it)
-			it->accept(this);
+		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
+			Visitor* v = this;
+			(*it)->accept(*v);
+		}
 		
  	}
 
  	void visit(AssignNode* node){
-		node->accept(this);
+		Visitor *v=this;
+		node->accept(*v);
  	}
 
  	void visit(StmtListNode* node){
-		node->accept(this);
+		Visitor *v=this;
+		node->accept(*v);
  	}
 
  	void visit(SStmtListNode* node){
-		node->accept(this);
+		Visitor *v=this;
+		node->accept(*v);
  	}
 
  	void visit(ExprNode* node){
-		node->accept(this);
+		Visitor *v=this;
+		node->accept(*v);
+ 	}
+ 	
+ 	void visit(PlusNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
  	void visit(MinusNode* node){
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
- 		left->accept(this);
- 		right->accept(this);
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
  	void visit(DiviNode* node){
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
- 		left->accept(this);
- 		right->accept(this);
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
  	void visit(MultNode* node){
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
- 		left->accept(this);
- 		right->accept(this);
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
  	void visit(IdentNode* node){
- 		node->accept(this);
+ 		Visitor *v=this;
+		node->accept(*v);
  	}
 
  	void visit(IntNode* node){
- 		node->accept(this);
+ 		Visitor *v=this;
+		node->accept(*v);
  	}
 
  	void visit(FloatNode* node){
- 		node->accept(this);
+ 		Visitor *v=this;
+		node->accept(*v);
  	}
 
  	void visit(StrNode* node){
- 		node->accept(this);
+ 		Visitor *v=this;
+		node->accept(*v);
  	}
 
  	void visit(BoolNode* node){
-		node->accept(this);
+		Visitor *v=this;
+		node->accept(*v);
  	}
  };
 

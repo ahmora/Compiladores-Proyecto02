@@ -36,8 +36,6 @@ class IntNode;
 class FloatNode;
 class StrNode;
 class BoolNode;
-class StmtNode;
-class SStmtNode;
 
 class Node{
 public:
@@ -211,28 +209,28 @@ public:
  public:
 
  	// BinNode's
- 	virtual PlusNode* bPlusNode()=0;
- 	virtual MultNode* bMultNode()=0;
- 	virtual DiviNode* bDiviNode()=0;
- 	virtual MinusNode* bMinusNode()=0;
- 	virtual AssignNode* bAssignNode()=0;
+ 	virtual PlusNode* bPlusNode();
+ 	virtual MultNode* bMultNode();
+ 	virtual DiviNode* bDiviNode();
+ 	virtual MinusNode* bMinusNode();
+ 	virtual AssignNode* bAssignNode();
 
  	// INode's
- 	virtual StmtNode* bStmtNode()=0;
- 	virtual SStmtNode* bSStmtNode()=0;
+ 	virtual StmtNode* bStmtNode();
+ 	virtual SStmtNode* bSStmtNode();
  	
- 	virtual StmtListNode* bStmtListNode()=0;
- 	virtual SStmtListNode* bSStmtListNode()=0;
- 	virtual ExprNode* bExprNode()=0;
+ 	virtual StmtListNode* bStmtListNode();
+ 	virtual SStmtListNode* bSStmtListNode();
+ 	virtual ExprNode* bExprNode();
 
- 	virtual IfNode* bIfNode()=0;
- 	virtual ForNode* bForNode()=0;
- 	virtual WhileNode* bWhileNode()=0;
+ 	virtual IfNode* bIfNode();
+ 	virtual ForNode* bForNode();
+ 	virtual WhileNode* bWhileNode();
 
  	// LeafNode's
- 	virtual IntNode* bIntNode(int val)=0;
- 	virtual StrNode* bStrNode(string val)=0;
- 	virtual FloatNode* bFloatNode(float val)=0;
- 	virtual IdentNode* bIdentNode(string name)=0;
- 	virtual BoolNode* bBoolNode(bool val)=0;
+ 	virtual IntNode* bIntNode(int val);
+ 	virtual StrNode* bStrNode(string val);
+ 	virtual FloatNode* bFloatNode(float val);
+ 	virtual IdentNode* bIdentNode(string name);
+ 	virtual BoolNode* bBoolNode(bool val);
  };

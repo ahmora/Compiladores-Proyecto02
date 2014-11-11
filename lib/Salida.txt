@@ -1,0 +1,158 @@
+MAST.hpp: In member function ‘virtual void AssignNode::accept(Visitor&)’:
+MAST.hpp:134:34: error: expected ‘(’ before ‘getLeftChild’
+   INode* i = dynamic_cast<INode*>getLeftChild();
+                                  ^
+MAST.hpp:134:48: error: expected ‘)’ before ‘;’ token
+   INode* i = dynamic_cast<INode*>getLeftChild();
+                                                ^
+MAST.hpp:135:40: error: expected ‘(’ before ‘i’
+   BinNode* bn = dynamic_cast<BinNode*> i;
+                                        ^
+MAST.hpp:135:41: error: expected ‘)’ before ‘;’ token
+   BinNode* bn = dynamic_cast<BinNode*> i;
+                                         ^
+MAST.hpp:136:42: error: expected ‘(’ before ‘bn’
+   IdentNode* c = dynamic_cast<IdentNode*>bn;
+                                          ^
+MAST.hpp:136:44: error: expected ‘)’ before ‘;’ token
+   IdentNode* c = dynamic_cast<IdentNode*>bn;
+                                            ^
+MAST.hpp:136:44: error: cannot dynamic_cast ‘bn’ (of type ‘class BinNode*’) to type ‘class IdentNode*’ (target is not pointer or reference to complete type)
+MAST.hpp: In member function ‘virtual IntNode* MAST::bIntNode(int)’:
+MAST.hpp:281:26: error: cannot allocate an object of abstract type ‘IntNode’
+    return new IntNode(val);
+                          ^
+MAST.hpp:213:8: note:   because the following virtual functions are pure within ‘IntNode’:
+  class IntNode : public LeafNode{
+        ^
+In file included from MAST.hpp:10:0:
+AST.hpp:44:15: note: 	virtual void Node::addFChild(Node*)
+  virtual void addFChild(Node*)=0;
+               ^
+AST.hpp:45:15: note: 	virtual void Node::addLChild(Node*)
+  virtual void addLChild(Node*)=0;
+               ^
+AST.hpp:46:15: note: 	virtual void Node::setFChild(Node*)
+  virtual void setFChild(Node*)=0;
+               ^
+AST.hpp:47:15: note: 	virtual void Node::setSChild(Node*)
+  virtual void setSChild(Node*)=0;
+               ^
+MAST.hpp: In member function ‘virtual StrNode* MAST::bStrNode(std::string)’:
+MAST.hpp:285:26: error: cannot allocate an object of abstract type ‘StrNode’
+    return new StrNode(val);
+                          ^
+MAST.hpp:244:8: note:   because the following virtual functions are pure within ‘StrNode’:
+  class StrNode : public LeafNode{
+        ^
+In file included from MAST.hpp:10:0:
+AST.hpp:44:15: note: 	virtual void Node::addFChild(Node*)
+  virtual void addFChild(Node*)=0;
+               ^
+AST.hpp:45:15: note: 	virtual void Node::addLChild(Node*)
+  virtual void addLChild(Node*)=0;
+               ^
+AST.hpp:46:15: note: 	virtual void Node::setFChild(Node*)
+  virtual void setFChild(Node*)=0;
+               ^
+AST.hpp:47:15: note: 	virtual void Node::setSChild(Node*)
+  virtual void setSChild(Node*)=0;
+               ^
+MAST.hpp: In member function ‘virtual FloatNode* MAST::bFloatNode(float)’:
+MAST.hpp:289:28: error: cannot allocate an object of abstract type ‘FloatNode’
+    return new FloatNode(val);
+                            ^
+MAST.hpp:228:8: note:   because the following virtual functions are pure within ‘FloatNode’:
+  class FloatNode : public LeafNode{
+        ^
+In file included from MAST.hpp:10:0:
+AST.hpp:44:15: note: 	virtual void Node::addFChild(Node*)
+  virtual void addFChild(Node*)=0;
+               ^
+AST.hpp:45:15: note: 	virtual void Node::addLChild(Node*)
+  virtual void addLChild(Node*)=0;
+               ^
+AST.hpp:46:15: note: 	virtual void Node::setFChild(Node*)
+  virtual void setFChild(Node*)=0;
+               ^
+AST.hpp:47:15: note: 	virtual void Node::setSChild(Node*)
+  virtual void setSChild(Node*)=0;
+               ^
+MAST.hpp: In member function ‘virtual BoolNode* MAST::bBoolNode(bool)’:
+MAST.hpp:293:27: error: cannot allocate an object of abstract type ‘BoolNode’
+    return new BoolNode(val);
+                           ^
+MAST.hpp:260:8: note:   because the following virtual functions are pure within ‘BoolNode’:
+  class BoolNode : public LeafNode{
+        ^
+In file included from MAST.hpp:10:0:
+AST.hpp:44:15: note: 	virtual void Node::addFChild(Node*)
+  virtual void addFChild(Node*)=0;
+               ^
+AST.hpp:45:15: note: 	virtual void Node::addLChild(Node*)
+  virtual void addLChild(Node*)=0;
+               ^
+AST.hpp:46:15: note: 	virtual void Node::setFChild(Node*)
+  virtual void setFChild(Node*)=0;
+               ^
+AST.hpp:47:15: note: 	virtual void Node::setSChild(Node*)
+  virtual void setSChild(Node*)=0;
+               ^
+MAST.hpp: In member function ‘virtual IdentNode* MAST::bIdentNode(std::string)’:
+MAST.hpp:297:29: error: cannot allocate an object of abstract type ‘IdentNode’
+    return new IdentNode(name);
+                             ^
+MAST.hpp:193:8: note:   because the following virtual functions are pure within ‘IdentNode’:
+  class IdentNode : public LeafNode{
+        ^
+In file included from MAST.hpp:10:0:
+AST.hpp:44:15: note: 	virtual void Node::addFChild(Node*)
+  virtual void addFChild(Node*)=0;
+               ^
+AST.hpp:45:15: note: 	virtual void Node::addLChild(Node*)
+  virtual void addLChild(Node*)=0;
+               ^
+AST.hpp:46:15: note: 	virtual void Node::setFChild(Node*)
+  virtual void setFChild(Node*)=0;
+               ^
+AST.hpp:47:15: note: 	virtual void Node::setSChild(Node*)
+  virtual void setSChild(Node*)=0;
+               ^
+MAST.hpp: In member function ‘void VisitorNode::visit(LeafNode*)’:
+MAST.hpp:369:44: error: expected ‘(’ before ‘inode’
+    IntNode* inode = dynamic_cast<IntNode*> inode;
+                                            ^
+MAST.hpp:369:49: error: expected ‘)’ before ‘;’ token
+    IntNode* inode = dynamic_cast<IntNode*> inode;
+                                                 ^
+MAST.hpp:374:44: error: expected ‘(’ before ‘stnode’
+    StrNode* stnode = dynamic_cast<StrNode*>stnode;
+                                            ^
+MAST.hpp:374:50: error: expected ‘)’ before ‘;’ token
+    StrNode* stnode = dynamic_cast<StrNode*>stnode;
+                                                  ^
+MAST.hpp:379:47: error: expected ‘(’ before ‘flnode’
+    FloatNode* flnode= dynamic_cast<FloatNode*>flnode;
+                                               ^
+MAST.hpp:379:53: error: expected ‘)’ before ‘;’ token
+    FloatNode* flnode= dynamic_cast<FloatNode*>flnode;
+                                                     ^
+MAST.hpp:384:47: error: expected ‘(’ before ‘idnode’
+    IdentNode* idnode= dynamic_cast<IdentNode*>idnode;
+                                               ^
+MAST.hpp:384:53: error: expected ‘)’ before ‘;’ token
+    IdentNode* idnode= dynamic_cast<IdentNode*>idnode;
+                                                     ^
+MAST.hpp: In member function ‘virtual void VisitorNode::visit(INode*)’:
+MAST.hpp:397:53: error: cannot dynamic_cast ‘node’ (of type ‘class INode*’) to type ‘class StmtNode*’ (target is not pointer or reference to complete type)
+    StmtNode* stmtnode = dynamic_cast<StmtNode*>(node);
+                                                     ^
+MAST.hpp:399:11: error: ‘stmtNode’ was not declared in this scope
+     visit(stmtNode);
+           ^
+MAST.hpp:403:56: error: cannot dynamic_cast ‘node’ (of type ‘class INode*’) to type ‘class SStmtNode*’ (target is not pointer or reference to complete type)
+    SStmtNode* sstmtnode = dynamic_cast<SStmtNode*>(node);
+                                                        ^
+MAST.hpp:405:11: error: ‘sstmtNode’ was not declared in this scope
+     visit(sstmtNode);
+           ^
