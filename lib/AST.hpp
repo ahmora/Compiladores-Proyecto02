@@ -1,53 +1,29 @@
-/*
-* Implementación de clases para un AST con los patrones Builder, Composite y Visitor.
-* La implementación de los patrones de diseño se hacen con las clases Node, NodeList y AST.
-*
-* @author: Alejandro Hernández Mora
-* @author: Alan Mauricio García García
-*/
+/**
+ * Implementación de clases para un AST con los patrones Builder, Composite y Visitor.
+ * La implementación de los patrones de diseño se hacen con las clases Node, NodeList y AST.
+ * @author: Alejandro Hernández Mora
+ * @author: Alan Mauricio García García
+ */
 
 #include <list>
 #include <vector>
 #include <string>
 #include <iostream>
-
+#include "Nodos.hpp"
 
 using namespace std;
-
-class Visitor;
-class ForNode;
-class WhileNode;
-class IfNode;
-class AssignNode;
-
-class StmtNode;
-class SStmtNode;
-
-class StmtListNode;
-class SStmtListNode;
-
-class ExprNode;
-class PlusNode;
-class MinusNode;
-class DiviNode;
-class MultNode;
-class IdentNode;
-class IntNode;
-class FloatNode;
-class StrNode;
-class BoolNode;
 
 class Node{
 public:
 	~Node();
-	virtual void accept(Visitor&)=0;
-	virtual void addFChild(Node*)=0;
-	virtual void addLChild(Node*)=0;
-	virtual void setFChild(Node*)=0;
-	virtual void setSChild(Node*)=0;
+	virtual void accept(Visitor&);
+	virtual void addFChild(Node*);
+	virtual void addLChild(Node*);
+	virtual void setFChild(Node*);
+	virtual void setSChild(Node*);
 	
 protected:
-Node();
+	Node();
 };
 
 
@@ -214,18 +190,34 @@ public:
  	virtual DiviNode* bDiviNode();
  	virtual MinusNode* bMinusNode();
  	virtual AssignNode* bAssignNode();
+ 	virtual AndNode* bAndNode();
+ 	virtual OrNode* bOrNode();
+ 	virtual XorNode* bXorNode();
+ 	virtual NotNode* bNotNode();
+ 	virtual LTNode* bLTNode();
+ 	virtual GTNode* bGTNode();
+ 	virtual EqNode* bEqNode();
+ 	virtual NEqNode* bNEqNode();
+ 	virtual LTEqNode* bLTEqNode();
+ 	virtual GTEqNode* bGTEqNode();
+ 	virtual PotNode* bPotNode();
+ 	
 
  	// INode's
  	virtual StmtNode* bStmtNode();
  	virtual SStmtNode* bSStmtNode();
- 	
  	virtual StmtListNode* bStmtListNode();
  	virtual SStmtListNode* bSStmtListNode();
  	virtual ExprNode* bExprNode();
-
  	virtual IfNode* bIfNode();
  	virtual ForNode* bForNode();
  	virtual WhileNode* bWhileNode();
+ 	virtual ArgsNode* bArgsNode();
+ 	virtual FuncNode* bFuncNode();
+ 	virtual IfNode* bIfNode()=0;
+ 	virtual ForNode* bForNode()=0;
+ 	virtual WhileNode* bWhileNode()=0;
+ 	
 
  	// LeafNode's
  	virtual IntNode* bIntNode(int val);
