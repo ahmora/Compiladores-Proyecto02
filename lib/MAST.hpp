@@ -650,6 +650,7 @@ public:
 	 	IdentNode* idnode= dynamic_cast<IdentNode*>idnode;
 	 	if(idnode!=0){
 	 			visit(idnode);
+	 			return;
 	 	}
  	}
 
@@ -662,13 +663,13 @@ public:
 
  		StmtNode* stmtnode = dynamic_cast<StmtNode*>(node);
  		if(stmtnode!=0){
- 			visit(stmtNode);
+ 			visit(stmtnode);
  			return;
  		}
 
  		SStmtNode* sstmtnode = dynamic_cast<SStmtNode*>(node);
  		if(sstmtnode!=0){
- 			visit(sstmtNode);
+ 			visit(sstmtnode);
  			return;
  		}
  		
@@ -848,13 +849,15 @@ public:
  	void visit(FuncNode* node){
 		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
 			Visitor* v = this;
-			(*it)->accept(*v);		
+			(*it)->accept(*v);	
+		}	
 	}
 
  	void visit(ArgsNode* node){
  		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
 			Visitor* v = this;
 			(*it)->accept(*v);
+		}
  	}
 
  	void visit(ExprNode* node){
@@ -863,92 +866,92 @@ public:
  	}
  	
  	
- 	void visit(AndNode* node)
-	{
-		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
-	}
-
- 	void visit(OrNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(AndNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(XorNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(OrNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(NotNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(XorNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(PotNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(NotNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(LTNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(PotNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(GTNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(LTNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(EqNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(GTNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(NEqNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(EqNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(LTEqNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(NEqNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
 
- 	void visit(GTEqNode* node)
- 	{
- 		Node left = node->getLeftChild();
-		Node right = node->getRightChild();
-		left.accept(this);
-		right.accept(this);
+ 	void visit(LTEqNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
+ 	}
+
+ 	void visit(GTEqNode* node){
+ 		Node *left = node->getLeftChild();
+ 		Node *right = node->getRightChild();
+ 		Visitor *v=this;
+ 		left->accept(*v);
+ 		right->accept(*v);
  	}
  	
  	

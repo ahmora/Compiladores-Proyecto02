@@ -214,9 +214,6 @@ public:
  	virtual WhileNode* bWhileNode();
  	virtual ArgsNode* bArgsNode();
  	virtual FuncNode* bFuncNode();
- 	virtual IfNode* bIfNode()=0;
- 	virtual ForNode* bForNode()=0;
- 	virtual WhileNode* bWhileNode()=0;
  	
 
  	// LeafNode's
