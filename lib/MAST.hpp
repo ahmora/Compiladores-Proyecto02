@@ -372,15 +372,6 @@ public:
  
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
  /**
   * 
   * Implementación de los nodos que heredan de LeafNode
@@ -471,7 +462,6 @@ public:
  class MAST : public AST{
  public:
  	MAST();
-
 
  	IntNode* bIntNode(int val){
  		return new IntNode(val);

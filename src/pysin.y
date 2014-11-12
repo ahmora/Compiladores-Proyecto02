@@ -391,16 +391,16 @@ comma_subscript: comma_subscript COMMA subscript 	{$$ = $3;}
 	|epsilon;
 	
 subscript: /*'.' '.' '.' | test | [test] ':' [test] [sliceop] */
-	DOT DOT DOT
-	| test 							{$$ = $1;}
+	DOT DOT DOT				{}
+	| test 					{$$ = $1;}
 	| test TWODOTS test sliceop		{$$ = $1;}
-	| test TWODOTS test				{$$ = $1;}
-	| test TWODOTS					{$$ = $1;}
+	| test TWODOTS test			{$$ = $1;}
+	| test TWODOTS				{$$ = $1;}
 	| test TWODOTS sliceop			{$$ = $1;}
 	| TWODOTS test sliceop			{$$ = $2;}
-	| TWODOTS test					{$$ = $2;}
-	| TWODOTS sliceop				{$$ = $2;}
-	| TWODOTS						{cout<<":";};
+	| TWODOTS test				{$$ = $2;}
+	| TWODOTS sliceop			{$$ = $2;}
+	| TWODOTS				{cout<<":";};
 
 sliceop: /*':' [test];*/
 	TWODOTS test				{cout<<":";}
