@@ -184,9 +184,7 @@ public:
  	AssignNode() : BinNode() {};
 
  	void accept(Visitor &v){
-		INode* i = dynamic_cast<INode*>(getLeftChild());
-		BinNode* bn = dynamic_cast<BinNode*> (i);
-		IdentNode* c = dynamic_cast<IdentNode*>(bn);
+		IdentNode* c = (IdentNode*)getLeftChild();
 		if(c != 0) {
 			throw "Assignment operation is only for variables";
 		}else{
@@ -632,22 +630,22 @@ public:
  	}
 
  	void visit(LeafNode* node){
-	 	IntNode* inode = dynamic_cast<IntNode*> inode;
+	 	IntNode* inode = dynamic_cast<IntNode*> (inode);
 	 	if(inode!=0){
 	 			visit(inode);
 	 			return;
 	 	}
-	 	StrNode* stnode = dynamic_cast<StrNode*>stnode;
+	 	StrNode* stnode = dynamic_cast<StrNode*> (stnode);
 	 	if(stnode!=0){
 	 			visit(stnode);
 	 			return;
 	 	}
-	 	FloatNode* flnode= dynamic_cast<FloatNode*>flnode;
+	 	FloatNode* flnode= dynamic_cast<FloatNode*> (flnode);
 	 	if(flnode!=0){
 	 			visit(flnode);
 	 			return;
 	 	}
-	 	IdentNode* idnode= dynamic_cast<IdentNode*>idnode;
+	 	IdentNode* idnode= dynamic_cast<IdentNode*>(idnode);
 	 	if(idnode!=0){
 	 			visit(idnode);
 	 			return;
