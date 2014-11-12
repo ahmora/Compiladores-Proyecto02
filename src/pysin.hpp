@@ -41,9 +41,9 @@ extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 2053 of yacc.c  */
-#line 23 "pysin.y"
+#line 22 "pysin.y"
 
-#include "../lib/CompuestoVisitante.hpp"
+#include "../lib/Nodos.hpp"
 
 
 
@@ -147,12 +147,12 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2053 of yacc.c  */
-#line 29 "pysin.y"
+#line 28 "pysin.y"
 
 	int entero;
 	double flotante;
 	char caracter;
-	char** cadena;
+	char* cadena;
 	Node* nodo;
 
 

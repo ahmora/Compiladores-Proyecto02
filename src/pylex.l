@@ -1,7 +1,6 @@
 %{
 #include <iostream>
 #include "../lib/Stack.h"
-
 #include "pysin.hpp"
 stack stack;
 int new_line = 1;

@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <iostream>
 #include "../lib/MAST.hpp"
-#include "../lib/SymbolTable.hpp"
 #include <string>
 
 using namespace std;
@@ -21,7 +20,7 @@ MAST *asTree= new MAST;
 %}
 
 %code requires{
-#include "../lib/CompuestoVisitante.hpp"
+#include "../lib/Nodos.hpp"
 
 }
 
