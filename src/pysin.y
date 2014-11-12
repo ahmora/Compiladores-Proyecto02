@@ -11,10 +11,14 @@ int yylex();
 int yyerror(const char *s) { printf ("\nError: %s\n", s); }
 
 extern "C" FILE *yyin;
+extern SymbolTable *st;
+extern MAST *asTree;
 
 
 SymbolTable *st= new SymbolTable;
 MAST *asTree= new MAST;
+
+
 
 
 %}

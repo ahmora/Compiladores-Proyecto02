@@ -461,7 +461,7 @@ public:
 
  class MAST : public AST{
  public:
- 	MAST();
+	MAST();
 
  	IntNode* bIntNode(int val){
  		return new IntNode(val);
