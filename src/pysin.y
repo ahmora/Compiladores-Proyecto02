@@ -5,18 +5,19 @@
 #include "../lib/MAST.hpp"
 #include <string>
 
+
 using namespace std;
 #define YYDEBUG 1
 int yylex(); 
 int yyerror(const char *s) { printf ("\nError: %s\n", s); }
 
 extern "C" FILE *yyin;
-extern SymbolTable *st;
-extern MAST *asTree;
 
 
-SymbolTable *st= new SymbolTable;
-MAST *asTree= new MAST;
+SymbolTable *st;
+*st= new SymbolTable;
+MAST *asTree;
+*asTree= new MAST;
 
 
 

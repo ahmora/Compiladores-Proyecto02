@@ -17,12 +17,12 @@ class Node{
 public:
 	virtual ~Node(){};
 	virtual void accept(Visitor&)=0;
-	virtual void addFChild(Node*);
-	virtual void addLChild(Node*);
-	virtual void setFChild(Node*);
-	virtual void setSChild(Node*);
+	virtual void addFChild(Node*)=0;
+	virtual void addLChild(Node*)=0;
+	virtual void setFChild(Node*)=0;
+	virtual void setSChild(Node*)=0;
 protected:
-	Node();
+	Node(){};
 	
 };
 
@@ -35,38 +35,38 @@ union NList {
 
 class NodeList{
 public:
-	virtual ~NodeList();
-	NList* children;
-
-	virtual Node* getLeftChild();
-	virtual Node* getRightChild();
-	virtual void setLeftChild(Node* node);
-	virtual void setRightChild(Node* node);
-
-	virtual void addFirst(Node* node);
-	virtual void addLast(Node* node);
+	virtual ~NodeList(){};
 	
-	NList* getChildren(){
-		return children;
-	}
+	virtual Node* getLeftChild(){};
+	virtual Node* getRightChild(){};
+	virtual void setLeftChild(Node* node){};
+	virtual void setRightChild(Node* node){};
+
+	virtual void addFirst(Node* node){};
+	virtual void addLast(Node* node){};
+	
 protected:
-	NodeList();
+	NodeList(){
+		children= (NList*) malloc(sizeof(NList));
+	}
+	NList* children;
 };
 
 
- class VNodeList : public NodeList{
- public:
-	~VNodeList();
- 	VNodeList(int n):NodeList(){
- 		getChildren().resize(n);
+class VNodeList : public NodeList{
+public:
+	~VNodeList(){};
+ 	VNodeList(int n){
+		children->vectores.reserve(n);
  	}
 
  	void setLeftChild(Node* node){
- 		getChildren().front() = node;
+ 		children->vectores.insert(children->vectores.begin(), node);
+ 		
  	}
 
  	void setRightChild(Node* node){
- 		getChildren().back() = node;
+ 		children->vectores.insert(children->vectores.begin()+1, node);
  	}
  	
  	Node* getLeftChild(){
@@ -84,7 +84,8 @@ protected:
 
  class LNodeList : public NodeList{
  public:
-	~LNodeList();
+	~LNodeList(){};
+	LNodeList():NodeList(){};
  	void addFirst(Node* node){
  		getChildren().push_front(node);
  	}
@@ -102,13 +103,14 @@ protected:
 class INode : public Node{	
 protected:
  	NodeList* children;
+ 	
 	 
  public:
-	~INode();
- 	INode() : Node(){
- 		children = new LNodeList();
+	~INode(){};
+	INode() : Node(){
+ 		children = new LNodeList;
  	}
-
+ 	
  	INode(int n);
 
  	void addFChild(Node* child){
@@ -136,9 +138,10 @@ protected:
 
  class BinNode : public INode{
  public:
-	~BinNode();
+	~BinNode(){};
  	BinNode():INode(){
  		children = new VNodeList(2);
+ 		
  	}
 
  	void addFChild(Node* first)	{
@@ -151,10 +154,12 @@ protected:
 
  	void setFChild(Node* first){
  		children->setLeftChild(first);
+ 		cout<<"Se agrego hijo izq"<<endl;
  	}
 
  	void setSChild(Node* second){
  		children->setRightChild(second);
+ 		cout<<"Se agrego hijo der"<<endl;
  	}
 
  	Node* getLeftChild(){
@@ -169,7 +174,7 @@ protected:
 
  class LeafNode : public Node{
 public:
-	~LeafNode();
+	~LeafNode(){};
  	union NValue {
  		int i;
  		bool b;
@@ -177,52 +182,67 @@ public:
  		string* str;
  	};
  	NValue value;
+ 	virtual void addFChild(Node*){
+ 		throw "Operation not supported for Node";
+ 	}
+	virtual void addLChild(Node*){
+ 		throw "Operation not supported for Node";
+ 	}
+	virtual void setFChild(Node*){
+ 		throw "Operation not supported for Node";
+ 	}
+	virtual void setSChild(Node*){
+ 		throw "Operation not supported for Node";
+ 	}
  	
  	virtual NValue getValue()=0;
  protected:
-	LeafNode();
+	LeafNode(){};
  };
 
- // Constructor
- class AST{
+// Constructor
+class AST{
+protected: 
+	AST(){};
  public:
+	virtual ~AST(){};
 
  	// BinNode's
- 	virtual PlusNode* bPlusNode();
- 	virtual MultNode* bMultNode();
- 	virtual DiviNode* bDiviNode();
- 	virtual MinusNode* bMinusNode();
- 	virtual AssignNode* bAssignNode();
- 	virtual AndNode* bAndNode();
- 	virtual OrNode* bOrNode();
- 	virtual XorNode* bXorNode();
- 	virtual NotNode* bNotNode();
- 	virtual LTNode* bLTNode();
- 	virtual GTNode* bGTNode();
- 	virtual EqNode* bEqNode();
- 	virtual NEqNode* bNEqNode();
- 	virtual LTEqNode* bLTEqNode();
- 	virtual GTEqNode* bGTEqNode();
- 	virtual PotNode* bPotNode();
+ 	virtual PlusNode* bPlusNode()=0;
+ 	virtual MultNode* bMultNode()=0;
+ 	virtual DiviNode* bDiviNode()=0;
+ 	virtual MinusNode* bMinusNode()=0;
+ 	virtual AssignNode* bAssignNode()=0;
+ 	virtual AndNode* bAndNode()=0;
+ 	virtual OrNode* bOrNode()=0;
+ 	virtual XorNode* bXorNode()=0;
+ 	virtual NotNode* bNotNode()=0;
+ 	virtual LTNode* bLTNode()=0;
+ 	virtual GTNode* bGTNode()=0;
+ 	virtual EqNode* bEqNode()=0;
+ 	virtual NEqNode* bNEqNode()=0;
+ 	virtual LTEqNode* bLTEqNode()=0;
+ 	virtual GTEqNode* bGTEqNode()=0;
+ 	virtual PotNode* bPotNode()=0;
  	
 
  	// INode's
- 	virtual StmtNode* bStmtNode();
- 	virtual SStmtNode* bSStmtNode();
- 	virtual StmtListNode* bStmtListNode();
- 	virtual SStmtListNode* bSStmtListNode();
- 	virtual ExprNode* bExprNode();
- 	virtual IfNode* bIfNode();
- 	virtual ForNode* bForNode();
- 	virtual WhileNode* bWhileNode();
- 	virtual ArgsNode* bArgsNode();
- 	virtual FuncNode* bFuncNode();
+ 	virtual StmtNode* bStmtNode()=0;
+ 	virtual SStmtNode* bSStmtNode()=0;
+ 	virtual StmtListNode* bStmtListNode()=0;
+ 	virtual SStmtListNode* bSStmtListNode()=0;
+ 	virtual ExprNode* bExprNode()=0;
+ 	virtual IfNode* bIfNode()=0;
+ 	virtual ForNode* bForNode()=0;
+ 	virtual WhileNode* bWhileNode()=0;
+ 	virtual ArgsNode* bArgsNode()=0;
+ 	virtual FuncNode* bFuncNode()=0;
  	
 
  	// LeafNode's
- 	virtual IntNode* bIntNode(int val);
- 	virtual StrNode* bStrNode(string val);
- 	virtual FloatNode* bFloatNode(float val);
- 	virtual IdentNode* bIdentNode(string name);
- 	virtual BoolNode* bBoolNode(bool val);
+ 	virtual IntNode* bIntNode(int val)=0;
+ 	virtual StrNode* bStrNode(string val)=0;
+ 	virtual FloatNode* bFloatNode(float val)=0;
+ 	virtual IdentNode* bIdentNode(string name)=0;
+ 	virtual BoolNode* bBoolNode(bool val)=0;
  };

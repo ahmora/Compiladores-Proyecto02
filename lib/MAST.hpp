@@ -16,51 +16,52 @@ using namespace std;
  */
 class Visitor{
 public:
+	virtual ~Visitor(){};
 	SymbolTable* symbolTable;
 	//Node
-	virtual void visit(Node*);
-	virtual void visit(INode*);
-	virtual void visit(BinNode*);
+	virtual void visit(Node*)=0;
+	virtual void visit(INode*)=0;
+	virtual void visit(BinNode*)=0;
 
 	//INode
-	virtual void visit(ForNode*);
- 	virtual void visit(WhileNode*);
- 	virtual void visit(IfNode*);
- 	virtual void visit(StmtListNode*);
- 	virtual void visit(SStmtListNode*);
- 	virtual void visit(ExprNode*);
- 	virtual void visit(FuncNode*);
- 	virtual void visit(ArgsNode*);
- 	virtual void visit(StmtNode*);
- 	virtual void visit(SStmtNode*);
+	virtual void visit(ForNode*)=0;
+ 	virtual void visit(WhileNode*)=0;
+ 	virtual void visit(IfNode*)=0;
+ 	virtual void visit(StmtListNode*)=0;
+ 	virtual void visit(SStmtListNode*)=0;
+ 	virtual void visit(ExprNode*)=0;
+ 	virtual void visit(FuncNode*)=0;
+ 	virtual void visit(ArgsNode*)=0;
+ 	virtual void visit(StmtNode*)=0;
+ 	virtual void visit(SStmtNode*)=0;
  	
  	//BinNode
- 	virtual void visit(AssignNode*);
- 	virtual void visit(PlusNode*);
- 	virtual void visit(MinusNode*);
- 	virtual void visit(DiviNode*);
- 	virtual void visit(MultNode*);
- 	virtual void visit(AndNode*);
- 	virtual void visit(OrNode*);
- 	virtual void visit(XorNode*);
- 	virtual void visit(NotNode*);
- 	virtual void visit(PotNode*);
- 	virtual void visit(LTNode*);
- 	virtual void visit(GTNode*);
- 	virtual void visit(EqNode*);
- 	virtual void visit(NEqNode*);
- 	virtual void visit(LTEqNode*);
- 	virtual void visit(GTEqNode*);
+ 	virtual void visit(AssignNode*)=0;
+ 	virtual void visit(PlusNode*)=0;
+ 	virtual void visit(MinusNode*)=0;
+ 	virtual void visit(DiviNode*)=0;
+ 	virtual void visit(MultNode*)=0;
+ 	virtual void visit(AndNode*)=0;
+ 	virtual void visit(OrNode*)=0;
+ 	virtual void visit(XorNode*)=0;
+ 	virtual void visit(NotNode*)=0;
+ 	virtual void visit(PotNode*)=0;
+ 	virtual void visit(LTNode*)=0;
+ 	virtual void visit(GTNode*)=0;
+ 	virtual void visit(EqNode*)=0;
+ 	virtual void visit(NEqNode*)=0;
+ 	virtual void visit(LTEqNode*)=0;
+ 	virtual void visit(GTEqNode*)=0;
  	
 	//LeafNode
-	virtual void visit(IdentNode*);
- 	virtual void visit(IntNode*);
- 	virtual void visit(FloatNode*);
- 	virtual void visit(StrNode*);
- 	virtual void visit(BoolNode*);
+	virtual void visit(IdentNode*)=0;
+ 	virtual void visit(IntNode*)=0;
+ 	virtual void visit(FloatNode*)=0;
+ 	virtual void visit(StrNode*)=0;
+ 	virtual void visit(BoolNode*)=0;
 	
 protected:
-	Visitor();
+	Visitor(){};
 	//SymbolTable* symbolTable;
 
 };
@@ -71,7 +72,7 @@ protected:
  */
 class ForNode : public INode{
 public:
-	~ForNode();
+	~ForNode(){};
 	ForNode():INode(){};
  	void accept(Visitor &v){
 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -82,7 +83,7 @@ public:
 
  class WhileNode : public INode{
  public:
- 	~WhileNode();
+ 	~WhileNode(){};
  	WhileNode():INode(){};
  	void accept(Visitor &v){
 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -92,7 +93,7 @@ public:
  
  class StmtListNode : public INode{
  public:
-	~StmtListNode();
+	~StmtListNode(){};
 	StmtListNode():INode(){};
  	void accept(Visitor &v)	{
  		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -102,7 +103,7 @@ public:
 
  class SStmtListNode : public INode{
  public:
-	~SStmtListNode();
+	~SStmtListNode(){};
 	SStmtListNode():INode(){};
  	void accept(Visitor &v){
  		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -112,7 +113,7 @@ public:
 
  class ExprNode : public INode{
  public:
-	~ExprNode();
+	~ExprNode(){};
 	ExprNode():INode(){};
  	void accept(Visitor &v){
  		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -123,7 +124,7 @@ public:
  
  class IfNode : public INode{
  public:
-	~IfNode();
+	~IfNode(){};
 	IfNode():INode(){};
  	void accept(Visitor &v){
 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -133,7 +134,7 @@ public:
  
 class ArgsNode : public INode{
 public:
-	~ArgsNode();
+	~ArgsNode(){};
 	ArgsNode():INode(){};
  	void accept(Visitor& v){
  		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -143,7 +144,7 @@ public:
 
  class FuncNode : public INode{
  public:
-	~FuncNode();
+	~FuncNode(){};
 	FuncNode():INode(){};
  	void accept(Visitor& v){
  		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -153,7 +154,7 @@ public:
  
  class StmtNode : public INode{
  public:
-	~StmtNode();
+	~StmtNode(){};
 	StmtNode():INode(){};
  	void accept(Visitor& v){
  		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -163,7 +164,7 @@ public:
 
  class SStmtNode : public INode{
  public:
-	~SStmtNode();
+	~SStmtNode(){};
 	SStmtNode():INode(){};
  	void accept(Visitor& v){
  		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
@@ -182,7 +183,7 @@ public:
 
  class AssignNode : public BinNode{
  public:
-	~AssignNode();
+	~AssignNode(){};
 	AssignNode():BinNode(){};
 	
  	void accept(Visitor &v){
@@ -199,7 +200,7 @@ public:
  
  class PlusNode : public BinNode{
  public:
-	~PlusNode();
+	~PlusNode(){};
 	PlusNode():BinNode(){};
  	void accept(Visitor &v){
  		v.visit(getLeftChild());
@@ -209,7 +210,7 @@ public:
 
 class MinusNode : public BinNode{
 public:
-	~MinusNode();
+	~MinusNode(){};
 	MinusNode():BinNode(){};
 	
  	void accept(Visitor &v){
@@ -220,7 +221,7 @@ public:
 
  class DiviNode : public BinNode{
  public:
-	~DiviNode();
+	~DiviNode(){};
 	DiviNode():BinNode(){};
  	void accept(Visitor &v){
  		v.visit(getLeftChild());
@@ -228,10 +229,10 @@ public:
  	}
  };
 
- class MultNode : public BinNode{
- public:
-	~MultNode();
-	MultNode():BinNode(){};
+class MultNode : public BinNode{
+public:
+	~MultNode(){};
+	MultNode():BinNode(){cout<<"nuevo nodo mult"<<endl;};
  	void accept(Visitor &v){
 		v.visit(getLeftChild());
 		v.visit(getRightChild());
@@ -240,7 +241,7 @@ public:
  
 class LTNode : public BinNode{
 public:
-	~LTNode();
+	~LTNode(){};
 	LTNode():BinNode(){};
   	void accept(Visitor& v){
   		v.visit(getLeftChild());
@@ -250,7 +251,7 @@ public:
 
 class GTNode : public BinNode{
 public:
-	~GTNode();
+	~GTNode(){};
 	GTNode():BinNode(){};
   	void accept(Visitor& v){
   		v.visit(getLeftChild());
@@ -260,7 +261,7 @@ public:
 
 class EqNode : public BinNode{
   public:
-  ~EqNode();
+  ~EqNode(){};
   EqNode():BinNode(){};
   	void accept(Visitor& v)
   	{
@@ -271,7 +272,7 @@ class EqNode : public BinNode{
 
   class NEqNode : public BinNode{
   public:
-	~NEqNode();
+	~NEqNode(){};
 	NEqNode():BinNode(){};
   	void accept(Visitor& v){
   		v.visit(getLeftChild());
@@ -281,7 +282,7 @@ class EqNode : public BinNode{
 
 class LTEqNode : public BinNode{
   public:
-	~LTEqNode();
+	~LTEqNode(){};
 	LTEqNode():BinNode(){};
   	void accept(Visitor& v){
   		v.visit(getLeftChild());
@@ -291,7 +292,7 @@ class LTEqNode : public BinNode{
 
 class GTEqNode : public BinNode{
   public:
-  ~GTEqNode();
+  ~GTEqNode(){};
   GTEqNode():BinNode(){};
   	void accept(Visitor& v){
   		v.visit(getLeftChild());
@@ -301,7 +302,7 @@ class GTEqNode : public BinNode{
 
   class PotNode : public BinNode{
   public:
-	~PotNode();
+	~PotNode(){};
 	PotNode():BinNode(){};
   	void accept(Visitor& v)
   	{
@@ -312,7 +313,7 @@ class GTEqNode : public BinNode{
 
 class AndNode : public BinNode{
 public:
-	~AndNode();
+	~AndNode(){};
 	AndNode():BinNode(){};
   	void accept(Visitor& v)
   	{
@@ -323,7 +324,7 @@ public:
 
   class OrNode : public BinNode{
   public:
-	~OrNode();
+	~OrNode(){};
 	OrNode():BinNode(){};
   	void accept(Visitor& v)
   	{
@@ -334,7 +335,7 @@ public:
 
   class XorNode : public BinNode{
   public:
-  ~XorNode();
+  ~XorNode(){};
   XorNode():BinNode(){};
   	void accept(Visitor& v){
   		v.visit(getLeftChild());
@@ -345,7 +346,7 @@ public:
   class NotNode : public BinNode
   {
   public:
-  ~NotNode();
+  ~NotNode(){};
   NotNode():BinNode(){};
   	void accept(Visitor& v)
   	{
@@ -366,7 +367,7 @@ public:
  class IdentNode : public LeafNode{
  public:
 	IdentNode():LeafNode(){};
-	~IdentNode();
+	~IdentNode(){};
  	IdentNode(string val) : LeafNode(){
  		value.str = &val;
  	}
@@ -377,8 +378,11 @@ public:
 
  	void accept(Visitor &v)	{
 		Simbolo *s = v.symbolTable->lookUp(*value.str);
-		if(s==NULL)
-			s=new Simbolo(value.str,(int*)NULL);
+		if(s==NULL){
+			string *cad;
+			*cad="";
+			s=new Simbolo(value.str,cad);
+		}
 		
 		v.symbolTable->insertName(s);
  		//Aguas!
@@ -388,7 +392,7 @@ public:
 
  class IntNode : public LeafNode{
  public:
-	~IntNode();
+	~IntNode(){};
  	IntNode(int i){
  		value.i = i;
  	}
@@ -398,13 +402,13 @@ public:
  	}
 
  	void accept(Visitor &v){
- 		cout<<"int aceptado";
+ 		cout<<"int aceptado"<<endl;
  	}
  };
 
  class FloatNode : public LeafNode{
  public:
-	~FloatNode();
+	~FloatNode(){};
  	FloatNode(float f){
  		value.f = f;
  	}
@@ -414,14 +418,14 @@ public:
  	}
 
  	void accept(Visitor &v){
- 		cout<<"float aceptado";
+ 		cout<<"float aceptado"<<endl;
  	}
  };
 
 
  class StrNode : public LeafNode{
  public:
-	~StrNode();
+	~StrNode(){};
  	StrNode(string str){
  		value.str = &str;
  	}
@@ -431,13 +435,13 @@ public:
  	}
 
  	void accept(Visitor &v){
- 		cout<<"String aceptado";
+ 		cout<<"String aceptado"<<endl;
  	}
  };
 
  class BoolNode : public LeafNode{
  public:
-	~BoolNode();
+	~BoolNode(){};
  	BoolNode(bool boolean) : LeafNode(){
  		value.b = &boolean;
  	}
@@ -447,14 +451,14 @@ public:
 	}
 
 	void accept(Visitor &v){
- 		cout<<"Boolean aceptado";
+ 		cout<<"Boolean aceptado"<<endl;
  	}
  };
 
  class MAST : public AST{
  public:
-	~MAST();
-	MAST():AST(){};
+	~MAST(){};
+	MAST():AST(){cout<<"MAST creado"<<endl;};
 	//LeafNode
  	IntNode* bIntNode(int val){
  		return new IntNode(val);
@@ -585,7 +589,7 @@ public:
 
 class VisitorNode : public Visitor{
 public:
-
+	~VisitorNode(){};
 	VisitorNode():Visitor(){
 		symbolTable= new SymbolTable;
 	}
@@ -608,7 +612,9 @@ public:
 		}
 
  	}
-
+	/**
+	 * Visit para herederos de LeafNode
+	 */
  	void visit(LeafNode* node){
 	 	IntNode* inode = dynamic_cast<IntNode*> (inode);
 	 	if(inode!=0){
@@ -631,6 +637,7 @@ public:
 	 			return;
 	 	}
  	}
+ 	
 
  	void visit(INode* node){
  		BinNode* bnode=dynamic_cast<BinNode*>(node);
@@ -842,6 +849,16 @@ public:
 		Visitor *v=this;
 		node->accept(*v);
  	}
+ 	
+ 	void visit(StmtNode* node){
+		Visitor *v=this;
+		node->accept(*v);
+	}
+ 	void visit(SStmtNode* node){
+		Visitor *v=this;
+		node->accept(*v);
+	}
+ 	
  	
  	
  	void visit(AndNode* node){
