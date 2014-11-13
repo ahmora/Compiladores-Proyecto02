@@ -46,10 +46,11 @@ public:
 	virtual void addLast(Node* node){};
 	
 protected:
+	NList* children;
 	NodeList(){
 		children= (NList*) malloc(sizeof(NList));
 	}
-	NList* children;
+	
 };
 
 
@@ -62,19 +63,19 @@ public:
 
  	void setLeftChild(Node* node){
  		children->vectores.insert(children->vectores.begin(), node);
- 		
  	}
 
  	void setRightChild(Node* node){
- 		children->vectores.insert(children->vectores.begin()+1, node);
+ 		children->vectores.insert((children->vectores.begin())+1, node);
+ 		//getChildren().push_back(node);
  	}
  	
  	Node* getLeftChild(){
- 		return getChildren().front();
+ 		return getChildren()[0];
  	}
 
  	Node* getRightChild(){
- 		return getChildren().back();
+ 		return getChildren()[1];
  	}
  	
  	vector<Node*> getChildren(){
@@ -82,12 +83,16 @@ public:
 	}
  };
 
- class LNodeList : public NodeList{
- public:
+class LNodeList : public NodeList{
+public:
 	~LNodeList(){};
-	LNodeList():NodeList(){};
+	LNodeList():NodeList(){
+		
+	}
  	void addFirst(Node* node){
+		cout<<"Inserto al inicio"<<endl;
  		getChildren().push_front(node);
+ 		cout<<"Inserto al inicio"<<endl;
  	}
 
  	void addLast(Node* node){
@@ -103,9 +108,8 @@ public:
 class INode : public Node{	
 protected:
  	NodeList* children;
- 	
-	 
- public:
+ 		 
+public:
 	~INode(){};
 	INode() : Node(){
  		children = new LNodeList;
@@ -141,7 +145,6 @@ protected:
 	~BinNode(){};
  	BinNode():INode(){
  		children = new VNodeList(2);
- 		
  	}
 
  	void addFChild(Node* first)	{

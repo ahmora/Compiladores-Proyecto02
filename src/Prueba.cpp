@@ -9,7 +9,7 @@ int main(){
 	visitor = new VisitorNode;
 	
 	Node* i1 = asTree->bIntNode(5);
-	Node* i2 = asTree->bIntNode(5);
+	Node* i2 = asTree->bIntNode(3);
 	
 	Node* m;
 	m= asTree->bMultNode();

@@ -236,6 +236,7 @@ public:
  	void accept(Visitor &v){
 		v.visit(getLeftChild());
 		v.visit(getRightChild());
+		
  	}
  };
  
@@ -599,23 +600,24 @@ public:
 	}
  
  	void visit(Node* node){
+		cout<<"Visite un nodo"<<endl;
  		INode* inode = dynamic_cast<INode*>(node);
 		if(inode != 0) {
 			visit(inode);
 			return;
 		}
-
+		
 		LeafNode* lnode= dynamic_cast<LeafNode*>(node);
-		if(lnode!=0){
-			visit(lnode);
-			return;
-		}
-
+			if(lnode!=0){
+				visit(lnode);
+				return;
+			}
  	}
 	/**
 	 * Visit para herederos de LeafNode
 	 */
  	void visit(LeafNode* node){
+		cout<<"Visite una hoja"<<endl;
 	 	IntNode* inode = dynamic_cast<IntNode*> (inode);
 	 	if(inode!=0){
 	 			visit(inode);
@@ -640,6 +642,7 @@ public:
  	
 
  	void visit(INode* node){
+		cout<<"Visite un nodo interno"<<endl;
  		BinNode* bnode=dynamic_cast<BinNode*>(node);
  		if(bnode!=0){
  			visit(bnode);
@@ -707,6 +710,7 @@ public:
  	}
 
  	void visit(BinNode* node){
+		cout<<"Visite un nodo binario"<<endl;
  		PlusNode* plnode= dynamic_cast<PlusNode*>(node);
  		if(plnode!=0){
  			visit(plnode);
@@ -988,8 +992,10 @@ public:
  	}
 
  	void visit(IntNode* node){
+		cout<<"Visite un entero "<<endl;
  		Visitor *v=this;
 		node->accept(*v);
+		
  	}
 
  	void visit(FloatNode* node){

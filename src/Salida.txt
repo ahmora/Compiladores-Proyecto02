@@ -1,0 +1,1230 @@
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:13:7: error: expected nested-name-specifier before ‘namespace’
+ using namespace std;
+       ^
+../lib/MAST.hpp:13:7: error: expected unqualified-id before ‘namespace’
+../lib/MAST.hpp:13:7: error: expected ‘;’ before ‘namespace’
+../lib/MAST.hpp:13:7: error: expected unqualified-id before ‘namespace’
+../lib/MAST.hpp:464:12: error: invalid covariant return type for ‘virtual VNodeList::IntNode* VNodeList::MAST::bIntNode(int)’
+   IntNode* bIntNode(int val){
+            ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:245:20: error:   overriding ‘virtual IntNode* VNodeList::AST::bIntNode(int)’
+   virtual IntNode* bIntNode(int val)=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:468:12: error: invalid covariant return type for ‘virtual VNodeList::StrNode* VNodeList::MAST::bStrNode(std::string)’
+   StrNode* bStrNode(string val){
+            ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:246:20: error:   overriding ‘virtual StrNode* VNodeList::AST::bStrNode(std::string)’
+   virtual StrNode* bStrNode(string val)=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:472:14: error: invalid covariant return type for ‘virtual VNodeList::FloatNode* VNodeList::MAST::bFloatNode(float)’
+   FloatNode* bFloatNode(float val){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:247:22: error:   overriding ‘virtual FloatNode* VNodeList::AST::bFloatNode(float)’
+   virtual FloatNode* bFloatNode(float val)=0;
+                      ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:476:13: error: invalid covariant return type for ‘virtual VNodeList::BoolNode* VNodeList::MAST::bBoolNode(bool)’
+   BoolNode* bBoolNode(bool val){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:249:21: error:   overriding ‘virtual BoolNode* VNodeList::AST::bBoolNode(bool)’
+   virtual BoolNode* bBoolNode(bool val)=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:480:14: error: invalid covariant return type for ‘virtual VNodeList::IdentNode* VNodeList::MAST::bIdentNode(std::string)’
+   IdentNode* bIdentNode(string name){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:248:22: error:   overriding ‘virtual IdentNode* VNodeList::AST::bIdentNode(std::string)’
+   virtual IdentNode* bIdentNode(string name)=0;
+                      ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:485:13: error: invalid covariant return type for ‘virtual VNodeList::PlusNode* VNodeList::MAST::bPlusNode()’
+   PlusNode* bPlusNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:213:21: error:   overriding ‘virtual PlusNode* VNodeList::AST::bPlusNode()’
+   virtual PlusNode* bPlusNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:489:13: error: invalid covariant return type for ‘virtual VNodeList::MultNode* VNodeList::MAST::bMultNode()’
+   MultNode* bMultNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:214:21: error:   overriding ‘virtual MultNode* VNodeList::AST::bMultNode()’
+   virtual MultNode* bMultNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:493:13: error: invalid covariant return type for ‘virtual VNodeList::DiviNode* VNodeList::MAST::bDiviNode()’
+   DiviNode* bDiviNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:215:21: error:   overriding ‘virtual DiviNode* VNodeList::AST::bDiviNode()’
+   virtual DiviNode* bDiviNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:497:14: error: invalid covariant return type for ‘virtual VNodeList::MinusNode* VNodeList::MAST::bMinusNode()’
+   MinusNode* bMinusNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:216:22: error:   overriding ‘virtual MinusNode* VNodeList::AST::bMinusNode()’
+   virtual MinusNode* bMinusNode()=0;
+                      ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:501:15: error: invalid covariant return type for ‘virtual VNodeList::AssignNode* VNodeList::MAST::bAssignNode()’
+   AssignNode* bAssignNode(){
+               ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:217:23: error:   overriding ‘virtual AssignNode* VNodeList::AST::bAssignNode()’
+   virtual AssignNode* bAssignNode()=0;
+                       ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:505:11: error: invalid covariant return type for ‘virtual VNodeList::AndNode* VNodeList::MAST::bAndNode()’
+  AndNode* bAndNode(){
+           ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:218:20: error:   overriding ‘virtual AndNode* VNodeList::AST::bAndNode()’
+   virtual AndNode* bAndNode()=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:509:12: error: invalid covariant return type for ‘virtual VNodeList::OrNode* VNodeList::MAST::bOrNode()’
+    OrNode* bOrNode(){
+            ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:219:19: error:   overriding ‘virtual OrNode* VNodeList::AST::bOrNode()’
+   virtual OrNode* bOrNode()=0;
+                   ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:513:13: error: invalid covariant return type for ‘virtual VNodeList::XorNode* VNodeList::MAST::bXorNode()’
+    XorNode* bXorNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:220:20: error:   overriding ‘virtual XorNode* VNodeList::AST::bXorNode()’
+   virtual XorNode* bXorNode()=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:517:13: error: invalid covariant return type for ‘virtual VNodeList::NotNode* VNodeList::MAST::bNotNode()’
+    NotNode* bNotNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:221:20: error:   overriding ‘virtual NotNode* VNodeList::AST::bNotNode()’
+   virtual NotNode* bNotNode()=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:521:12: error: invalid covariant return type for ‘virtual VNodeList::LTNode* VNodeList::MAST::bLTNode()’
+    LTNode* bLTNode(){
+            ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:222:19: error:   overriding ‘virtual LTNode* VNodeList::AST::bLTNode()’
+   virtual LTNode* bLTNode()=0;
+                   ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:525:12: error: invalid covariant return type for ‘virtual VNodeList::GTNode* VNodeList::MAST::bGTNode()’
+    GTNode* bGTNode(){
+            ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:223:19: error:   overriding ‘virtual GTNode* VNodeList::AST::bGTNode()’
+   virtual GTNode* bGTNode()=0;
+                   ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:529:12: error: invalid covariant return type for ‘virtual VNodeList::EqNode* VNodeList::MAST::bEqNode()’
+    EqNode* bEqNode(){
+            ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:224:19: error:   overriding ‘virtual EqNode* VNodeList::AST::bEqNode()’
+   virtual EqNode* bEqNode()=0;
+                   ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:533:13: error: invalid covariant return type for ‘virtual VNodeList::NEqNode* VNodeList::MAST::bNEqNode()’
+    NEqNode* bNEqNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:225:20: error:   overriding ‘virtual NEqNode* VNodeList::AST::bNEqNode()’
+   virtual NEqNode* bNEqNode()=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:537:14: error: invalid covariant return type for ‘virtual VNodeList::LTEqNode* VNodeList::MAST::bLTEqNode()’
+    LTEqNode* bLTEqNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:226:21: error:   overriding ‘virtual LTEqNode* VNodeList::AST::bLTEqNode()’
+   virtual LTEqNode* bLTEqNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:541:14: error: invalid covariant return type for ‘virtual VNodeList::GTEqNode* VNodeList::MAST::bGTEqNode()’
+    GTEqNode* bGTEqNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:227:21: error:   overriding ‘virtual GTEqNode* VNodeList::AST::bGTEqNode()’
+   virtual GTEqNode* bGTEqNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:545:13: error: invalid covariant return type for ‘virtual VNodeList::PotNode* VNodeList::MAST::bPotNode()’
+    PotNode* bPotNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:228:20: error:   overriding ‘virtual PotNode* VNodeList::AST::bPotNode()’
+   virtual PotNode* bPotNode()=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:550:14: error: invalid covariant return type for ‘virtual VNodeList::StmtNode* VNodeList::MAST::bStmtNode()’
+    StmtNode* bStmtNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:232:21: error:   overriding ‘virtual StmtNode* VNodeList::AST::bStmtNode()’
+   virtual StmtNode* bStmtNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:554:13: error: invalid covariant return type for ‘virtual VNodeList::SStmtNode* VNodeList::MAST::bSStmtNode()’
+  SStmtNode* bSStmtNode(){
+             ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:233:22: error:   overriding ‘virtual SStmtNode* VNodeList::AST::bSStmtNode()’
+   virtual SStmtNode* bSStmtNode()=0;
+                      ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:558:18: error: invalid covariant return type for ‘virtual VNodeList::StmtListNode* VNodeList::MAST::bStmtListNode()’
+    StmtListNode* bStmtListNode(){
+                  ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:234:25: error:   overriding ‘virtual StmtListNode* VNodeList::AST::bStmtListNode()’
+   virtual StmtListNode* bStmtListNode()=0;
+                         ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:562:18: error: invalid covariant return type for ‘virtual VNodeList::SStmtListNode* VNodeList::MAST::bSStmtListNode()’
+   SStmtListNode* bSStmtListNode(){
+                  ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:235:26: error:   overriding ‘virtual SStmtListNode* VNodeList::AST::bSStmtListNode()’
+   virtual SStmtListNode* bSStmtListNode()=0;
+                          ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:565:14: error: invalid covariant return type for ‘virtual VNodeList::ExprNode* VNodeList::MAST::bExprNode()’
+    ExprNode* bExprNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:236:21: error:   overriding ‘virtual ExprNode* VNodeList::AST::bExprNode()’
+   virtual ExprNode* bExprNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:569:11: error: invalid covariant return type for ‘virtual VNodeList::IfNode* VNodeList::MAST::bIfNode()’
+   IfNode* bIfNode(){
+           ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:237:19: error:   overriding ‘virtual IfNode* VNodeList::AST::bIfNode()’
+   virtual IfNode* bIfNode()=0;
+                   ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:573:12: error: invalid covariant return type for ‘virtual VNodeList::ForNode* VNodeList::MAST::bForNode()’
+   ForNode* bForNode(){
+            ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:238:20: error:   overriding ‘virtual ForNode* VNodeList::AST::bForNode()’
+   virtual ForNode* bForNode()=0;
+                    ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:577:14: error: invalid covariant return type for ‘virtual VNodeList::WhileNode* VNodeList::MAST::bWhileNode()’
+   WhileNode* bWhileNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:239:22: error:   overriding ‘virtual WhileNode* VNodeList::AST::bWhileNode()’
+   virtual WhileNode* bWhileNode()=0;
+                      ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:581:14: error: invalid covariant return type for ‘virtual VNodeList::ArgsNode* VNodeList::MAST::bArgsNode()’
+    ArgsNode* bArgsNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:240:21: error:   overriding ‘virtual ArgsNode* VNodeList::AST::bArgsNode()’
+   virtual ArgsNode* bArgsNode()=0;
+                     ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:585:14: error: invalid covariant return type for ‘virtual VNodeList::FuncNode* VNodeList::MAST::bFuncNode()’
+    FuncNode* bFuncNode(){
+              ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:241:21: error:   overriding ‘virtual FuncNode* VNodeList::AST::bFuncNode()’
+   virtual FuncNode* bFuncNode()=0;
+                     ^
+Prueba.cpp:3:7: error: expected nested-name-specifier before ‘namespace’
+ using namespace std;
+       ^
+Prueba.cpp:3:7: error: expected unqualified-id before ‘namespace’
+Prueba.cpp:3:7: error: expected ‘;’ before ‘namespace’
+Prueba.cpp:3:7: error: expected unqualified-id before ‘namespace’
+Prueba.cpp:23:1: error: expected ‘}’ at end of input
+ }
+ ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp: In member function ‘virtual Node* VNodeList::getLeftChild()’:
+../lib/AST.hpp:74:23: error: ‘getChildren’ was not declared in this scope
+    return getChildren().at(0);
+                       ^
+../lib/AST.hpp: In member function ‘virtual Node* VNodeList::getRightChild()’:
+../lib/AST.hpp:78:23: error: ‘getChildren’ was not declared in this scope
+    return getChildren().at(1);
+                       ^
+../lib/AST.hpp:80:30: error: a function-definition is not allowed here before ‘{’ token
+   vector<Node*> getChildren(){
+                              ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::IntNode* VNodeList::MAST::bIntNode(int)’:
+../lib/MAST.hpp:465:26: error: cannot allocate an object of abstract type ‘VNodeList::IntNode’
+    return new IntNode(val);
+                          ^
+../lib/MAST.hpp:394:8: note:   because the following virtual functions are pure within ‘VNodeList::IntNode’:
+  class IntNode : public LeafNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::StrNode* VNodeList::MAST::bStrNode(std::string)’:
+../lib/MAST.hpp:469:26: error: cannot allocate an object of abstract type ‘VNodeList::StrNode’
+    return new StrNode(val);
+                          ^
+../lib/MAST.hpp:427:8: note:   because the following virtual functions are pure within ‘VNodeList::StrNode’:
+  class StrNode : public LeafNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::FloatNode* VNodeList::MAST::bFloatNode(float)’:
+../lib/MAST.hpp:473:28: error: cannot allocate an object of abstract type ‘VNodeList::FloatNode’
+    return new FloatNode(val);
+                            ^
+../lib/MAST.hpp:410:8: note:   because the following virtual functions are pure within ‘VNodeList::FloatNode’:
+  class FloatNode : public LeafNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::BoolNode* VNodeList::MAST::bBoolNode(bool)’:
+../lib/MAST.hpp:477:27: error: cannot allocate an object of abstract type ‘VNodeList::BoolNode’
+    return new BoolNode(val);
+                           ^
+../lib/MAST.hpp:443:8: note:   because the following virtual functions are pure within ‘VNodeList::BoolNode’:
+  class BoolNode : public LeafNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::IdentNode* VNodeList::MAST::bIdentNode(std::string)’:
+../lib/MAST.hpp:481:29: error: cannot allocate an object of abstract type ‘VNodeList::IdentNode’
+    return new IdentNode(name);
+                             ^
+../lib/MAST.hpp:368:8: note:   because the following virtual functions are pure within ‘VNodeList::IdentNode’:
+  class IdentNode : public LeafNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::PlusNode* VNodeList::MAST::bPlusNode()’:
+../lib/MAST.hpp:486:15: error: cannot allocate an object of abstract type ‘VNodeList::PlusNode’
+    return new PlusNode;
+               ^
+../lib/MAST.hpp:201:8: note:   because the following virtual functions are pure within ‘VNodeList::PlusNode’:
+  class PlusNode : public BinNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::MultNode* VNodeList::MAST::bMultNode()’:
+../lib/MAST.hpp:490:15: error: cannot allocate an object of abstract type ‘VNodeList::MultNode’
+    return new MultNode;
+               ^
+../lib/MAST.hpp:232:7: note:   because the following virtual functions are pure within ‘VNodeList::MultNode’:
+ class MultNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::DiviNode* VNodeList::MAST::bDiviNode()’:
+../lib/MAST.hpp:494:15: error: cannot allocate an object of abstract type ‘VNodeList::DiviNode’
+    return new DiviNode;
+               ^
+../lib/MAST.hpp:222:8: note:   because the following virtual functions are pure within ‘VNodeList::DiviNode’:
+  class DiviNode : public BinNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::MinusNode* VNodeList::MAST::bMinusNode()’:
+../lib/MAST.hpp:498:15: error: cannot allocate an object of abstract type ‘VNodeList::MinusNode’
+    return new MinusNode;
+               ^
+../lib/MAST.hpp:211:7: note:   because the following virtual functions are pure within ‘VNodeList::MinusNode’:
+ class MinusNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::AssignNode* VNodeList::MAST::bAssignNode()’:
+../lib/MAST.hpp:502:14: error: cannot allocate an object of abstract type ‘VNodeList::AssignNode’
+   return new AssignNode;
+              ^
+../lib/MAST.hpp:184:8: note:   because the following virtual functions are pure within ‘VNodeList::AssignNode’:
+  class AssignNode : public BinNode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::AndNode* VNodeList::MAST::bAndNode()’:
+../lib/MAST.hpp:506:16: error: cannot allocate an object of abstract type ‘VNodeList::AndNode’
+     return new AndNode;
+                ^
+../lib/MAST.hpp:315:7: note:   because the following virtual functions are pure within ‘VNodeList::AndNode’:
+ class AndNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::OrNode* VNodeList::MAST::bOrNode()’:
+../lib/MAST.hpp:510:16: error: cannot allocate an object of abstract type ‘VNodeList::OrNode’
+     return new OrNode;
+                ^
+../lib/MAST.hpp:326:9: note:   because the following virtual functions are pure within ‘VNodeList::OrNode’:
+   class OrNode : public BinNode{
+         ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::XorNode* VNodeList::MAST::bXorNode()’:
+../lib/MAST.hpp:514:16: error: cannot allocate an object of abstract type ‘VNodeList::XorNode’
+     return new XorNode;
+                ^
+../lib/MAST.hpp:337:9: note:   because the following virtual functions are pure within ‘VNodeList::XorNode’:
+   class XorNode : public BinNode{
+         ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::NotNode* VNodeList::MAST::bNotNode()’:
+../lib/MAST.hpp:518:16: error: cannot allocate an object of abstract type ‘VNodeList::NotNode’
+     return new NotNode;
+                ^
+../lib/MAST.hpp:347:9: note:   because the following virtual functions are pure within ‘VNodeList::NotNode’:
+   class NotNode : public BinNode
+         ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::LTNode* VNodeList::MAST::bLTNode()’:
+../lib/MAST.hpp:522:16: error: cannot allocate an object of abstract type ‘VNodeList::LTNode’
+     return new LTNode;
+                ^
+../lib/MAST.hpp:243:7: note:   because the following virtual functions are pure within ‘VNodeList::LTNode’:
+ class LTNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::GTNode* VNodeList::MAST::bGTNode()’:
+../lib/MAST.hpp:526:16: error: cannot allocate an object of abstract type ‘VNodeList::GTNode’
+     return new GTNode;
+                ^
+../lib/MAST.hpp:253:7: note:   because the following virtual functions are pure within ‘VNodeList::GTNode’:
+ class GTNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::EqNode* VNodeList::MAST::bEqNode()’:
+../lib/MAST.hpp:530:16: error: cannot allocate an object of abstract type ‘VNodeList::EqNode’
+     return new EqNode;
+                ^
+../lib/MAST.hpp:263:7: note:   because the following virtual functions are pure within ‘VNodeList::EqNode’:
+ class EqNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::NEqNode* VNodeList::MAST::bNEqNode()’:
+../lib/MAST.hpp:534:16: error: cannot allocate an object of abstract type ‘VNodeList::NEqNode’
+     return new NEqNode;
+                ^
+../lib/MAST.hpp:274:9: note:   because the following virtual functions are pure within ‘VNodeList::NEqNode’:
+   class NEqNode : public BinNode{
+         ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::LTEqNode* VNodeList::MAST::bLTEqNode()’:
+../lib/MAST.hpp:538:25: error: cannot allocate an object of abstract type ‘VNodeList::LTEqNode’
+     return new LTEqNode();
+                         ^
+../lib/MAST.hpp:284:7: note:   because the following virtual functions are pure within ‘VNodeList::LTEqNode’:
+ class LTEqNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::GTEqNode* VNodeList::MAST::bGTEqNode()’:
+../lib/MAST.hpp:542:16: error: cannot allocate an object of abstract type ‘VNodeList::GTEqNode’
+     return new GTEqNode;
+                ^
+../lib/MAST.hpp:294:7: note:   because the following virtual functions are pure within ‘VNodeList::GTEqNode’:
+ class GTEqNode : public BinNode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::PotNode* VNodeList::MAST::bPotNode()’:
+../lib/MAST.hpp:546:16: error: cannot allocate an object of abstract type ‘VNodeList::PotNode’
+     return new PotNode;
+                ^
+../lib/MAST.hpp:304:9: note:   because the following virtual functions are pure within ‘VNodeList::PotNode’:
+   class PotNode : public BinNode{
+         ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::StmtNode* VNodeList::MAST::bStmtNode()’:
+../lib/MAST.hpp:551:14: error: cannot allocate an object of abstract type ‘VNodeList::StmtNode’
+   return new StmtNode;
+              ^
+../lib/MAST.hpp:155:8: note:   because the following virtual functions are pure within ‘VNodeList::StmtNode’:
+  class StmtNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::SStmtNode* VNodeList::MAST::bSStmtNode()’:
+../lib/MAST.hpp:555:14: error: cannot allocate an object of abstract type ‘VNodeList::SStmtNode’
+   return new SStmtNode;
+              ^
+../lib/MAST.hpp:165:8: note:   because the following virtual functions are pure within ‘VNodeList::SStmtNode’:
+  class SStmtNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::StmtListNode* VNodeList::MAST::bStmtListNode()’:
+../lib/MAST.hpp:559:15: error: cannot allocate an object of abstract type ‘VNodeList::StmtListNode’
+    return new StmtListNode;
+               ^
+../lib/MAST.hpp:94:8: note:   because the following virtual functions are pure within ‘VNodeList::StmtListNode’:
+  class StmtListNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::SStmtListNode* VNodeList::MAST::bSStmtListNode()’:
+../lib/MAST.hpp:563:15: error: cannot allocate an object of abstract type ‘VNodeList::SStmtListNode’
+    return new SStmtListNode;
+               ^
+../lib/MAST.hpp:104:8: note:   because the following virtual functions are pure within ‘VNodeList::SStmtListNode’:
+  class SStmtListNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::ExprNode* VNodeList::MAST::bExprNode()’:
+../lib/MAST.hpp:566:15: error: cannot allocate an object of abstract type ‘VNodeList::ExprNode’
+    return new ExprNode;
+               ^
+../lib/MAST.hpp:114:8: note:   because the following virtual functions are pure within ‘VNodeList::ExprNode’:
+  class ExprNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::IfNode* VNodeList::MAST::bIfNode()’:
+../lib/MAST.hpp:570:15: error: cannot allocate an object of abstract type ‘VNodeList::IfNode’
+    return new IfNode;
+               ^
+../lib/MAST.hpp:125:8: note:   because the following virtual functions are pure within ‘VNodeList::IfNode’:
+  class IfNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::ForNode* VNodeList::MAST::bForNode()’:
+../lib/MAST.hpp:574:15: error: cannot allocate an object of abstract type ‘VNodeList::ForNode’
+    return new ForNode;
+               ^
+../lib/MAST.hpp:73:7: note:   because the following virtual functions are pure within ‘VNodeList::ForNode’:
+ class ForNode : public INode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::WhileNode* VNodeList::MAST::bWhileNode()’:
+../lib/MAST.hpp:578:15: error: cannot allocate an object of abstract type ‘VNodeList::WhileNode’
+    return new WhileNode;
+               ^
+../lib/MAST.hpp:84:8: note:   because the following virtual functions are pure within ‘VNodeList::WhileNode’:
+  class WhileNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::ArgsNode* VNodeList::MAST::bArgsNode()’:
+../lib/MAST.hpp:582:16: error: cannot allocate an object of abstract type ‘VNodeList::ArgsNode’
+     return new ArgsNode;
+                ^
+../lib/MAST.hpp:135:7: note:   because the following virtual functions are pure within ‘VNodeList::ArgsNode’:
+ class ArgsNode : public INode{
+       ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘virtual VNodeList::FuncNode* VNodeList::MAST::bFuncNode()’:
+../lib/MAST.hpp:586:16: error: cannot allocate an object of abstract type ‘VNodeList::FuncNode’
+     return new FuncNode;
+                ^
+../lib/MAST.hpp:145:8: note:   because the following virtual functions are pure within ‘VNodeList::FuncNode’:
+  class FuncNode : public INode{
+        ^
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: 	virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::ForNode*)’:
+../lib/MAST.hpp:804:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    (*it)->accept(*v);
+                    ^
+../lib/MAST.hpp:804:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::WhileNode*)’:
+../lib/MAST.hpp:811:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    (*it)->accept(*v);
+                    ^
+../lib/MAST.hpp:811:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::IfNode*)’:
+../lib/MAST.hpp:818:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    (*it)->accept(*v);
+                    ^
+../lib/MAST.hpp:818:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::FuncNode*)’:
+../lib/MAST.hpp:841:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    (*it)->accept(*v); 
+                    ^
+../lib/MAST.hpp:841:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::ArgsNode*)’:
+../lib/MAST.hpp:848:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    (*it)->accept(*v);
+                    ^
+../lib/MAST.hpp:848:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::AndNode*)’:
+../lib/MAST.hpp:872:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:872:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:873:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:873:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::OrNode*)’:
+../lib/MAST.hpp:880:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:880:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:881:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:881:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::XorNode*)’:
+../lib/MAST.hpp:888:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:888:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:889:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:889:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::NotNode*)’:
+../lib/MAST.hpp:896:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:896:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:897:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:897:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::PotNode*)’:
+../lib/MAST.hpp:904:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:904:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:905:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:905:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::LTNode*)’:
+../lib/MAST.hpp:912:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:912:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:913:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:913:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::GTNode*)’:
+../lib/MAST.hpp:920:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:920:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:921:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:921:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::EqNode*)’:
+../lib/MAST.hpp:928:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:928:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:929:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:929:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::NEqNode*)’:
+../lib/MAST.hpp:936:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:936:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:937:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:937:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::LTEqNode*)’:
+../lib/MAST.hpp:944:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:944:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:945:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:945:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::GTEqNode*)’:
+../lib/MAST.hpp:952:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:952:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:953:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:953:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::PlusNode*)’:
+../lib/MAST.hpp:961:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:961:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:962:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:962:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::MinusNode*)’:
+../lib/MAST.hpp:969:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:969:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:970:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:970:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::DiviNode*)’:
+../lib/MAST.hpp:977:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:977:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:978:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:978:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp: In member function ‘void VNodeList::VisitorNode::visit(VNodeList::MultNode*)’:
+../lib/MAST.hpp:985:19: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    left->accept(*v);
+                   ^
+../lib/MAST.hpp:985:19: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:986:20: error: no matching function for call to ‘Node::accept(VNodeList::Visitor&)’
+    right->accept(*v);
+                    ^
+../lib/MAST.hpp:986:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::Visitor’ to ‘Visitor&’
+Prueba.cpp: In member function ‘int VNodeList::main()’:
+Prueba.cpp:9:16: error: cannot allocate an object of abstract type ‘VNodeList::VisitorNode’
+  visitor = new VisitorNode;
+                ^
+In file included from Prueba.cpp:1:0:
+../lib/MAST.hpp:591:7: note:   because the following virtual functions are pure within ‘VNodeList::VisitorNode’:
+ class VisitorNode : public Visitor{
+       ^
+../lib/MAST.hpp:27:15: note: 	virtual void VNodeList::Visitor::visit(ForNode*)
+  virtual void visit(ForNode*)=0;
+               ^
+../lib/MAST.hpp:28:16: note: 	virtual void VNodeList::Visitor::visit(WhileNode*)
+   virtual void visit(WhileNode*)=0;
+                ^
+../lib/MAST.hpp:29:16: note: 	virtual void VNodeList::Visitor::visit(IfNode*)
+   virtual void visit(IfNode*)=0;
+                ^
+../lib/MAST.hpp:30:16: note: 	virtual void VNodeList::Visitor::visit(StmtListNode*)
+   virtual void visit(StmtListNode*)=0;
+                ^
+../lib/MAST.hpp:31:16: note: 	virtual void VNodeList::Visitor::visit(SStmtListNode*)
+   virtual void visit(SStmtListNode*)=0;
+                ^
+../lib/MAST.hpp:32:16: note: 	virtual void VNodeList::Visitor::visit(ExprNode*)
+   virtual void visit(ExprNode*)=0;
+                ^
+../lib/MAST.hpp:33:16: note: 	virtual void VNodeList::Visitor::visit(FuncNode*)
+   virtual void visit(FuncNode*)=0;
+                ^
+../lib/MAST.hpp:34:16: note: 	virtual void VNodeList::Visitor::visit(ArgsNode*)
+   virtual void visit(ArgsNode*)=0;
+                ^
+../lib/MAST.hpp:35:16: note: 	virtual void VNodeList::Visitor::visit(StmtNode*)
+   virtual void visit(StmtNode*)=0;
+                ^
+../lib/MAST.hpp:36:16: note: 	virtual void VNodeList::Visitor::visit(SStmtNode*)
+   virtual void visit(SStmtNode*)=0;
+                ^
+../lib/MAST.hpp:39:16: note: 	virtual void VNodeList::Visitor::visit(AssignNode*)
+   virtual void visit(AssignNode*)=0;
+                ^
+../lib/MAST.hpp:40:16: note: 	virtual void VNodeList::Visitor::visit(PlusNode*)
+   virtual void visit(PlusNode*)=0;
+                ^
+../lib/MAST.hpp:41:16: note: 	virtual void VNodeList::Visitor::visit(MinusNode*)
+   virtual void visit(MinusNode*)=0;
+                ^
+../lib/MAST.hpp:42:16: note: 	virtual void VNodeList::Visitor::visit(DiviNode*)
+   virtual void visit(DiviNode*)=0;
+                ^
+../lib/MAST.hpp:43:16: note: 	virtual void VNodeList::Visitor::visit(MultNode*)
+   virtual void visit(MultNode*)=0;
+                ^
+../lib/MAST.hpp:44:16: note: 	virtual void VNodeList::Visitor::visit(AndNode*)
+   virtual void visit(AndNode*)=0;
+                ^
+../lib/MAST.hpp:45:16: note: 	virtual void VNodeList::Visitor::visit(OrNode*)
+   virtual void visit(OrNode*)=0;
+                ^
+../lib/MAST.hpp:46:16: note: 	virtual void VNodeList::Visitor::visit(XorNode*)
+   virtual void visit(XorNode*)=0;
+                ^
+../lib/MAST.hpp:47:16: note: 	virtual void VNodeList::Visitor::visit(NotNode*)
+   virtual void visit(NotNode*)=0;
+                ^
+../lib/MAST.hpp:48:16: note: 	virtual void VNodeList::Visitor::visit(PotNode*)
+   virtual void visit(PotNode*)=0;
+                ^
+../lib/MAST.hpp:49:16: note: 	virtual void VNodeList::Visitor::visit(LTNode*)
+   virtual void visit(LTNode*)=0;
+                ^
+../lib/MAST.hpp:50:16: note: 	virtual void VNodeList::Visitor::visit(GTNode*)
+   virtual void visit(GTNode*)=0;
+                ^
+../lib/MAST.hpp:51:16: note: 	virtual void VNodeList::Visitor::visit(EqNode*)
+   virtual void visit(EqNode*)=0;
+                ^
+../lib/MAST.hpp:52:16: note: 	virtual void VNodeList::Visitor::visit(NEqNode*)
+   virtual void visit(NEqNode*)=0;
+                ^
+../lib/MAST.hpp:53:16: note: 	virtual void VNodeList::Visitor::visit(LTEqNode*)
+   virtual void visit(LTEqNode*)=0;
+                ^
+../lib/MAST.hpp:54:16: note: 	virtual void VNodeList::Visitor::visit(GTEqNode*)
+   virtual void visit(GTEqNode*)=0;
+                ^
+../lib/MAST.hpp:57:15: note: 	virtual void VNodeList::Visitor::visit(IdentNode*)
+  virtual void visit(IdentNode*)=0;
+               ^
+../lib/MAST.hpp:58:16: note: 	virtual void VNodeList::Visitor::visit(IntNode*)
+   virtual void visit(IntNode*)=0;
+                ^
+../lib/MAST.hpp:59:16: note: 	virtual void VNodeList::Visitor::visit(FloatNode*)
+   virtual void visit(FloatNode*)=0;
+                ^
+../lib/MAST.hpp:60:16: note: 	virtual void VNodeList::Visitor::visit(StrNode*)
+   virtual void visit(StrNode*)=0;
+                ^
+../lib/MAST.hpp:61:16: note: 	virtual void VNodeList::Visitor::visit(BoolNode*)
+   virtual void visit(BoolNode*)=0;
+                ^
+Prueba.cpp:20:20: error: no matching function for call to ‘Node::accept(VNodeList::VisitorNode&)’
+  m->accept(*visitor);
+                    ^
+Prueba.cpp:20:20: note: candidate is:
+In file included from ../lib/MAST.hpp:10:0,
+                 from Prueba.cpp:1:
+../lib/AST.hpp:19:15: note: virtual void Node::accept(Visitor&)
+  virtual void accept(Visitor&)=0;
+               ^
+../lib/AST.hpp:19:15: note:   no known conversion for argument 1 from ‘VNodeList::VisitorNode’ to ‘Visitor&’
+Prueba.cpp: At global scope:
+Prueba.cpp:23:1: error: expected unqualified-id at end of input
+ }
+ ^
