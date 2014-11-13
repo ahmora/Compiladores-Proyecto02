@@ -15,15 +15,15 @@ using namespace std;
 
 class Node{
 public:
-	~Node();
-	virtual void accept(Visitor&);
+	virtual ~Node(){};
+	virtual void accept(Visitor&)=0;
 	virtual void addFChild(Node*);
 	virtual void addLChild(Node*);
 	virtual void setFChild(Node*);
 	virtual void setSChild(Node*);
-	
 protected:
 	Node();
+	
 };
 
 
@@ -35,6 +35,7 @@ union NList {
 
 class NodeList{
 public:
+	virtual ~NodeList();
 	NList* children;
 
 	virtual Node* getLeftChild();
@@ -48,14 +49,15 @@ public:
 	NList* getChildren(){
 		return children;
 	}
+protected:
+	NodeList();
 };
 
 
  class VNodeList : public NodeList{
- private:
- 	NodeList* children;
  public:
- 	VNodeList(int n){
+	~VNodeList();
+ 	VNodeList(int n):NodeList(){
  		getChildren().resize(n);
  	}
 
@@ -76,16 +78,13 @@ public:
  	}
  	
  	vector<Node*> getChildren(){
-		return children->children->vectores;
+		return children->vectores;
 	}
  };
 
  class LNodeList : public NodeList{
- private:
- 	NodeList* children;
  public:
- 	LNodeList() {}
-
+	~LNodeList();
  	void addFirst(Node* node){
  		getChildren().push_front(node);
  	}
@@ -95,16 +94,17 @@ public:
  	}
  	
  	list<Node*> getChildren(){
-		return children->children->listas;
+		return children->listas;
 	}
  };
 
 
- class INode : public Node{	
- protected:
+class INode : public Node{	
+protected:
  	NodeList* children;
 	 
  public:
+	~INode();
  	INode() : Node(){
  		children = new LNodeList();
  	}
@@ -136,7 +136,8 @@ public:
 
  class BinNode : public INode{
  public:
- 	BinNode(){
+	~BinNode();
+ 	BinNode():INode(){
  		children = new VNodeList(2);
  	}
 
@@ -167,7 +168,8 @@ public:
 
 
  class LeafNode : public Node{
- protected:
+public:
+	~LeafNode();
  	union NValue {
  		int i;
  		bool b;
@@ -175,9 +177,10 @@ public:
  		string* str;
  	};
  	NValue value;
- public:
- 	LeafNode() : Node() {};
+ 	
  	virtual NValue getValue()=0;
+ protected:
+	LeafNode();
  };
 
  // Constructor
