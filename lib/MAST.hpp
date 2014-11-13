@@ -462,7 +462,8 @@ public:
  class MAST : public AST{
  public:
 	MAST();
-
+	
+	//LeafNode
  	IntNode* bIntNode(int val){
  		return new IntNode(val);
  	}
@@ -482,114 +483,111 @@ public:
  	IdentNode* bIdentNode(string name){
  		return new IdentNode(name);
  	}
-
+ 	
+	//BinNode
  	PlusNode* bPlusNode(){
- 		return new PlusNode();
+ 		return new PlusNode;
  	}
 
  	MultNode* bMultNode(){
- 		return new MultNode();
+ 		return new MultNode;
  	}
 
  	DiviNode* bDiviNode(){
- 		return new DiviNode();
+ 		return new DiviNode;
  	}
 
  	MinusNode* bMinusNode(){
- 		return new MinusNode();
- 	}
-
- 	IfNode* bIfNode(){
- 		return new IfNode();
- 	}
-
- 	ForNode* bForNode(){
- 		return new ForNode();
- 	}
-
- 	WhileNode* bWhileNode(){
- 		return new WhileNode();
- 	}
-
- 	StmtListNode* bStmtListNode(){
- 		return new StmtListNode();
- 	}
-
- 	SStmtListNode* bSStmtListNode(){
- 		return new SStmtListNode();
- 	}
-
- 	ExprNode* bExprNode(){
- 		return new ExprNode();
+ 		return new MinusNode;
  	}
  	
- 	LTNode* bLTNode()
-  	{
-  		return new LTNode();
+ 	AssignNode* bAssignNode(){
+		return new AssignNode;
+	}
+	
+	AndNode* bAndNode(){
+  		return new AndNode;
   	}
 
-  	GTNode* bGTNode()
-  	{
-  		return new GTNode();
+  	OrNode* bOrNode(){
+  		return new OrNode;
   	}
 
-  	EqNode* bEqNode()
-  	{
-  		return new EqNode();
+  	XorNode* bXorNode(){
+  		return new XorNode;
   	}
 
-  	NEqNode* bNEqNode()
-  	{
-  		return new NEqNode();
+  	NotNode* bNotNode(){
+  		return new NotNode;
+  	}
+  	
+  	LTNode* bLTNode(){
+  		return new LTNode;
+  	}
+  	
+  	GTNode* bGTNode(){
+  		return new GTNode;
   	}
 
-  	LTEqNode* bLTEqNode()
-  	{
+  	EqNode* bEqNode(){
+  		return new EqNode;
+  	}
+
+  	NEqNode* bNEqNode(){
+  		return new NEqNode;
+  	}
+
+  	LTEqNode* bLTEqNode(){
   		return new LTEqNode();
   	}
 
-  	GTEqNode* bGTEqNode()
-  	{
-  		return new GTEqNode();
+  	GTEqNode* bGTEqNode(){
+  		return new GTEqNode;
   	}
 
-  	AndNode* bAndNode()
-  	{
-  		return new AndNode();
+  	PotNode* bPotNode(){
+  		return new PotNode;
   	}
+  	
+  	//INode
+  	StmtNode* bStmtNode(){
+		return new StmtNode;
+	}
+	
+	SStmtNode* bSStmtNode(){
+		return new SStmtNode;
+	}
+  	
+  	StmtListNode* bStmtListNode(){
+ 		return new StmtListNode;
+ 	}
 
-  	OrNode* bOrNode()
-  	{
-  		return new OrNode();
-  	}
-
-  	XorNode* bXorNode()
-  	{
-  		return new XorNode();
-  	}
-
-  	NotNode* bNotNode()
-  	{
-  		return new NotNode();
-  	}
-
-  	PotNode* bPotNode()
-  	{
-  		return new PotNode();
-  	}
-
-  	ArgsNode* bArgsNode()
-  	{
-  		return new ArgsNode();
-  	}
-
-  	FuncNode* bFuncNode()
-  	{
-  		return new FuncNode();
-  	}
+ 	SStmtListNode* bSStmtListNode(){
+ 		return new SStmtListNode;
+ 	}
+  	ExprNode* bExprNode(){
+ 		return new ExprNode;
+ 	}
  	
- 	
- 	
+ 	IfNode* bIfNode(){
+ 		return new IfNode;
+ 	}
+
+ 	ForNode* bForNode(){
+ 		return new ForNode;
+ 	}
+
+ 	WhileNode* bWhileNode(){
+ 		return new WhileNode;
+ 	}
+
+  	ArgsNode* bArgsNode(){
+  		return new ArgsNode;
+  	}
+
+  	FuncNode* bFuncNode(){
+  		return new FuncNode;
+  	}
  };
 
 
