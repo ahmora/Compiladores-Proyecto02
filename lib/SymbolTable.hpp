@@ -21,7 +21,7 @@ class SymbolTable{
 	  * regresa un valor que lo indique, generalmente un apuntador nulo.
 	  */
 	Simbolo* lookUp(string name){
-		cout<<"looking up"<<endl;
+		cout<<"looking up..."<<endl;
 		return symbolTable->lookUp(name);
 	 }
 	 

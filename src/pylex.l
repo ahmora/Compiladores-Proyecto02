@@ -215,7 +215,7 @@ RIGHT		"->"
 				}
 
 {NAME}		{
-				/* yylval.identificador = yytext; */
+				yylval.cadena = yytext;
 				BEGIN(INITIAL);
 				return NAME;
 			}

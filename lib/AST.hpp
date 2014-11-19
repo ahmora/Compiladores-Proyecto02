@@ -50,7 +50,6 @@ protected:
 	NodeList(){
 		children= (NList*) malloc(sizeof(NList));
 	}
-	
 };
 
 
@@ -87,12 +86,15 @@ class LNodeList : public NodeList{
 public:
 	~LNodeList(){};
 	LNodeList():NodeList(){
-		
+		//getChildren();
+		// No falta algo en este constructor?
 	}
  	void addFirst(Node* node){
 		cout<<"Inserto al inicio"<<endl;
+		cout<<"dies here"<<endl;
  		getChildren().push_front(node);
- 		cout<<"Inserto al inicio"<<endl;
+ 		cout<<"---not here first"<<endl;
+ 		cout<<"---not here Inserto al inicio"<<endl;
  	}
 
  	void addLast(Node* node){

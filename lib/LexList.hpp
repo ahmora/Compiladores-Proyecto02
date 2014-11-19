@@ -75,11 +75,13 @@ class LexList{
 	 */
 	Simbolo* lookUp(string name){
 		LexNode *temp=head;
+		
 		while(temp != NULL){
 			hasht::const_iterator got = temp->tabla->find (name);
 			if(got!=temp->tabla->end()){
 				Simbolo *s= (Simbolo*)malloc(sizeof(Simbolo *));
 				*s=got->second;
+				
 				return s;
 			}
 			temp=temp->next;

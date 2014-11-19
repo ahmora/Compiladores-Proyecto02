@@ -8,7 +8,7 @@ int main(){
 	VisitorNode *visitor;
 	visitor = new VisitorNode;
 	
-	Node* i1 = asTree->bIntNode(5);
+	Node* i1 = asTree->bIdentNode("var_name");
 	Node* i2 = asTree->bIntNode(3);
 	
 	Node* m;

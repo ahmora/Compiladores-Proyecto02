@@ -9,6 +9,7 @@
 #include <list>
 #include "AST.hpp"
 #include "Nodos.hpp"
+#include <string>
 
 using namespace std;
 /**
@@ -75,8 +76,9 @@ public:
 	~ForNode(){};
 	ForNode():INode(){};
  	void accept(Visitor &v){
-		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
-			v.visit(*it);
+		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
 			
  	}
  };
@@ -86,8 +88,9 @@ public:
  	~WhileNode(){};
  	WhileNode():INode(){};
  	void accept(Visitor &v){
-		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
-			v.visit(*it);
+		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  };
  
@@ -96,8 +99,9 @@ public:
 	~StmtListNode(){};
 	StmtListNode():INode(){};
  	void accept(Visitor &v)	{
- 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
-			v.visit(*it);
+ 		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  }; 
 
@@ -106,8 +110,9 @@ public:
 	~SStmtListNode(){};
 	SStmtListNode():INode(){};
  	void accept(Visitor &v){
- 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
-			v.visit(*it);
+ 		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  }; 
 
@@ -116,8 +121,9 @@ public:
 	~ExprNode(){};
 	ExprNode():INode(){};
  	void accept(Visitor &v){
- 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
-			v.visit(*it);
+ 		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  };
  
@@ -127,8 +133,9 @@ public:
 	~IfNode(){};
 	IfNode():INode(){};
  	void accept(Visitor &v){
-		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
-			v.visit(*it);
+		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  };
  
@@ -137,8 +144,9 @@ public:
 	~ArgsNode(){};
 	ArgsNode():INode(){};
  	void accept(Visitor& v){
- 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
- 			v.visit(*it);
+ 		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  };
 
@@ -147,8 +155,9 @@ public:
 	~FuncNode(){};
 	FuncNode():INode(){};
  	void accept(Visitor& v){
- 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
- 			v.visit(*it);
+ 		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  };
  
@@ -157,8 +166,9 @@ public:
 	~StmtNode(){};
 	StmtNode():INode(){};
  	void accept(Visitor& v){
- 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
- 			v.visit(*it);
+ 		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  };
 
@@ -167,8 +177,9 @@ public:
 	~SStmtNode(){};
 	SStmtNode():INode(){};
  	void accept(Visitor& v){
- 		for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
- 			v.visit(*it);
+		v.visit(this);
+ 		/*for (list<Node*>::iterator it= getChildren().begin(); it != getChildren().end(); ++it)
+ 			v.visit(*it);*/
  	}
  };
 
@@ -187,12 +198,14 @@ public:
 	AssignNode():BinNode(){};
 	
  	void accept(Visitor &v){
+ 		cout << "accepting assignode" << endl;
 		IdentNode* c = (IdentNode*)getLeftChild();
 		if(c != 0) {
 			throw "Assignment operation is only for variables";
 		}else{
-			v.visit(getLeftChild());
-			v.visit(getRightChild());
+			v.visit(this);
+			//v.visit(getLeftChild());
+			//v.visit(getRightChild());
 			}
 		}
  };
@@ -203,8 +216,9 @@ public:
 	~PlusNode(){};
 	PlusNode():BinNode(){};
  	void accept(Visitor &v){
- 		v.visit(getLeftChild());
-		v.visit(getRightChild());
+ 		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
  	}
  };
 
@@ -214,8 +228,9 @@ public:
 	MinusNode():BinNode(){};
 	
  	void accept(Visitor &v){
- 		v.visit(getLeftChild());
-		v.visit(getRightChild());
+		v.visit(this);
+ 		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
  	}
  };
 
@@ -224,8 +239,9 @@ public:
 	~DiviNode(){};
 	DiviNode():BinNode(){};
  	void accept(Visitor &v){
- 		v.visit(getLeftChild());
-		v.visit(getRightChild());
+		v.visit(this);
+ 		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
  	}
  };
 
@@ -234,8 +250,9 @@ public:
 	~MultNode(){};
 	MultNode():BinNode(){cout<<"nuevo nodo mult"<<endl;};
  	void accept(Visitor &v){
-		v.visit(getLeftChild());
-		v.visit(getRightChild());
+		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
 		
  	}
  };
@@ -245,8 +262,9 @@ public:
 	~LTNode(){};
 	LTNode():BinNode(){};
   	void accept(Visitor& v){
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -255,8 +273,9 @@ public:
 	~GTNode(){};
 	GTNode():BinNode(){};
   	void accept(Visitor& v){
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -264,10 +283,10 @@ class EqNode : public BinNode{
   public:
   ~EqNode(){};
   EqNode():BinNode(){};
-  	void accept(Visitor& v)
-  	{
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  	void accept(Visitor& v){
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -276,8 +295,9 @@ class EqNode : public BinNode{
 	~NEqNode(){};
 	NEqNode():BinNode(){};
   	void accept(Visitor& v){
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -286,8 +306,9 @@ class LTEqNode : public BinNode{
 	~LTEqNode(){};
 	LTEqNode():BinNode(){};
   	void accept(Visitor& v){
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -296,8 +317,9 @@ class GTEqNode : public BinNode{
   ~GTEqNode(){};
   GTEqNode():BinNode(){};
   	void accept(Visitor& v){
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -305,10 +327,10 @@ class GTEqNode : public BinNode{
   public:
 	~PotNode(){};
 	PotNode():BinNode(){};
-  	void accept(Visitor& v)
-  	{
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  	void accept(Visitor& v){
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -316,10 +338,10 @@ class AndNode : public BinNode{
 public:
 	~AndNode(){};
 	AndNode():BinNode(){};
-  	void accept(Visitor& v)
-  	{
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  	void accept(Visitor& v){
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -327,10 +349,10 @@ public:
   public:
 	~OrNode(){};
 	OrNode():BinNode(){};
-  	void accept(Visitor& v)
-  	{
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  	void accept(Visitor& v){
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -339,8 +361,9 @@ public:
   ~XorNode(){};
   XorNode():BinNode(){};
   	void accept(Visitor& v){
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
 
@@ -349,10 +372,10 @@ public:
   public:
   ~NotNode(){};
   NotNode():BinNode(){};
-  	void accept(Visitor& v)
-  	{
-  		v.visit(getLeftChild());
-  		v.visit(getRightChild());
+  	void accept(Visitor& v){
+  		v.visit(this);
+		//v.visit(getLeftChild());
+		//v.visit(getRightChild());
   	}
   };
  
@@ -378,17 +401,9 @@ public:
  	}
 
  	void accept(Visitor &v)	{
-		Simbolo *s = v.symbolTable->lookUp(*value.str);
-		if(s==NULL){
-			string *cad;
-			*cad="";
-			s=new Simbolo(value.str,cad);
-		}
-		
-		v.symbolTable->insertName(s);
+ 		v.visit(this);
  		//Aguas!
  	}
- 	
  };
 
  class IntNode : public LeafNode{
@@ -608,10 +623,10 @@ public:
 		}
 		
 		LeafNode* lnode= dynamic_cast<LeafNode*>(node);
-			if(lnode!=0){
-				visit(lnode);
-				return;
-			}
+		if(lnode!=0){
+			visit(lnode);
+			return;
+		}
  	}
 	/**
 	 * Visit para herederos de LeafNode
@@ -987,8 +1002,18 @@ public:
  	}
 
  	void visit(IdentNode* node){
- 		Visitor *v=this;
-		node->accept(*v);
+		cout << "accepting identnode" << endl;
+		string *name=node->getValue().str;
+		cout<<*name<<endl;
+		Simbolo *s = symbolTable->lookUp(*name);
+		
+		if(s==0){
+			string *cad;
+			*cad = "";
+			s=new Simbolo(name,cad);
+		}
+				
+		symbolTable->insertName(s);
  	}
 
  	void visit(IntNode* node){
