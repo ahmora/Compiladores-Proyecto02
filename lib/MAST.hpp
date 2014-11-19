@@ -21,8 +21,6 @@ public:
 	SymbolTable* symbolTable;
 	//Node
 	virtual void visit(Node*)=0;
-	virtual void visit(INode*)=0;
-	virtual void visit(BinNode*)=0;
 
 	//INode
 	virtual void visit(ForNode*)=0;
@@ -198,16 +196,8 @@ public:
 	AssignNode():BinNode(){};
 	
  	void accept(Visitor &v){
- 		cout << "accepting assignode" << endl;
-		IdentNode* c = (IdentNode*)getLeftChild();
-		if(c != 0) {
-			throw "Assignment operation is only for variables";
-		}else{
-			v.visit(this);
-			//v.visit(getLeftChild());
-			//v.visit(getRightChild());
-			}
-		}
+ 		v.visit(this);
+	}
  };
 
  
@@ -249,6 +239,7 @@ class MultNode : public BinNode{
 public:
 	~MultNode(){};
 	MultNode():BinNode(){cout<<"nuevo nodo mult"<<endl;};
+	
  	void accept(Visitor &v){
 		v.visit(this);
 		//v.visit(getLeftChild());
@@ -392,8 +383,8 @@ public:
  public:
 	IdentNode():LeafNode(){};
 	~IdentNode(){};
- 	IdentNode(string val) : LeafNode(){
- 		value.str = &val;
+ 	IdentNode(string *val) : LeafNode(){
+ 		value.str = val;
  	}
 
  	NValue getValue(){
@@ -492,7 +483,7 @@ public:
  		return new BoolNode(val);
  	}
 
- 	IdentNode* bIdentNode(string name){
+ 	IdentNode* bIdentNode(string *name){
  		return new IdentNode(name);
  	}
  	
@@ -615,203 +606,9 @@ public:
 	}
  
  	void visit(Node* node){
-		cout<<"Visite un nodo"<<endl;
- 		INode* inode = dynamic_cast<INode*>(node);
-		if(inode != 0) {
-			visit(inode);
-			return;
-		}
-		
-		LeafNode* lnode= dynamic_cast<LeafNode*>(node);
-		if(lnode!=0){
-			visit(lnode);
-			return;
-		}
+	 	visit(node);
  	}
-	/**
-	 * Visit para herederos de LeafNode
-	 */
- 	void visit(LeafNode* node){
-		cout<<"Visite una hoja"<<endl;
-	 	IntNode* inode = dynamic_cast<IntNode*> (inode);
-	 	if(inode!=0){
-	 			visit(inode);
-	 			return;
-	 	}
-	 	StrNode* stnode = dynamic_cast<StrNode*> (stnode);
-	 	if(stnode!=0){
-	 			visit(stnode);
-	 			return;
-	 	}
-	 	FloatNode* flnode= dynamic_cast<FloatNode*> (flnode);
-	 	if(flnode!=0){
-	 			visit(flnode);
-	 			return;
-	 	}
-	 	IdentNode* idnode= dynamic_cast<IdentNode*>(idnode);
-	 	if(idnode!=0){
-	 			visit(idnode);
-	 			return;
-	 	}
- 	}
- 	
-
- 	void visit(INode* node){
-		cout<<"Visite un nodo interno"<<endl;
- 		BinNode* bnode=dynamic_cast<BinNode*>(node);
- 		if(bnode!=0){
- 			visit(bnode);
- 			return;
- 		}
-
- 		StmtNode* stmtnode = dynamic_cast<StmtNode*>(node);
- 		if(stmtnode!=0){
- 			visit(stmtnode);
- 			return;
- 		}
-
- 		SStmtNode* sstmtnode = dynamic_cast<SStmtNode*>(node);
- 		if(sstmtnode!=0){
- 			visit(sstmtnode);
- 			return;
- 		}
- 		
- 		StmtListNode* stmtlistnode = dynamic_cast<StmtListNode*>(node);
- 		if(stmtlistnode!=0){
- 			visit(stmtlistnode);
- 			return;
- 		}
- 	
- 		SStmtListNode* sslnode = dynamic_cast<SStmtListNode*>(node);
- 		if(sslnode!=0){
- 			visit(sslnode);
- 			return;
- 		}
- 		ExprNode* expnode = dynamic_cast<ExprNode*>(node);
- 		if(expnode!=0){
- 			visit(expnode);
- 		}
-
- 		IfNode* ifnode = dynamic_cast<IfNode*>(node);
- 		if(ifnode!=0){
- 			visit(ifnode);
- 			return;
- 		}
- 		ForNode* fnode = dynamic_cast<ForNode*>(node);
-		if(fnode!=0){
- 			visit(fnode);
- 			return;
- 		}
- 		WhileNode* wnode = dynamic_cast<WhileNode*>(node);
- 		if(wnode!=0){
- 			visit(wnode);
- 			return;
- 		}
- 		
- 		FuncNode* funcn = dynamic_cast<FuncNode*>(node);
-		if(funcn!=0) {
-			visit(funcn);
-			return;
-		}
-
-		ArgsNode* argsn = dynamic_cast<ArgsNode*>(node);
-		if (argsn!=0)
-		{
-			visit(argsn);
-			return;
-		}
- 		
-
- 	}
-
- 	void visit(BinNode* node){
-		cout<<"Visite un nodo binario"<<endl;
- 		PlusNode* plnode= dynamic_cast<PlusNode*>(node);
- 		if(plnode!=0){
- 			visit(plnode);
- 			return;
- 		}
- 		MultNode* mulnode= dynamic_cast<MultNode*>(node);
- 		if(mulnode!=0){
- 			visit(mulnode);
- 			return;
- 		}
- 		DiviNode* divnode= dynamic_cast<DiviNode*>(node);
- 		if(divnode!=0){
- 			visit(divnode);
- 			return;
- 		}
-
- 		MinusNode* minnode= dynamic_cast<MinusNode*>(node);
- 		if(minnode!=0){
- 			visit(minnode);
- 			return;
- 		}
-
- 		AssignNode* assnode= dynamic_cast<AssignNode*>(node);
- 		if(assnode!=0){
- 			visit(assnode);
- 			return;
- 		}
- 		
- 		AndNode* andnode = dynamic_cast<AndNode*>(node);
-		if (andnode!=0) {
-			visit(andnode);
-			return;
-		}
-	 	OrNode* ornode = dynamic_cast<OrNode*>(node);
-	 	if (ornode!=0) {
-	 		visit(ornode);
-	 		return;
-	 	}
-	 	XorNode* xornode = dynamic_cast<XorNode*>(node);
-	 	if (xornode!=0) {
-	 		visit(xornode);
-	 		return;
-	 	}
-	 	NotNode* notnode = dynamic_cast<NotNode*>(node);
-	 	if (notnode!=0) {
-	 		visit(notnode);
-	 		return;
-	 	}
-	 	PotNode* potnode = dynamic_cast<PotNode*>(node);
-	 	if (potnode!=0) {
-	 		visit(potnode);
-	 		return;
-	 	}
-	 	LTNode* ltnode = dynamic_cast<LTNode*>(node);	
-	 	if (ltnode!=0) {
-	 		visit(ltnode);
-	 		return;
-	 	}
-	 	GTNode* gtnode = dynamic_cast<GTNode*>(node);	
-	 	if (gtnode!=0) {
-	 		visit(gtnode);
-	 		return;
-	 	}
-	 	EqNode* eqnode = dynamic_cast<EqNode*>(node);	
-	 	if (eqnode!=0) {
-	 		visit(eqnode);
-	 		return;
-	 	}
-	 	NEqNode* neqnode = dynamic_cast<NEqNode*>(node);	
-	 	if (neqnode!=0) {
-	 		visit(neqnode);
-	 		return;
-	 	}
-	 	LTEqNode* lteqnode = dynamic_cast<LTEqNode*>(node);	
-	 	if (lteqnode!=0) {
-	 		visit(lteqnode);
-	 		return;
-	 	}
-	 	GTEqNode* gteqnode = dynamic_cast<GTEqNode*>(node);	
-	 	if (gteqnode!=0) {
-	 		visit(gteqnode);
-	 		return;
-	 	}
- 		
-
- 	}
+	
 
  	void visit(ForNode* node){
 		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
@@ -836,8 +633,19 @@ public:
  	}
 
  	void visit(AssignNode* node){
-		Visitor *v=this;
-		node->accept(*v);
+		cout << "visite un assignode" << endl;
+		IdentNode* c = dynamic_cast<IdentNode*> (node->getLeftChild());
+		if(c != 0){
+			Node *left = node->getLeftChild();
+			Node *right = node->getRightChild();
+			Visitor *v=this;
+			left->accept(*v);
+			right->accept(*v);
+		}else{
+			throw "Assignment operation is only for variables";
+			cout<<"Assignment operation is only for variables"<<endl;
+		}
+			
  	}
 
  	void visit(StmtListNode* node){
@@ -1002,18 +810,16 @@ public:
  	}
 
  	void visit(IdentNode* node){
-		cout << "accepting identnode" << endl;
-		string *name=node->getValue().str;
-		cout<<*name<<endl;
+		cout << "visite una variable" << endl;
+		string *name = node->getValue().str;
 		Simbolo *s = symbolTable->lookUp(*name);
-		
 		if(s==0){
-			string *cad;
-			*cad = "";
-			s=new Simbolo(name,cad);
+			cout<<"Es nulo"<<endl;
+			string cad = "";
+			s=new Simbolo(name,&cad);
+			symbolTable->insertName(s);
+			symbolTable->printTable();
 		}
-				
-		symbolTable->insertName(s);
  	}
 
  	void visit(IntNode* node){

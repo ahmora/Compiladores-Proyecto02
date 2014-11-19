@@ -114,7 +114,7 @@ class LexList{
 			pair<string,Simbolo> nuevo (*name,*s);
 			head->tabla->insert(nuevo);
 		}else
-			cout<<"Error: variable ya declarada";
+			cout<<"Error: variable ya declarada"<<endl;
 	}
 	
 	void printTable(){

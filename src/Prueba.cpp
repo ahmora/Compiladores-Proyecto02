@@ -7,12 +7,16 @@ int main(){
 	
 	VisitorNode *visitor;
 	visitor = new VisitorNode;
+	string s="VARNAME";
+	string *var=&s;
 	
-	Node* i1 = asTree->bIdentNode("var_name");
+	Node* i1 = asTree->bIdentNode(var);
 	Node* i2 = asTree->bIntNode(3);
 	
+	Node* i3 = asTree->bIntNode(5);
+	
 	Node* m;
-	m= asTree->bMultNode();
+	m= asTree->bAssignNode();
 	
 	m->setFChild(i1);
 	m->setSChild(i2);

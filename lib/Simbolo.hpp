@@ -48,8 +48,6 @@ class Simbolo{
 		Simbolo(string *n, string *val){
 			valor=(tipo*) new string;
 			name=n;
-			//Revisar esto
-			cout<<"lalalala\n";
 			valor->cadena =*val;
 			
 			type=2;
