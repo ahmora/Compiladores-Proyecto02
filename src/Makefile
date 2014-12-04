@@ -1,8 +1,6 @@
 all: compile
 
 compile:
-	g++ -std=c++0x ../lib/AST.hpp
-	g++ -std=c++0x ../lib/MAST.hpp
 	flex pylex.l
 	bison -dv pysin.y -o pysin.cpp -t
 	g++ pylex.cpp pysin.cpp -o pylex -std=c++0x

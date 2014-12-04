@@ -60,6 +60,7 @@ public:
  	}
 
  	void setRightChild(Node* node){
+		cout << "setRightChild en VNodeList" << endl;
  		children.insert((children.begin())+1, node);
  	}
  	
@@ -72,6 +73,7 @@ public:
  	}
 
 	list<Node*> getChildren(){
+		cout << "Operation not supported for VNodeList" << endl;
 		throw "Operation not supported for VNodeList";
 	}
  };
@@ -118,10 +120,12 @@ public:
  	}
 
  	void setFChild(Node* first)	{
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
 
  	void setSChild(Node* second){
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
 
@@ -140,10 +144,12 @@ public:
  	}
 
  	void addFChild(Node* first)	{
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
 
  	void addLChild(Node* second){
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
 
@@ -153,6 +159,7 @@ public:
  	}
 
  	void setSChild(Node* second){
+ 		cout<<"Agregando hijo der..."<<endl;
  		children->setRightChild(second);
  		cout<<"Se agrego hijo der"<<endl;
  	}
@@ -178,15 +185,19 @@ public:
  	};
  	NValue value;
  	virtual void addFChild(Node*){
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
 	virtual void addLChild(Node*){
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
 	virtual void setFChild(Node*){
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
 	virtual void setSChild(Node*){
+ 		cout << "Operation not supported for Node" << endl;
  		throw "Operation not supported for Node";
  	}
  	
