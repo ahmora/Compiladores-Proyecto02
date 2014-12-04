@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Node{
+class Node {
 public:
 	virtual ~Node(){};
 	virtual void accept(Visitor&)=0;
@@ -23,101 +23,91 @@ public:
 	virtual void setSChild(Node*)=0;
 protected:
 	Node(){};
-	
 };
 
 
-union NList {
-	list<Node*> listas;
-	vector<Node*> vectores;
-};
+// typedef union NList NList_t;
 
-
-class NodeList{
+class NodeList {
 public:
-	virtual ~NodeList(){};
+	NodeList(){};
+	~NodeList(){};
 	
+	/* BinNode */
 	virtual Node* getLeftChild(){};
 	virtual Node* getRightChild(){};
 	virtual void setLeftChild(Node* node){};
 	virtual void setRightChild(Node* node){};
 
+	/* INode */
 	virtual void addFirst(Node* node){};
 	virtual void addLast(Node* node){};
-	
-protected:
-	NList* children;
-	NodeList(){
-		children= (NList*) malloc(sizeof(NList));
-	}
+	virtual list<Node*> getChildren(){};
 };
 
 
-class VNodeList : public NodeList{
+class VNodeList : public NodeList {
+private:
+	vector<Node*> children;
 public:
 	~VNodeList(){};
- 	VNodeList(int n){
-		children->vectores.reserve(n);
+ 	VNodeList(int n) {
+		children.reserve(n);
  	}
 
  	void setLeftChild(Node* node){
- 		children->vectores.insert(children->vectores.begin(), node);
+ 		children.insert(children.begin(), node);
  	}
 
  	void setRightChild(Node* node){
- 		children->vectores.insert((children->vectores.begin())+1, node);
- 		//getChildren().push_back(node);
+ 		children.insert((children.begin())+1, node);
  	}
  	
  	Node* getLeftChild(){
- 		return getChildren()[0];
+ 		return children[0];
  	}
 
  	Node* getRightChild(){
- 		return getChildren()[1];
+ 		return children[1];
  	}
- 	
- 	vector<Node*> getChildren(){
-		return children->vectores;
+
+	list<Node*> getChildren(){
+		throw "Operation not supported for VNodeList";
 	}
  };
 
-class LNodeList : public NodeList{
+class LNodeList : public NodeList {
+private:
+	list<Node*> children;
 public:
 	~LNodeList(){};
-	LNodeList():NodeList(){
-		//getChildren();
-		// No falta algo en este constructor?
-	}
+	LNodeList() {};
+
  	void addFirst(Node* node){
-		cout<<"Inserto al inicio"<<endl;
-		cout<<"dies here"<<endl;
- 		getChildren().push_front(node);
- 		cout<<"---not here first"<<endl;
- 		cout<<"---not here Inserto al inicio"<<endl;
+		children.push_front(node);
  	}
 
  	void addLast(Node* node){
- 		getChildren().push_back(node);
+ 		children.push_back(node);
  	}
  	
  	list<Node*> getChildren(){
-		return children->listas;
+		return children;
 	}
  };
 
 
-class INode : public Node{	
+class INode : public Node {	
 protected:
  	NodeList* children;
  		 
 public:
 	~INode(){};
-	INode() : Node(){
- 		children = new LNodeList;
+	INode() {
+ 		children = new LNodeList();
  	}
  	
- 	INode(int n);
+ 	// INode(int n);
 
  	void addFChild(Node* child){
  		children->addFirst(child);
@@ -136,16 +126,16 @@ public:
  	}
 
  	list<Node*> getChildren(){
- 		return getChildren();
+ 		// return getChildren();
+ 		return children->getChildren();
  	}
-
  };
 
 
- class BinNode : public INode{
+ class BinNode : public INode {
  public:
 	~BinNode(){};
- 	BinNode():INode(){
+ 	BinNode() {
  		children = new VNodeList(2);
  	}
 
@@ -200,7 +190,7 @@ public:
  		throw "Operation not supported for Node";
  	}
  	
- 	virtual NValue getValue()=0;
+ 	// virtual NValue getValue()=0;
  protected:
 	LeafNode(){};
  };
@@ -214,9 +204,9 @@ protected:
 
  	// BinNode's
  	virtual PlusNode* bPlusNode()=0;
+ 	virtual MinusNode* bMinusNode()=0;
  	virtual MultNode* bMultNode()=0;
  	virtual DiviNode* bDiviNode()=0;
- 	virtual MinusNode* bMinusNode()=0;
  	virtual AssignNode* bAssignNode()=0;
  	virtual AndNode* bAndNode()=0;
  	virtual OrNode* bOrNode()=0;
@@ -242,12 +232,19 @@ protected:
  	virtual WhileNode* bWhileNode()=0;
  	virtual ArgsNode* bArgsNode()=0;
  	virtual FuncNode* bFuncNode()=0;
+
+ 	// New INode's
+ 	virtual ReturnNode* bReturnNode()=0;
+ 	virtual PrintNode* bPrintNode()=0;
  	
+ 	// New LeafNode's
+ 	virtual BreakNode* bBreakNode()=0;
+ 	virtual ContinueNode* bContinueNode()=0;
 
  	// LeafNode's
  	virtual IntNode* bIntNode(int val)=0;
  	virtual StrNode* bStrNode(string val)=0;
  	virtual FloatNode* bFloatNode(float val)=0;
- 	virtual IdentNode* bIdentNode(string *name)=0;
+ 	virtual IdentNode* bIdentNode(string* name)=0;
  	virtual BoolNode* bBoolNode(bool val)=0;
  };

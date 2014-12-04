@@ -233,7 +233,7 @@ RIGHT		"->"
 						yyterminate();
 					}
 				}
-				/* yylval.cadena = yytext; */
+				yylval.cadena = yytext;
 				BEGIN(INITIAL);
 				return STRING;
 			}
