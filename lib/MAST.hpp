@@ -299,7 +299,7 @@ public:
  		
 	}
 	
-	void insertInTable(IdentNode* left,Node* right,Visitor* v){
+	void insertInTable(IdentNode* left, Node* right,Visitor* v){
 		string* var;
 		var=new string(left->getValue());
 		Simbolo* s;
@@ -318,21 +318,22 @@ public:
 		}else if(flotante!=0){
 			float* val;
 			*val=flotante->getValue();
-			//s = new Simbolo(var,val);
+			s = new Simbolo(var,val);
 			v->symbolTable->insertName(s);
 		}else if(cadena!=0){
 			string* val;
 			*val=cadena->getValue();
 			s = new Simbolo(var,val);
 			v->symbolTable->insertName(s);
-		}/*else if(booleano!=0){
-			bool* val;
-			*val=booleano->getValue();
+		}else if(booleano!=0){
+			int* val;
+			if(booleano->getValue())
+				*val=1;
+			else
+				*val=0;
 			s = new Simbolo(var,val);
 			v->symbolTable->insertName(s);
-		}*/
-		else{
-			
+		}else{
 			string* val= new string("OPERACION AUN NO EVALUADA, HASTA T. de E.");
 			s= new Simbolo(var,val);
 			
