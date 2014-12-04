@@ -316,16 +316,19 @@ public:
 			v->symbolTable->insertName(s);
 			
 		}else if(flotante!=0){
+			cout<<"Es un flotante"<<endl;
 			float* val;
 			*val=flotante->getValue();
 			s = new Simbolo(var,val);
 			v->symbolTable->insertName(s);
 		}else if(cadena!=0){
+			cout<<"Es una cadena"<<endl;
 			string* val;
 			*val=cadena->getValue();
 			s = new Simbolo(var,val);
 			v->symbolTable->insertName(s);
 		}else if(booleano!=0){
+			cout<<"Es un booleano"<<endl;
 			int* val;
 			if(booleano->getValue())
 				*val=1;
@@ -336,7 +339,6 @@ public:
 		}else{
 			string* val= new string("OPERACION AUN NO EVALUADA, HASTA T. de E.");
 			s= new Simbolo(var,val);
-			
 			v->symbolTable->insertName(s);
 	}
 		

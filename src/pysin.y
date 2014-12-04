@@ -527,7 +527,10 @@ testlist1: /* test (',' test)* */
 	test comma_test_kleene 	{$$ = $1;};
 	
 string_plus: /* (STRING)+ */
-	STRING						{cout << ":::" << $1 << ":::" << endl;  Node *strn = asTree->bStrNode($1);}
+	STRING						{cout << ":::" << $1 << ":::" << endl;  
+							Node *strn = asTree->bStrNode($1);
+							//strn->accept(*visitor);
+							}
 	| STRING string_plus		{$$ = $2; cout << "not here please......" << endl;};
 
 /* FIXTHIS: No hay soporte para listas aún */
