@@ -61,7 +61,7 @@ public:
 
  	void setRightChild(Node* node){
 		cout << "setRightChild en VNodeList" << endl;
- 		children.insert((children.begin())+1, node);
+ 		children.insert((children.end()), node);
  	}
  	
  	Node* getLeftChild(){
