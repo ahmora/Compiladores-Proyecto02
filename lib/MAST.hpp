@@ -18,6 +18,7 @@ using namespace std;
 class Visitor{
 public:
 	virtual ~Visitor(){};
+	SymbolTable* symbolTable;
 	//Node
 	virtual void visit(Node*)=0;
 
@@ -66,7 +67,7 @@ public:
 	
 protected:
 	Visitor(){};
-	SymbolTable* symbolTable;
+	
 
 };
 
@@ -295,10 +296,12 @@ public:
 	
  	void accept(Visitor &v){
  		v.visit(this);
+ 		
 	}
 	
-	void insertInTable(IdentNode* left,LeafNode* right,Visitor* v){
-		string* var=new string(left->getValue());
+	void insertInTable(IdentNode* left,Node* right,Visitor* v){
+		string* var;
+		var=new string(left->getValue());
 		Simbolo* s;
 		
 		IntNode* entero = dynamic_cast<IntNode*> (right);
@@ -306,32 +309,37 @@ public:
 		StrNode* cadena = dynamic_cast<StrNode*> (right);
 		BoolNode* booleano = dynamic_cast<BoolNode*> (right);
 		if(entero!=0){
+			cout<<"Es un entero"<<endl;
 			int* val;
 			*val=entero->getValue();
 			s = new Simbolo(var,val);
+			v->symbolTable->insertName(s);
 			
 		}else if(flotante!=0){
 			float* val;
-			*val=entero->getValue();
-			s = new Simbolo(var,val);
-			
-			
+			*val=flotante->getValue();
+			//s = new Simbolo(var,val);
+			v->symbolTable->insertName(s);
 		}else if(cadena!=0){
 			string* val;
-			*val=entero->getValue();
+			*val=cadena->getValue();
 			s = new Simbolo(var,val);
-			
-			
-		}else if(booleano!=0){
+			v->symbolTable->insertName(s);
+		}/*else if(booleano!=0){
 			bool* val;
-			*val=entero->getValue();
+			*val=booleano->getValue();
 			s = new Simbolo(var,val);
-		}
-		symbolTable->insertName(s);
+			v->symbolTable->insertName(s);
+		}*/
+		else{
+			
+			string* val= new string("OPERACION AUN NO EVALUADA, HASTA T. de E.");
+			s= new Simbolo(var,val);
+			
+			v->symbolTable->insertName(s);
+	}
 		
 	}
-	
-	
  };
 
  
@@ -786,15 +794,10 @@ public:
 		//cout << "visite un assignode" << endl;
 		IdentNode* left = dynamic_cast<IdentNode*> (node->getLeftChild());
 		if(left != 0){
-			LeafNode* right = dynamic_cast<LeafNode*> (node->getLeftChild());
-			if(right !=0){
-				Visitor *v=this;
-				node->insertInTable(left,right,v);
-				cout<<"Si es hoja"<<endl;
-			}else{
-				cout<<endl<<"ERROR: Right side is not a value"<<endl;
-				throw "Assignment operation is only for variables";
-			}
+			Node* right = node->getLeftChild();
+			Visitor *v=this;
+			node->insertInTable(left,right,v);
+			
 		}else{
 			cout<<endl<<"ERROR: Assignment operation is only for variables"<<endl;
 			throw "Assignment operation is only for variables";

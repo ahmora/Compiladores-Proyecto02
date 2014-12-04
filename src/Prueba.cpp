@@ -31,7 +31,13 @@ int main(){
 
 	Node* a = asTree->bAssignNode();	
 	a->setFChild(id1);
-	a->setSChild(m1);
+	a->setSChild(i1);
+	
+	a->accept(*visitor);
+	std::cout<<std::endl;
+	
+	a->setFChild(id2);
+	a->setSChild(i2);
 	
 	a->accept(*visitor);
 	std::cout<<std::endl;
