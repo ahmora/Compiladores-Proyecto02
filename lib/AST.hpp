@@ -113,6 +113,7 @@ public:
 
  	void addFChild(Node* child){
  		children->addFirst(child);
+ 		
  	}
 
  	void addLChild(Node* child){

@@ -25,18 +25,26 @@ int main(){
 
 	Node* a = asTree->bAssignNode();	
 	a->setFChild(id1);
-	a->setSChild(id3);
+	a->setSChild(i1);
+	
+	Node* a1= asTree->bAssignNode();
+	a1->setFChild(id2);
+	a1->setSChild(m1);
 
 	Node* b = asTree->bAssignNode();
 	Node* exprn = asTree->bExprNode();
 	b->setFChild(id1);
 	b->setSChild(exprn);
-	
-	a->accept(*visitor);
-	std::cout<<std::endl;
 
 	Node* fn = asTree->bForNode();
-	fn->addFChild(id2);
+	
+	fn->addFChild(i2);
+	fn->addLChild(i1);
+	fn->addLChild(a1);
 	fn->addLChild(m1);
+	fn->addLChild(a);
+	
+	fn->accept(*visitor);
+	std::cout<<std::endl;
 	return 0;
 }

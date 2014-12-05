@@ -92,7 +92,6 @@ protected:
 
  	void accept(Visitor &v)	{
  		v.visit(this);
- 		//Aguas!
  	}
  };
 
@@ -313,6 +312,7 @@ public:
 		 FloatNode* flotante = dynamic_cast<FloatNode*> (right);
 		 StrNode* cadena = dynamic_cast<StrNode*> (right);
 		 BoolNode* booleano = dynamic_cast<BoolNode*> (right);
+		 
 		 if(entero!=0){
 		 	cout<<"Es un entero"<<endl;
 		 	int* val;
@@ -342,10 +342,13 @@ public:
 		 	s = new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);
 		 }else{
+			 cout<<"NO ES NADA"<<endl;
 		 	string* val= new string("OPERACION AUN NO EVALUADA, HASTA T. de E.");
 		 	s= new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);
 		 }
+		 left->accept(*v);
+		 right->accept(*v);
 	}
  };
 
@@ -770,30 +773,29 @@ public:
 	
  	void visit(ForNode* node){
 		cout << "(ForNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		cout << ")";
+		cout << ")"<<endl;
  	}
 
  	void visit(WhileNode* node){
 		cout << "(WhileNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
-		} 
-		cout << ")";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")"<<endl;
  	}
 
  	void visit(IfNode* node){
 		cout << "(IfNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		
-		cout << ")";
+		cout << ")"<<endl;
  	}
 
  	void visit(AssignNode* node){
@@ -801,7 +803,7 @@ public:
 		//cout << "visite un assignode" << endl;
 		IdentNode* left = dynamic_cast<IdentNode*> (node->getLeftChild());
 		if (left != 0) {
-			Node* right = node->getLeftChild();
+			Node* right = node->getRightChild();
 			Visitor *v=this;
 			node->insertInTable(left,right,v);
 		} else {
@@ -810,44 +812,44 @@ public:
 		}
 			
 		cout << ")";
-		cout<<endl<<"Insertando nueva variable en la tabla"<<endl;
+		cout<<endl<<"A actualizando variable en la tabla"<<endl;
 		symbolTable->printTable();
  	}
 
  	void visit(StmtListNode* node){
 		cout << "(StmtListNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		cout << ")";
+		cout << ")"<<endl;
  	}
 
  	void visit(SStmtListNode* node){
 		cout << "(SStmtListNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		cout << ")";
+		cout << ")"<<endl;
  	}
  	
  	void visit(FuncNode* node){
 		cout << "(FuncNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);	
-		}	
-		cout << ")";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")"<<endl;
 	}
 
  	void visit(ArgsNode* node){
  		cout << "(ArgsNode ";
- 		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+ 		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		cout << ")";
+		cout << ")"<<endl;
  	}
 
  	void visit(ExprNode* node){
@@ -1028,16 +1030,14 @@ public:
 
  	void visit(IdentNode* node){
 		
-		string* name = new string();
-		*name = node->getValue();
-		cout << "(IdentNode "<<name<<endl;
+		string* name = new string(node->getValue());
+		cout << "(IdentNode "<<*name<<endl;
 		 Simbolo *s = symbolTable->lookUp(*name);
 		 if(s==0){
 		 	cout<<"Insertando nueva variable en la tabla"<<endl;
 		  	string *cad = new string();
 		  	s=new Simbolo(name,cad);
 		  	symbolTable->insertName(s);
-		  	symbolTable->printTable();
 		  }
 		cout << ")";
  	}
@@ -1074,19 +1074,19 @@ public:
  	/* Implementación de visit de nuevos nodos */
  	void visit(ReturnNode* node){
  		cout << "(ReturnNode ";
- 		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+ 		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
- 		cout << ")";
+		cout << ")";
  	}
 	void visit(PrintNode* node){
 		cout << "(PrintNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		cout << ")";
+		cout << ")"<<endl;
 	}
 	void visit(BreakNode* node){
 		cout << "(BreakNode)";
