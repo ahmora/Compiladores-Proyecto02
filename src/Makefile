@@ -1,10 +1,11 @@
+
 all: compile
 
 compile:
 	flex pylex.l
 	bison -dv pysin.y -o pysin.cpp -t
-	g++ pylex.cpp pysin.cpp -o pylex -std=c++11
-	g++ Prueba.cpp -o prueba -std=c++11
+	g++ pylex.cpp pysin.cpp -o pylex -std=c++0x
+	g++ Prueba.cpp -o prueba -std=c++0x
 
 clean:
 	rm pylex.cpp pylex pysin.cpp pysin.output pysin.hpp

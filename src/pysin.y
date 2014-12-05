@@ -48,9 +48,11 @@ VisitorNode *visitor = new VisitorNode;
 %%
 file_input: /* (NEWLINE | stmt)* ENDMARKER */
 	filein	{
-				Node *sstmtln = asTree->bSStmtListNode();
-				sstmtln->addFChild($1);
-				$$ = sstmtln;
+				// Node *sstmtln = asTree->bSStmtListNode();
+				// sstmtln->addFChild($1);
+				// $$ = sstmtln;
+				Node* node = $1;
+				// node->accept(*visitor);
 				cout<<"\nCOMPILATION COMPLETE :)\n";
 			};
 
@@ -378,9 +380,12 @@ trailer: /* '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME */
 	OPENPAR CLOSEPAR					{cout<<"()"<<endl;}
 	| OPENPAR arglist CLOSEPAR			{$$ = $2; cout<<"(ARGLIST)"<<endl;}
 	| OPENCOR subscriptlist CLOSECOR	{$$ = $2; cout<<"(SUBSCRIPTLIST)"<<endl;}
-	| DOT NAME				{string* cadena= new string($2);
-						Node *identn = asTree->bIdentNode(cadena); 
-						$$=identn; cout<<".NAME"<<endl;};
+	| DOT NAME							{
+											cout<<".NAME"<<endl;
+											string* id = new string($2);
+											Node *identn = asTree->bIdentNode(id);
+											$$=identn; 
+										};
 		
 arglist: /* (argument ',')* (argument [','] |'*' test (',' argument)* [',' '**' test] 	|'**' test) */
 	argument_comma argument_multiple 	{
@@ -498,11 +503,13 @@ atom: /* ( '(' [testlist_comp] ')' | '[' [listmaker] ']' |  '`' testlist1 '`' | 
 	| string_plus						{$$ = $1;}
 	| boolean							{$$ = $1;}
 	| NONE								{$$ = NULL;}
-	| NAME			{cout << ";;;" << $1 << ";;;" << endl;
-				string* cadena= new string($1);
-				Node *identn = asTree->bIdentNode(cadena);
-				identn->accept(*visitor);
-				$$=identn;}
+	| NAME			{
+						cout << ";;;" << $1 << ";;;" << endl;
+						string* id = new string($1);
+						Node *identn = asTree->bIdentNode(id);
+						identn->accept(*visitor);
+						$$=identn;
+					}
 	| FLOATNUMBER	{
 						Node *floatn = asTree->bFloatNode($1);
 						$$=floatn;
@@ -527,10 +534,12 @@ testlist1: /* test (',' test)* */
 	test comma_test_kleene 	{$$ = $1;};
 	
 string_plus: /* (STRING)+ */
-	STRING						{cout << ":::" << $1 << ":::" << endl;  
-							Node *strn = asTree->bStrNode($1);
-							//strn->accept(*visitor);
-							}
+	STRING						{
+									cout << ":::" << $1 << ":::" << endl;
+									string* str = new string($1);
+									Node *strn = asTree->bStrNode(str);
+									strn->accept(*visitor);
+								}
 	| STRING string_plus		{$$ = $2; cout << "not here please......" << endl;};
 
 /* FIXTHIS: No hay soporte para listas aún */
@@ -577,13 +586,14 @@ elif_test_td_suite_kleene: /* ('elif' test ':' suite)* */
 														};
 
 while_stmt: /* 'while' test ':' suite ['else' ':' suite] */
-	WHILE test TWODOTS suite ELSE TWODOTS suite 	{cout << "while _ : _ else : _" << endl;
-							Node *whilen = asTree->bWhileNode();
-							whilen->addFChild($2);
-							whilen->addLChild($4);
-							whilen->addLChild($7);
-							$$ = whilen;
-							}
+	WHILE test TWODOTS suite ELSE TWODOTS suite 	{
+														cout << "while _ : _ else : _" << endl;
+														Node *whilen = asTree->bWhileNode();
+														whilen->addFChild($2);
+														whilen->addLChild($4);
+														whilen->addLChild($7);
+														$$ = whilen;
+													}
 	| WHILE test TWODOTS suite						{
 														cout << "while _ : _" << endl;
 														Node *whilen = asTree->bWhileNode();
@@ -736,13 +746,14 @@ expr_stmt_at: /* (augassign testlist | ('=' testlist)*) */
 		| ASSIGN testlist 			{
 										cout<<"="<<endl;
 										Node* assignn = asTree->bAssignNode();
-										Node* intn = asTree->bIntNode(22);
-										assignn->setSChild(intn);
+										// Node* intn = asTree->bIntNode(22);
+										// assignn->setSChild(intn);
 										ArgsNode* exprn = dynamic_cast<ArgsNode*> ($2);
 										if (exprn != 0)
 										{
-											Node* intn = asTree->bIntNode(22);
-											assignn->setSChild(intn);
+											// Node* intn = asTree->bIntNode(22);
+											// assignn->setSChild(intn);
+											assignn->setSChild($2);
 											cout << "Its an expression node!!!!" << endl;
 										} else {
 											cout << "Its not an expression node" << endl;
@@ -878,15 +889,16 @@ return_stmt: /* 'return' [testlist] */
 
 /* Funciones */
 funcdef: /*'def' NAME parameters ':' suite*/
-	DEF NAME parameters TWODOTS suite	{cout << "def name(_):\n" << endl;
-						Node *funcn = asTree->bFuncNode();
-						string* cadena= new string($2);
-						Node *identn = asTree->bIdentNode(cadena);
-						funcn->addFChild(identn);
-						funcn->addLChild($3);
-						funcn->addLChild($5);
-						$$ = funcn;
-						};
+	DEF NAME parameters TWODOTS suite	{
+											cout << "def name(_):\n" << endl;
+											Node *funcn = asTree->bFuncNode();
+											string* id = new string($2);
+											Node *identn = asTree->bIdentNode(id);
+											funcn->addFChild(identn);
+											funcn->addLChild($3);
+											funcn->addLChild($5);
+											$$ = funcn;
+										};
 
 parameters: /*'(' [varargslist] ')'*/
 	OPENPAR CLOSEPAR 				{
@@ -901,21 +913,24 @@ parameters: /*'(' [varargslist] ')'*/
 									};
 
 varargslist: /* (NAME (',' NAME)*) */
-	NAME args_kleene	{string* cadena= new string($1);
-				Node *identn = asTree->bIdentNode(cadena);
-				if ($2 != NULL){
-					Node *argsn = $2;
-					argsn->addFChild(identn);
-					$$ = argsn;
-				}
-				};
+	NAME args_kleene	{
+							string* id = new string($1);
+							Node *identn = asTree->bIdentNode(id);
+							if ($2 != NULL)
+							{
+								Node *argsn = $2;
+								argsn->addFChild(identn);
+								$$ = argsn;
+							}
+						};
 args_kleene: /* (',' NAME)* */
-	args_kleene COMMA NAME 	{string* cadena= new string($3);
-				Node *identn = asTree->bIdentNode(cadena);
-				Node *argsn = $1;
-				argsn->addLChild(identn);
-				$$ = argsn;
-				}
+	args_kleene COMMA NAME 	{
+								string* id = new string($3);
+								Node *identn = asTree->bIdentNode(id);
+								Node *argsn = $1;
+								argsn->addLChild(identn);
+								$$ = argsn;
+							}
 	| epsilon				{
 								Node *argsn = asTree->bArgsNode();
 								$$ = argsn;
