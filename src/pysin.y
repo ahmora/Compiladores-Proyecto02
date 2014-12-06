@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include "../lib/MAST.hpp"
+#include "../lib/Composit/TableVisitor.hpp"
 #include <string>
 
 
@@ -21,7 +21,7 @@ VisitorNode *visitor = new VisitorNode;
 %}
 
 %code requires{
-#include "../lib/Nodos.hpp"
+#include "../lib/Composit/Nodos.hpp"
 
 }
 

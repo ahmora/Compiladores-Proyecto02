@@ -1,4 +1,4 @@
-#include "../lib/Composit/TableVisitor.hpp"
+#include "Composit/TableVisitor.hpp"
 
 using namespace std;
 int main(){

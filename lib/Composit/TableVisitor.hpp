@@ -1,279 +1,271 @@
-/**
- * Visitor para imprimir en lenguaje Oolong
- *
- * @author: Alejandro Hernández Mora
- * @author: Alan Mauricio García García
- */
-
-#include <list>
-#include "AST.hpp"
-#include "Nodos.hpp"
 #include "MAST.hpp"
-#include <string>
-#include <fstream>
 
-using namespace std;
-
-class OolongVisitor : public Visitor{
+class VisitorNode : public Visitor{
 public:
-	ofstream output;
-	~OolongVisitor(){};
-	OolongVisitor() {
-		output.open("oolong.j");
+	~VisitorNode(){};
+	VisitorNode():Visitor(){
+		  symbolTable= new SymbolTable;
+	}
+	
+	VisitorNode(SymbolTable *ts):Visitor(){
+		symbolTable=ts;
 	}
  
  	void visit(Node* node){
-	 	output << "(Node ";
+	 	cout << "(Node ";
 	 	visit(node);
-	 	output << ")";
+	 	cout << ")";
  	}
 	
  	void visit(ForNode* node){
-		output << "(ForNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+		cout << "(ForNode ";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		output << ")";
+		cout << ")"<<endl;
  	}
 
  	void visit(WhileNode* node){
-		output << "(WhileNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
-		} 
-		output << ")";
+		cout << "(WhileNode ";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")"<<endl;
  	}
 
  	void visit(IfNode* node){
-		output << "(IfNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+		cout << "(IfNode ";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		
-		output << ")";
+		cout << ")"<<endl;
  	}
 
  	void visit(AssignNode* node){
-		output << "(AssignNode ";
-		// output << "visite un assignode" << endl;
-		IdentNode* c = dynamic_cast<IdentNode*> (node->getLeftChild());
-		if(c != 0){
-			Node *left = node->getLeftChild();
-			Node *right = node->getRightChild();
+		cout << "(AssignNode ";
+		//cout << "visite un assignode" << endl;
+		IdentNode* left = dynamic_cast<IdentNode*> (node->getLeftChild());
+		if (left != 0) {
+			Node* right = node->getRightChild();
 			Visitor *v=this;
-			left->accept(*v);
-			right->accept(*v);
-		}else{
+			node->insertInTable(left,right,v);
+		} else {
+			cout<<endl<<"ERROR: Assignment operation is only for variables"<<endl;
 			throw "Assignment operation is only for variables";
-			output<<"Assignment operation is only for variables"<<endl;
 		}
 			
-		output << ")";
+		cout << ")";
+		cout<<endl<<"A actualizando variable en la tabla"<<endl;
+		symbolTable->printTable();
  	}
 
  	void visit(StmtListNode* node){
-		output << "(StmtListNode ";
-		Visitor *v=this;
-		node->accept(*v);
-		output << ")";
+		cout << "(StmtListNode ";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")"<<endl;
  	}
 
  	void visit(SStmtListNode* node){
-		output << "(SStmtListNode ";
-		Visitor *v=this;
-		node->accept(*v);
-		output << ")";
+		cout << "(SStmtListNode ";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")"<<endl;
  	}
  	
  	void visit(FuncNode* node){
-		output << "(FuncNode ";
-		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);	
-		}	
-		output << ")";
+		cout << "(FuncNode ";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")"<<endl;
 	}
 
  	void visit(ArgsNode* node){
- 		output << "(ArgsNode ";
- 		for (list<Node*>::iterator it= node->getChildren().begin(); it != node->getChildren().end(); ++it){
-			Visitor* v = this;
-			(*it)->accept(*v);
+ 		cout << "(ArgsNode ";
+ 		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
 		}
-		output << ")";
+		cout << ")"<<endl;
  	}
 
  	void visit(ExprNode* node){
-		output << "(ExprNode ";
+		cout << "(ExprNode ";
 		Visitor *v=this;
 		node->accept(*v);
-		output << ")";
+		cout << ")";
  	}
  	
  	void visit(StmtNode* node){
-		output << "(StmtNode ";
+		cout << "(StmtNode ";
 		Visitor *v=this;
-		output << ")";
+		cout << ")";
 		node->accept(*v);
 	}
  	void visit(SStmtNode* node){
-		output << "(SStmtNode ";
+		cout << "(SStmtNode ";
 		Visitor *v=this;
 		node->accept(*v);
-		output << ")";
+		cout << ")";
 	}
  	
  	void visit(AndNode* node){
- 		output << "(AndNode ";
+ 		cout << "(AndNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(OrNode* node){
- 		output << "(OrNode ";
+ 		cout << "(OrNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(XorNode* node){
- 		output << "(XorNode ";
+ 		cout << "(XorNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(NotNode* node){
- 		output << "(NotNode ";
+ 		cout << "(NotNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(PotNode* node){
- 		output << "(PotNode ";
+ 		cout << "(PotNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(LTNode* node){
- 		output << "(LTNode ";
+ 		cout << "(LTNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(GTNode* node){
- 		output << "(GTNode ";
+ 		cout << "(GTNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(EqNode* node){
- 		output << "(EqNode ";
+ 		cout << "(EqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(NEqNode* node){
- 		output << "(NEqNode ";
+ 		cout << "(NEqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(LTEqNode* node){
- 		output << "(LTEqNode ";
+ 		cout << "(LTEqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(GTEqNode* node){
- 		output << "(GTEqNode ";
+ 		cout << "(GTEqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
  	
  	void visit(PlusNode* node){
- 		output << "(PlusNode ";
+ 		cout << "(PlusNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(MinusNode* node){
- 		output << "(MinusNode ";
+ 		cout << "(MinusNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(DiviNode* node){
- 		output << "(DiviNode ";
+ 		cout << "(DiviNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	void visit(MultNode* node){
- 		output << "(MultNode ";
+ 		cout << "(MultNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*v);
  		right->accept(*v);
- 		output << ")";
+ 		cout << ")";
  	}
 
  	/**
@@ -283,28 +275,69 @@ public:
  	 */
 
  	void visit(IdentNode* node){
-		output << "(IdentNode "<<node->getValue();
-		string name = node->getValue();
-		output << ")";
+		
+		string* name = new string(node->getValue());
+		cout << "(IdentNode "<<*name<<endl;
+		 Simbolo *s = symbolTable->lookUp(*name);
+		 if(s==0){
+		 	cout<<"Insertando nueva variable en la tabla"<<endl;
+		  	string *cad = new string();
+		  	s=new Simbolo(name,cad);
+		  	symbolTable->insertName(s);
+		  }
+		cout << ")";
  	}
 
  	void visit(IntNode* node){
-		output << "(IntNode "<<node->getValue();
-		output << ")";
+		cout << "(IntNode "<<node->getValue();
+		// cout<<"Visite un entero "<<endl;
+ 		// Visitor *v=this;
+		// node->accept(*v);
+		cout << ")";
  	}
 
  	void visit(FloatNode* node){
- 		output << "(FloatNode "<<node->getValue();
-		output << ")";
+ 		cout << "(FloatNode "<<node->getValue();
+ 		// Visitor *v=this;
+		// node->accept(*v);
+		cout << ")";
  	}
 
  	void visit(StrNode* node){
- 		output << "(StrNode "<<node->getValue();
-		output << ")";
+ 		cout << "(StrNode "<<node->getValue();
+ 		// Visitor *v=this;
+		// node->accept(*v);
+		cout << ")";
  	}
 
  	void visit(BoolNode* node){
-		output << "(BoolNode "<<node->getValue();
-		output << ")";
+		cout << "(BoolNode "<<node->getValue();
+		// Visitor *v=this;
+		// node->accept(*v);
+		cout << ")";
  	}
+
+ 	/* Implementación de visit de nuevos nodos */
+ 	void visit(ReturnNode* node){
+ 		cout << "(ReturnNode ";
+ 		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")";
+ 	}
+	void visit(PrintNode* node){
+		cout << "(PrintNode ";
+		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")"<<endl;
+	}
+	void visit(BreakNode* node){
+		cout << "(BreakNode)";
+	}
+	void visit(ContinueNode* node){
+		cout << "(ContinueNode)";
+	}
  };
