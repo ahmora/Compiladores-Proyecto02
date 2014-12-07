@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-
 def holaMundo(x):
 	print "Hola Mundo"
 	return
@@ -13,12 +11,6 @@ def nomePeine():
 
 print holaMundo(2)
 print nomePeine()
-
-
-
-
-
-
 
 
 Identifier = 3.022

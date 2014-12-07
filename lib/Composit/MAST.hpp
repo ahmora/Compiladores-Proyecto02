@@ -64,15 +64,13 @@ public:
 	
 protected:
 	Visitor(){};
-	
 };
 
 
-/**
-  * 
+ /**
   * Implementación de los nodos que heredan de LeafNode
   */
-
+  
  class IdentNode : public LeafNode{
  public:
  	string value;
@@ -174,7 +172,6 @@ public:
 	ForNode():INode(){};
  	void accept(Visitor &v){
 		v.visit(this);
-			
  	}
  };
 
@@ -258,8 +255,7 @@ public:
  	void accept(Visitor& v){
 		v.visit(this);
  	}
- };
- 
+ }; 
  
  /**
   * Implementación de los nodos que heredan de BinNode
@@ -273,10 +269,9 @@ public:
 	
  	void accept(Visitor &v){
  		v.visit(this);
- 		
 	}
 	
-	void insertInTable(IdentNode* left, Node* right,Visitor* v){
+	void insertInTable(IdentNode* left, Node* right, Visitor* v){
 		 string* var;
 		 var=new string(left->getValue());
 		 Simbolo* s;
@@ -285,43 +280,41 @@ public:
 		 FloatNode* flotante = dynamic_cast<FloatNode*> (right);
 		 StrNode* cadena = dynamic_cast<StrNode*> (right);
 		 BoolNode* booleano = dynamic_cast<BoolNode*> (right);
-		 
-		 if(entero!=0){
+		
+		 if (entero!=0) {
 		 	cout<<"Es un entero"<<endl;
 		 	int* val;
 		 	*val=entero->getValue();
 		 	s = new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);
 			
-		 }else if(flotante!=0){
+		 } else if (flotante!=0) {
 		 	cout<<"Es un flotante"<<endl;
 		 	float* val;
 		 	*val=flotante->getValue();
 		 	s = new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);
-		 }else if(cadena!=0){
+		 } else if (cadena!=0) {
 		 	cout<<"Es una cadena"<<endl;
-		 	string* val;
-		 	*val=cadena->getValue();
+		 	string* val= new string(cadena->getValue());
 		 	s = new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);
-		 }else if(booleano!=0){
+		 } else if (booleano!=0) {
 		 	cout<<"Es un booleano"<<endl;
 		 	int* val;
-		 	if(booleano->getValue())
+		 	if (booleano->getValue()) {
 		 		*val=1;
-		 	else
+		 	} else
 		 		*val=0;
 		 	s = new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);
-		 }else{
-			 cout<<"NO ES NADA"<<endl;
+		 } else {
 		 	string* val= new string("OPERACION AUN NO EVALUADA, HASTA T. de E.");
 		 	s= new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);
 		 }
-		 left->accept(*v);
-		 right->accept(*v);
+		left->accept(*v);
+		right->accept(*v);
 	}
  };
 
@@ -361,6 +354,7 @@ public:
 	
  	void accept(Visitor &v){
 		v.visit(this);
+		
  	}
  };
  
@@ -436,7 +430,7 @@ public:
   	}
   };
 
-class OrNode : public BinNode{
+  class OrNode : public BinNode{
   public:
 	~OrNode(){};
 	OrNode():BinNode(){};
@@ -464,7 +458,6 @@ class OrNode : public BinNode{
   	}
   };
  
-
  /* Implementación de nuevos nodos */
 
 class ReturnNode : public INode {

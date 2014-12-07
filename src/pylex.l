@@ -543,7 +543,7 @@ int main(int argc, char* argv[])
 
 	do {
 		extern int yydebug;
-		/*yydebug = 1;*/
+		//yydebug = 1;
 		yyparse();
 	} while (!feof(yyin));
 	
