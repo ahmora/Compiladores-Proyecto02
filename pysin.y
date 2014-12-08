@@ -13,6 +13,8 @@ int yyerror(const char *s) { printf ("\nError: %s\n", s); }
 
 extern "C" FILE *yyin;
 
+
+//SymbolTable *st = new SymbolTable();
 MAST *asTree = new MAST();
 VisitorNode *visitor = new VisitorNode;
 //OolongVisitor *visitor = new OolongVisitor;
@@ -60,8 +62,7 @@ file_input: /* (NEWLINE | stmt)* ENDMARKER */
 filein: /* (filein (NEWLINE | stmt))* */
 	epsilon				{
 							cout << "filein epsilon..." << endl;
-							Node* stmtln = asTree->bFileNode();
-							// Node* stmtln = asTree->bStmtListNode();
+							Node* stmtln = asTree->bStmtListNode();
 							stmtln->accept(*visitor);
 							$$ = stmtln;
 						}
@@ -152,7 +153,7 @@ comparison: /* expr (comp_op expr)* */
 									} else {
 										cout << "($2 == NULL)" << endl;
 										Node* node = $1;
-										node->accept(*visitor); cout << endl;
+										node->accept(*visitor);
 										$$ = $1;
 									}
 								};
@@ -422,24 +423,8 @@ factor: /* (('+' | '-' | '~') factor | power) */
 	| power 			{$$ = $1;cout<<"power"<<endl; Node* node = $1; node->accept(*visitor); cout << endl;};
 
 power: /* atom trailer* ['**' factor] */
-	atom trailer_kleene					{
-											cout << "atom trailer_kleene" << endl; 
+	atom trailer_kleene					{$$ = $1;cout << "atom trailer_kleene" << endl; 
 											Node* node = $1; node->accept(*visitor); cout << endl;
-											if ($2 != NULL)
-											{
-												ArgsNode* argsn = dynamic_cast<ArgsNode*> ($2);
-												if (argsn != 0)
-												{
-													CallNode* calln = asTree->bCallNode();
-													calln->addFChild($1);
-													calln->addLChild($2);
-													calln->accept(*visitor); cout << endl;
-													$$ = calln;
-												}
-											} else {
-												$$ = $1;
-											}
-
 											/*
 											if ($1 != NULL)
 											{
@@ -461,37 +446,14 @@ power: /* atom trailer* ['**' factor] */
 											Node* node = $1; node->accept(*visitor); cout << endl;};
 
 trailer_kleene: /* trailer* */
-	epsilon					{
-								cout << "epsilon trailer_kleene" << endl;
-								$$ = NULL;
-							}
-	|trailer_kleene trailer {
-								cout << "trailer_kleene trailer" << endl;
-								Node* node = $2;
-								node->accept(*visitor); cout << endl;
-								if ($1 != NULL)
-								{
-									Node* trailer_kleene = $1;
-									trailer_kleene->accept(*visitor); cout << endl;
-								}
-								$$ = $2;
-							};
+	epsilon					{cout << "epsilon trailer_kleene" << endl;}
+	|trailer_kleene trailer {cout << "trailer_kleene trailer" << endl;};
 
 /* FIXTHIS: Falta ver el soporte de esto */	
 trailer: /* '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME */
-	OPENPAR CLOSEPAR					{
-											cout<<"()"<<endl;
-											Node* argsn =  asTree->bArgsNode();
-											$$ = argsn;
-										}
-	| OPENPAR arglist CLOSEPAR			{
-											cout<<"(ARGLIST)"<<endl;
-											$$ = $2; 
-										}
-	| OPENCOR subscriptlist CLOSECOR	{
-											cout<<"(SUBSCRIPTLIST)"<<endl;
-											$$ = $2;
-										}
+	OPENPAR CLOSEPAR					{cout<<"()"<<endl;}
+	| OPENPAR arglist CLOSEPAR			{$$ = $2; cout<<"(ARGLIST)"<<endl;}
+	| OPENCOR subscriptlist CLOSECOR	{$$ = $2; cout<<"(SUBSCRIPTLIST)"<<endl;}
 	| DOT NAME							{
 											cout<<".NAME"<<endl;
 											string* id = new string($2);
@@ -502,7 +464,6 @@ trailer: /* '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME */
 		
 arglist: /* (argument ',')* (argument [','] |'*' test (',' argument)* [',' '**' test] 	|'**' test) */
 	argument_comma argument_multiple 	{
-											cout << "argument_comma argument_multiple" << endl;
 											if ($1 != NULL)
 											{
 												Node *argsn = $1;
@@ -514,13 +475,11 @@ arglist: /* (argument ',')* (argument [','] |'*' test (',' argument)* [',' '**' 
 	
 argument_comma: /* (argument ',')* */
 	epsilon								{
-											cout << "epsilon argument_comma" << endl;
 											Node *argsn = asTree->bArgsNode();
 											argsn->accept(*visitor); cout << endl;
 											$$ = argsn;
 										}
 	| argument_comma argument COMMA 	{
-											cout << "argument_comma argument COMMA" << endl;
 											if ($1 != NULL)
 											{
 												Node *argsn = $1;
@@ -611,7 +570,7 @@ expr_kleene: /* (',' expr)* */
 								}
 							}
 	| epsilon 				{
-								Node* exprln = asTree->bExprListNode();
+								Node* exprln = asTree->bArgsNode();
 								exprln->accept(*visitor); cout << endl;
 								$$ = exprln;
 							};
@@ -770,17 +729,6 @@ for_stmt: /* 'for' exprlist 'in' testlist ':' suite ['else' ':' suite] */
 	| FOR exprlist IN testlist TWODOTS suite					{
 																	cout << "for _ in _ : _" << endl;
 																	Node *forn = asTree->bForNode();
-
-																	cout << "exprlist:" << endl;
-																	Node* exprlist = $2;
-																	exprlist->accept(*visitor); cout << endl;
-																	cout << "testlist:" << endl;
-																	Node* testlist = $4;
-																	testlist->accept(*visitor); cout << endl;
-																	cout << "suite:" << endl;
-																	Node* suite = $6;
-																	suite->accept(*visitor); cout << endl;
-																	
 																	forn->addFChild($2);
 																	forn->addLChild($4);
 																	forn->addLChild($6);
@@ -790,11 +738,10 @@ for_stmt: /* 'for' exprlist 'in' testlist ':' suite ['else' ':' suite] */
 
 suite: /* simple_stmt | NEWLINE INDENT stmt+ DEDENT */
 	simple_stmt 						{
-											// Node *stmtln = asTree->bStmtListNode();
-											// stmtln->addFChild($1);
-											// stmtln->accept(*visitor); cout << endl;
-											Node* node = $1; node->accept(*visitor); cout << endl;
-											$$ = $1;
+											Node *stmtln = asTree->bStmtListNode();
+											stmtln->addFChild($1);
+											stmtln->accept(*visitor); cout << endl;
+											$$ = stmtln;
 										}
 	| NEWLINE INDENT stmt_plus DEDENT	{$$ = $3;};
 		
@@ -870,25 +817,22 @@ small_stmt_kleene: /* (';' small_tmt)* */
 				
 small_stmt: /* (expr_stmt | print_stmt | flow_stmt) */
 	expr_stmt  		{
-						// Node *sstmtn = asTree->bSStmtNode();
-						// sstmtn->addFChild($1);
-						// sstmtn->accept(*visitor); cout << endl;
-						Node* node = $1; node->accept(*visitor); cout << endl;
-						$$ = $1;
+						Node *sstmtn = asTree->bSStmtNode();
+						sstmtn->addFChild($1);
+						sstmtn->accept(*visitor); cout << endl;
+						$$ = sstmtn;
 					}
 	| print_stmt 	{
-						// Node *sstmtn = asTree->bSStmtNode();
-						// sstmtn->addFChild($1);
-						// sstmtn->accept(*visitor); cout << endl;
-						Node* node = $1; node->accept(*visitor); cout << endl;
-						$$ = $1;
+						Node *sstmtn = asTree->bSStmtNode();
+						sstmtn->addFChild($1);
+						sstmtn->accept(*visitor); cout << endl;
+						$$ = sstmtn;
 					}
 	| flow_stmt 	{
-						// Node *sstmtn = asTree->bSStmtNode();
-						// sstmtn->addFChild($1);
-						// sstmtn->accept(*visitor); cout << endl;
-						Node* node = $1; node->accept(*visitor); cout << endl;
-						$$ = $1;
+						Node *sstmtn = asTree->bSStmtNode();
+						sstmtn->addFChild($1);
+						sstmtn->accept(*visitor); cout << endl;
+						$$ = sstmtn;
 					};
 
 /* FIXTHIS: Ver comentario de assing_testlist_kleene */
