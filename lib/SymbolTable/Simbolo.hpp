@@ -30,6 +30,11 @@ class Simbolo{
 		string *name;
 		tipo *valor;
 		int type;
+		
+		Simbolo(string *n){
+			valor= (tipo*)malloc(sizeof(tipo));
+			name=n;
+		}
 	
 		Simbolo(string *n, int *val){
 			valor= (tipo*)malloc(sizeof(tipo));

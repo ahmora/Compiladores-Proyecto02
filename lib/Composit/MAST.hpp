@@ -271,44 +271,36 @@ public:
  		v.visit(this);
 	}
 	
-	void insertInTable(IdentNode* left, Node* right, Visitor* v){
-		 string* var;
-		 var=new string(left->getValue());
-		 Simbolo* s;
-		
-		 IntNode* entero = dynamic_cast<IntNode*> (right);
+	void insertInTable(IdentNode* left, Node* r, Visitor* v){
+		ExprNode* right = static_cast<ExprNode*> (r);
+		 string* var = new string(left->getValue());
+		 
+		 Simbolo* s= v->symbolTable->lookUp(*var);
+		 IntNode* entero = dynamic_cast<IntNode*> (right->getChildren().front());
 		 FloatNode* flotante = dynamic_cast<FloatNode*> (right);
 		 StrNode* cadena = dynamic_cast<StrNode*> (right);
 		 BoolNode* booleano = dynamic_cast<BoolNode*> (right);
 		
 		 if (entero!=0) {
 		 	cout<<"Es un entero"<<endl;
-		 	int* val;
-		 	*val=entero->getValue();
-		 	s = new Simbolo(var,val);
-		 	v->symbolTable->insertName(s);
-			
+			cout<<"cambiando valor del apuntador"<<endl;
+			s->valor->integer=entero->getValue();
+		 	
 		 } else if (flotante!=0) {
 		 	cout<<"Es un flotante"<<endl;
-		 	float* val;
-		 	*val=flotante->getValue();
-		 	s = new Simbolo(var,val);
-		 	v->symbolTable->insertName(s);
+		 	cout<<"cambiando valor del apuntador"<<endl;
+			s->valor->float_number=flotante->getValue();
+		 	
 		 } else if (cadena!=0) {
 		 	cout<<"Es una cadena"<<endl;
-		 	string* val= new string(cadena->getValue());
-		 	s = new Simbolo(var,val);
-		 	v->symbolTable->insertName(s);
+		 	cout<<"cambiando valor del apuntador"<<endl;
+			s->valor->cadena=cadena->getValue();
 		 } else if (booleano!=0) {
 		 	cout<<"Es un booleano"<<endl;
-		 	int* val;
-		 	if (booleano->getValue()) {
-		 		*val=1;
-		 	} else
-		 		*val=0;
-		 	s = new Simbolo(var,val);
-		 	v->symbolTable->insertName(s);
+		 	cout<<"cambiando valor del apuntador"<<endl;
+			s->valor->integer=booleano->getValue();
 		 } else {
+			 cout<<"Es una Expresion!"<<endl;
 		 	string* val= new string("OPERACION AUN NO EVALUADA, HASTA T. de E.");
 		 	s= new Simbolo(var,val);
 		 	v->symbolTable->insertName(s);

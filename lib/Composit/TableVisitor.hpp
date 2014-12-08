@@ -57,7 +57,7 @@ public:
 		}
 
 		cout << ")";
-		cout<<endl<<"A actualizando variable en la tabla"<<endl;
+		cout<<endl<<"Actualizando variable en la tabla"<<endl;
 		symbolTable->printTable();
  	}
 
@@ -67,7 +67,7 @@ public:
 		for (auto& it: node->getChildren()){
 			(*it).accept(*v);
 		}
-		cout << ")"<<endl;
+		cout << ")";
  	}
 
  	void visit(SStmtListNode* node){
@@ -94,7 +94,7 @@ public:
 		for (auto& it: node->getChildren()){
 			(*it).accept(*v);
 		}
-		cout << ")"<<endl;
+		cout << ")";
  	}
 
  	void visit(ExprNode* node){
@@ -309,8 +309,7 @@ public:
 		Simbolo *s = symbolTable->lookUp(*name);
 		 if(s == 0) {
 			 cout<<"Insertando nueva variable en la tabla"<<endl;
-			 string *cad = new string();
-			 s=new Simbolo(name,cad);
+			 s=new Simbolo(name);
 			 symbolTable->insertName(s);
 			 //symbolTable->printTable();
 		 }
