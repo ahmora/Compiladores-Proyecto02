@@ -1,3 +1,10 @@
+/**
+ * Definición de Visitante concreto para llenar la tabla de símbolos
+ *
+ * @author: Alejandro Hernández Mora
+ * @author: Alan Mauricio García García
+ */
+
 #include "MAST.hpp"
 
 class VisitorNode : public Visitor{
@@ -368,4 +375,32 @@ public:
 	void visit(ContinueNode* node){
 		cout << "(ContinueNode)";
 	}
+	
+	void visit(FileNode* node) {
+		cout << "(FileNode ";
+ 		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")";
+	}
+
+	void visit(CallNode* node) {
+		cout << "(CallNode ";
+ 		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")";
+	}
+
+	void visit(ExprListNode* node) {
+		cout << "(ExprListNode ";
+ 		Visitor* v = this;
+		for (auto& it: node->getChildren()){
+			(*it).accept(*v);
+		}
+		cout << ")";	
+	}
+	
  };
