@@ -281,33 +281,48 @@ public:
 		 
 		 Simbolo* s= v->symbolTable->lookUp(*var);
 		 IntNode* entero = dynamic_cast<IntNode*> (right->getChildren().front());
-		 FloatNode* flotante = dynamic_cast<FloatNode*> (right);
-		 StrNode* cadena = dynamic_cast<StrNode*> (right);
-		 BoolNode* booleano = dynamic_cast<BoolNode*> (right);
+		 FloatNode* flotante = dynamic_cast<FloatNode*> (right->getChildren().front());
+		 StrNode* cadena = dynamic_cast<StrNode*> (right->getChildren().front());
+		 BoolNode* booleano = dynamic_cast<BoolNode*> (right->getChildren().front());
+		 Simbolo*nuevo;
 		
 		 if (entero!=0) {
 		 	cout<<"Es un entero"<<endl;
 			cout<<"cambiando valor del apuntador"<<endl;
-			s->valor->integer=entero->getValue();
+			int *i= new int(entero->getValue());
+			nuevo= new Simbolo(var,i);
+			v->symbolTable->deleteName(nuevo);
+			v->symbolTable->insertName(nuevo);
 		 	
 		 } else if (flotante!=0) {
 		 	cout<<"Es un flotante"<<endl;
 		 	cout<<"cambiando valor del apuntador"<<endl;
-			s->valor->float_number=flotante->getValue();
+			float* f = new float(flotante->getValue());
+			nuevo= new Simbolo(var,f);
+			v->symbolTable->deleteName(nuevo);
+			v->symbolTable->insertName(nuevo);
 		 	
 		 } else if (cadena!=0) {
 		 	cout<<"Es una cadena"<<endl;
 		 	cout<<"cambiando valor del apuntador"<<endl;
-			s->valor->cadena=cadena->getValue();
+		 	string* str = new string(cadena->getValue());
+			nuevo= new Simbolo(var,str);
+			v->symbolTable->deleteName(nuevo);
+			v->symbolTable->insertName(nuevo);
 		 } else if (booleano!=0) {
 		 	cout<<"Es un booleano"<<endl;
 		 	cout<<"cambiando valor del apuntador"<<endl;
-			s->valor->integer=booleano->getValue();
+			int *b= new int(entero->getValue());
+			nuevo= new Simbolo(var,b);
+			v->symbolTable->deleteName(nuevo);
+			v->symbolTable->insertName(nuevo);
 		 } else {
-			 cout<<"Es una Expresion!"<<endl;
+			cout<<"Es una Expresion!"<<endl;
+			cout<<"cambiando valor del apuntador"<<endl;
 		 	string* val= new string("OPERACION AUN NO EVALUADA, HASTA T. de E.");
-		 	s= new Simbolo(var,val);
-		 	v->symbolTable->insertName(s);
+			nuevo= new Simbolo(var,val);
+			v->symbolTable->deleteName(nuevo);
+			v->symbolTable->insertName(nuevo);
 		 }
 		left->accept(*v);
 		right->accept(*v);

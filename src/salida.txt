@@ -1,0 +1,1740 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+def holaMundo(x):
+	print "Hola Mundo"
+	return
+
+def nomePeine():
+	print "No me peine"
+	x=2
+	return x
+
+print holaMundo(2)
+print nomePeine()
+
+
+Identifier = 3.022
+an_id = "String!"
+an_id_with_Numb3rs = 12
+avanza = 2+3
+
+cadena = "Palabra"
+for c in cadena:
+    print c
+MAST creado
+filein epsilon...
+bFileNode
+(FileNode ) NAME:holaMundo
+NAME:x
+args_kleene epsilon
+bArgsNode
+(ArgsNode )
+NAME args_kleene
+bIdentNode
+(IdentNode x)
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+x) =   | dynamic type
+******************************************
+)
+(ArgsNode (IdentNode x)
+looking up...
+))
+OPENPAR varargslist CLOSEPAR
+(ArgsNode (IdentNode x)
+looking up...
+))
+ STRING: Hola Mundo
+bStrNode
+(StrNode Hola Mundo)
+(StrNode Hola Mundo)
+epsilon trailer_kleene
+atom trailer_kleene
+(StrNode Hola Mundo)
+power
+(StrNode Hola Mundo)
+factor factor_operation
+(StrNode Hola Mundo)
+term sign_term
+(StrNode Hola Mundo)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(StrNode Hola Mundo)
+test
+(StrNode Hola Mundo)
+bArgsNode
+(ArgsNode )
+bExprNode
+(ExprNode (StrNode Hola Mundo))
+(ArgsNode (ExprNode (StrNode Hola Mundo)))
+bPrintNode
+(PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo))))
+(PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo))))
+bSStmtListNode
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))
+stmt:
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))
+bStmtListNode
+(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo))))))
+bReturnNode
+(ReturnNode )
+(ReturnNode )
+(ReturnNode )
+bSStmtListNode
+(SStmtListNode (ReturnNode ))
+stmt:
+(SStmtListNode (ReturnNode ))
+(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))(SStmtListNode (ReturnNode )))
+DEF NAME parameters TWODOTS suite
+bFuncNode
+bIdentNode
+(IdentNode holaMundo
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+(FuncNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IdentNode x)
+looking up...
+))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))(SStmtListNode (ReturnNode ))))
+compound_stmt
+(FuncNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IdentNode x)
+looking up...
+))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))(SStmtListNode (ReturnNode ))))
+stmt:
+(FuncNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IdentNode x)
+looking up...
+))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))(SStmtListNode (ReturnNode ))))
+filein stmt
+filein newline
+ NAME:nomePeine
+OPENPAR CLOSEPAR
+bArgsNode
+(ArgsNode )
+ STRING: No me peine
+bStrNode
+(StrNode No me peine)
+(StrNode No me peine)
+epsilon trailer_kleene
+atom trailer_kleene
+(StrNode No me peine)
+power
+(StrNode No me peine)
+factor factor_operation
+(StrNode No me peine)
+term sign_term
+(StrNode No me peine)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(StrNode No me peine)
+test
+(StrNode No me peine)
+bArgsNode
+(ArgsNode )
+bExprNode
+(ExprNode (StrNode No me peine))
+(ArgsNode (ExprNode (StrNode No me peine)))
+bPrintNode
+(PrintNode (ArgsNode (ExprNode (StrNode No me peine))))
+(PrintNode (ArgsNode (ExprNode (StrNode No me peine))))
+bSStmtListNode
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))
+stmt:
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))
+bStmtListNode
+(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine))))))
+NAME:x
+;;;x;;;
+bIdentNode
+(IdentNode x
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+x =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+epsilon trailer_kleene
+atom trailer_kleene
+(IdentNode x
+looking up...
+)
+power
+(IdentNode x
+looking up...
+)
+factor factor_operation
+(IdentNode x
+looking up...
+)
+term sign_term
+(IdentNode x
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode x
+looking up...
+)
+test
+(IdentNode x
+looking up...
+)
+bIntNode
+(IntNode 2)
+epsilon trailer_kleene
+atom trailer_kleene
+(IntNode 2)
+power
+(IntNode 2)
+factor factor_operation
+(IntNode 2)
+term sign_term
+(IntNode 2)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IntNode 2)
+test
+(IntNode 2)
+bExprNode
+=
+bAssignNode
+Agregando hijo der...
+setRightChild en VNodeList
+Se agrego hijo der
+setLeftChild en VNodeList
+Se agrego hijo izq
+(AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+
+(AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+
+bSStmtListNode
+(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+stmt:
+(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+))
+ NAME:x
+;;;x;;;
+bIdentNode
+(IdentNode x
+looking up...
+)
+epsilon trailer_kleene
+atom trailer_kleene
+(IdentNode x
+looking up...
+)
+power
+(IdentNode x
+looking up...
+)
+factor factor_operation
+(IdentNode x
+looking up...
+)
+term sign_term
+(IdentNode x
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode x
+looking up...
+)
+test
+(IdentNode x
+looking up...
+)
+bArgsNode
+(ArgsNode )
+bExprNode
+(ExprNode (IdentNode x
+looking up...
+))
+(ArgsNode (ExprNode (IdentNode x
+looking up...
+)))
+bReturnNode
+(ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+))))
+(ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+))))
+(ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+))))
+bSStmtListNode
+(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+)))))
+stmt:
+(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+)))))
+(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+))))))
+DEF NAME parameters TWODOTS suite
+bFuncNode
+bIdentNode
+(IdentNode nomePeine
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+nomePeine =   | dynamic type
+x = 2 | int
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+(FuncNode (IdentNode nomePeine
+looking up...
+)(ArgsNode )(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+)))))))
+compound_stmt
+(FuncNode (IdentNode nomePeine
+looking up...
+)(ArgsNode )(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+)))))))
+stmt:
+(FuncNode (IdentNode nomePeine
+looking up...
+)(ArgsNode )(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+)))))))
+filein stmt
+filein newline
+ NAME:holaMundo
+;;;holaMundo;;;
+bIdentNode
+(IdentNode holaMundo
+looking up...
+)
+epsilon trailer_kleene
+epsilon argument_comma
+bArgsNode
+(ArgsNode )
+bIntNode
+(IntNode 2)
+epsilon trailer_kleene
+atom trailer_kleene
+(IntNode 2)
+power
+(IntNode 2)
+factor factor_operation
+(IntNode 2)
+term sign_term
+(IntNode 2)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IntNode 2)
+test
+(IntNode 2)
+argument_comma argument_multiple
+(ArgsNode (IntNode 2))
+(ARGLIST)
+trailer_kleene trailer
+(ArgsNode (IntNode 2))
+atom trailer_kleene
+(IdentNode holaMundo
+looking up...
+)
+bCallNode
+(CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))
+power
+(CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))
+factor factor_operation
+(CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))
+term sign_term
+(CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))
+test
+(CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))
+bArgsNode
+(ArgsNode )
+bExprNode
+(ExprNode (CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2))))
+(ArgsNode (ExprNode (CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))))
+bPrintNode
+(PrintNode (ArgsNode (ExprNode (CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2))))))
+(PrintNode (ArgsNode (ExprNode (CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2))))))
+bSStmtListNode
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))))))
+stmt:
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))))))
+filein stmt
+ NAME:nomePeine
+;;;nomePeine;;;
+bIdentNode
+(IdentNode nomePeine
+looking up...
+)
+epsilon trailer_kleene
+()
+bArgsNode
+trailer_kleene trailer
+(ArgsNode )
+atom trailer_kleene
+(IdentNode nomePeine
+looking up...
+)
+bCallNode
+(CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))
+power
+(CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))
+factor factor_operation
+(CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))
+term sign_term
+(CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))
+test
+(CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))
+bArgsNode
+(ArgsNode )
+bExprNode
+(ExprNode (CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode )))
+(ArgsNode (ExprNode (CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))))
+bPrintNode
+(PrintNode (ArgsNode (ExprNode (CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode )))))
+(PrintNode (ArgsNode (ExprNode (CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode )))))
+bSStmtListNode
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))))))
+stmt:
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))))))
+filein stmt
+NAME:Identifier
+;;;Identifier;;;
+bIdentNode
+(IdentNode Identifier
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+Identifier =   | dynamic type
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+epsilon trailer_kleene
+ atom trailer_kleene
+(IdentNode Identifier
+looking up...
+)
+power
+(IdentNode Identifier
+looking up...
+)
+factor factor_operation
+(IdentNode Identifier
+looking up...
+)
+term sign_term
+(IdentNode Identifier
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode Identifier
+looking up...
+)
+test
+(IdentNode Identifier
+looking up...
+)
+ bFloatNode
+(FloatNode 3.022)
+epsilon trailer_kleene
+atom trailer_kleene
+(FloatNode 3.022)
+power
+(FloatNode 3.022)
+factor factor_operation
+(FloatNode 3.022)
+term sign_term
+(FloatNode 3.022)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(FloatNode 3.022)
+test
+(FloatNode 3.022)
+bExprNode
+=
+bAssignNode
+Agregando hijo der...
+setRightChild en VNodeList
+Se agrego hijo der
+setLeftChild en VNodeList
+Se agrego hijo izq
+(AssignNode (IdentNode Identifier
+looking up...
+)looking up...
+Es un flotante
+cambiando valor del apuntador
+(IdentNode Identifier
+looking up...
+)(ExprNode (FloatNode 3.022)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+
+(AssignNode (IdentNode Identifier
+looking up...
+)looking up...
+Es un flotante
+cambiando valor del apuntador
+(IdentNode Identifier
+looking up...
+)(ExprNode (FloatNode 3.022)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+
+bSStmtListNode
+(SStmtListNode (AssignNode (IdentNode Identifier
+looking up...
+)looking up...
+Es un flotante
+cambiando valor del apuntador
+(IdentNode Identifier
+looking up...
+)(ExprNode (FloatNode 3.022)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+stmt:
+(SStmtListNode (AssignNode (IdentNode Identifier
+looking up...
+)looking up...
+Es un flotante
+cambiando valor del apuntador
+(IdentNode Identifier
+looking up...
+)(ExprNode (FloatNode 3.022)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+filein stmt
+NAME:an_id
+;;;an_id;;;
+bIdentNode
+(IdentNode an_id
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id =   | dynamic type
+x) =   | dynamic type
+******************************************
+)
+epsilon trailer_kleene
+ atom trailer_kleene
+(IdentNode an_id
+looking up...
+)
+power
+(IdentNode an_id
+looking up...
+)
+factor factor_operation
+(IdentNode an_id
+looking up...
+)
+term sign_term
+(IdentNode an_id
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode an_id
+looking up...
+)
+test
+(IdentNode an_id
+looking up...
+)
+ STRING: String!
+bStrNode
+(StrNode String!)
+(StrNode String!)
+epsilon trailer_kleene
+atom trailer_kleene
+(StrNode String!)
+power
+(StrNode String!)
+factor factor_operation
+(StrNode String!)
+term sign_term
+(StrNode String!)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(StrNode String!)
+test
+(StrNode String!)
+bExprNode
+=
+bAssignNode
+Agregando hijo der...
+setRightChild en VNodeList
+Se agrego hijo der
+setLeftChild en VNodeList
+Se agrego hijo izq
+(AssignNode (IdentNode an_id
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode an_id
+looking up...
+)(ExprNode (StrNode String!)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+(AssignNode (IdentNode an_id
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode an_id
+looking up...
+)(ExprNode (StrNode String!)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+bSStmtListNode
+(SStmtListNode (AssignNode (IdentNode an_id
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode an_id
+looking up...
+)(ExprNode (StrNode String!)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+stmt:
+(SStmtListNode (AssignNode (IdentNode an_id
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode an_id
+looking up...
+)(ExprNode (StrNode String!)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+filein stmt
+NAME:an_id_with_Numb3rs
+;;;an_id_with_Numb3rs;;;
+bIdentNode
+(IdentNode an_id_with_Numb3rs
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs =   | dynamic type
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+epsilon trailer_kleene
+ atom trailer_kleene
+(IdentNode an_id_with_Numb3rs
+looking up...
+)
+power
+(IdentNode an_id_with_Numb3rs
+looking up...
+)
+factor factor_operation
+(IdentNode an_id_with_Numb3rs
+looking up...
+)
+term sign_term
+(IdentNode an_id_with_Numb3rs
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode an_id_with_Numb3rs
+looking up...
+)
+test
+(IdentNode an_id_with_Numb3rs
+looking up...
+)
+ bIntNode
+(IntNode 12)
+epsilon trailer_kleene
+atom trailer_kleene
+(IntNode 12)
+power
+(IntNode 12)
+factor factor_operation
+(IntNode 12)
+term sign_term
+(IntNode 12)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IntNode 12)
+test
+(IntNode 12)
+bExprNode
+=
+bAssignNode
+Agregando hijo der...
+setRightChild en VNodeList
+Se agrego hijo der
+setLeftChild en VNodeList
+Se agrego hijo izq
+(AssignNode (IdentNode an_id_with_Numb3rs
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode an_id_with_Numb3rs
+looking up...
+)(ExprNode (IntNode 12)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+(AssignNode (IdentNode an_id_with_Numb3rs
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode an_id_with_Numb3rs
+looking up...
+)(ExprNode (IntNode 12)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+bSStmtListNode
+(SStmtListNode (AssignNode (IdentNode an_id_with_Numb3rs
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode an_id_with_Numb3rs
+looking up...
+)(ExprNode (IntNode 12)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+stmt:
+(SStmtListNode (AssignNode (IdentNode an_id_with_Numb3rs
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode an_id_with_Numb3rs
+looking up...
+)(ExprNode (IntNode 12)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+filein stmt
+NAME:avanza
+;;;avanza;;;
+bIdentNode
+(IdentNode avanza
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza =   | dynamic type
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+epsilon trailer_kleene
+ atom trailer_kleene
+(IdentNode avanza
+looking up...
+)
+power
+(IdentNode avanza
+looking up...
+)
+factor factor_operation
+(IdentNode avanza
+looking up...
+)
+term sign_term
+(IdentNode avanza
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode avanza
+looking up...
+)
+test
+(IdentNode avanza
+looking up...
+)
+ bIntNode
+(IntNode 2)
+epsilon trailer_kleene
+atom trailer_kleene
+(IntNode 2)
+power
+(IntNode 2)
+factor factor_operation
+(IntNode 2)
+bIntNode
+(IntNode 3)
+epsilon trailer_kleene
+atom trailer_kleene
+(IntNode 3)
+power
+(IntNode 3)
+factor factor_operation
+(IntNode 3)
+Suma
+bPlusNode
+right operand
+(IntNode 3)
+Agregando hijo der...
+setRightChild en VNodeList
+Se agrego hijo der
+(PlusNode (IntNode 3))term sign_term
+(IntNode 2)
+setLeftChild en VNodeList
+Se agrego hijo izq
+(PlusNode (IntNode 2)(IntNode 3))
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(PlusNode (IntNode 2)(IntNode 3))
+test
+(PlusNode (IntNode 2)(IntNode 3))
+bExprNode
+=
+bAssignNode
+Agregando hijo der...
+setRightChild en VNodeList
+Se agrego hijo der
+setLeftChild en VNodeList
+Se agrego hijo izq
+(AssignNode (IdentNode avanza
+looking up...
+)looking up...
+Es una Expresion!
+cambiando valor del apuntador
+(IdentNode avanza
+looking up...
+)(ExprNode (PlusNode (IntNode 2)(IntNode 3))))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+(AssignNode (IdentNode avanza
+looking up...
+)looking up...
+Es una Expresion!
+cambiando valor del apuntador
+(IdentNode avanza
+looking up...
+)(ExprNode (PlusNode (IntNode 2)(IntNode 3))))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+bSStmtListNode
+(SStmtListNode (AssignNode (IdentNode avanza
+looking up...
+)looking up...
+Es una Expresion!
+cambiando valor del apuntador
+(IdentNode avanza
+looking up...
+)(ExprNode (PlusNode (IntNode 2)(IntNode 3))))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+stmt:
+(SStmtListNode (AssignNode (IdentNode avanza
+looking up...
+)looking up...
+Es una Expresion!
+cambiando valor del apuntador
+(IdentNode avanza
+looking up...
+)(ExprNode (PlusNode (IntNode 2)(IntNode 3))))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+filein stmt
+NAME:cadena
+;;;cadena;;;
+bIdentNode
+(IdentNode cadena
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena =   | dynamic type
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+epsilon trailer_kleene
+ atom trailer_kleene
+(IdentNode cadena
+looking up...
+)
+power
+(IdentNode cadena
+looking up...
+)
+factor factor_operation
+(IdentNode cadena
+looking up...
+)
+term sign_term
+(IdentNode cadena
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode cadena
+looking up...
+)
+test
+(IdentNode cadena
+looking up...
+)
+ STRING: Palabra
+bStrNode
+(StrNode Palabra)
+(StrNode Palabra)
+epsilon trailer_kleene
+atom trailer_kleene
+(StrNode Palabra)
+power
+(StrNode Palabra)
+factor factor_operation
+(StrNode Palabra)
+term sign_term
+(StrNode Palabra)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(StrNode Palabra)
+test
+(StrNode Palabra)
+bExprNode
+=
+bAssignNode
+Agregando hijo der...
+setRightChild en VNodeList
+Se agrego hijo der
+setLeftChild en VNodeList
+Se agrego hijo izq
+(AssignNode (IdentNode cadena
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode cadena
+looking up...
+)(ExprNode (StrNode Palabra)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+(AssignNode (IdentNode cadena
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode cadena
+looking up...
+)(ExprNode (StrNode Palabra)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+
+bSStmtListNode
+(SStmtListNode (AssignNode (IdentNode cadena
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode cadena
+looking up...
+)(ExprNode (StrNode Palabra)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+stmt:
+(SStmtListNode (AssignNode (IdentNode cadena
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode cadena
+looking up...
+)(ExprNode (StrNode Palabra)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+filein stmt
+ NAME:c
+;;;c;;;
+bIdentNode
+(IdentNode c
+looking up...
+Insertando nueva variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+c =   | dynamic type
+x = 2 | int
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)
+epsilon trailer_kleene
+ atom trailer_kleene
+(IdentNode c
+looking up...
+)
+power
+(IdentNode c
+looking up...
+)
+factor factor_operation
+(IdentNode c
+looking up...
+)
+term sign_term
+(IdentNode c
+looking up...
+)
+END < arithmetic_expr
+bExprListNode
+(ExprListNode )
+(ExprListNode (IdentNode c
+looking up...
+))
+ NAME:cadena
+;;;cadena;;;
+bIdentNode
+(IdentNode cadena
+looking up...
+)
+epsilon trailer_kleene
+atom trailer_kleene
+(IdentNode cadena
+looking up...
+)
+power
+(IdentNode cadena
+looking up...
+)
+factor factor_operation
+(IdentNode cadena
+looking up...
+)
+term sign_term
+(IdentNode cadena
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode cadena
+looking up...
+)
+test
+(IdentNode cadena
+looking up...
+)
+bArgsNode
+(ArgsNode )
+bExprNode
+(ExprNode (IdentNode cadena
+looking up...
+))
+(ArgsNode (ExprNode (IdentNode cadena
+looking up...
+)))
+ NAME:c
+;;;c;;;
+bIdentNode
+(IdentNode c
+looking up...
+)
+epsilon trailer_kleene
+atom trailer_kleene
+(IdentNode c
+looking up...
+)
+power
+(IdentNode c
+looking up...
+)
+factor factor_operation
+(IdentNode c
+looking up...
+)
+term sign_term
+(IdentNode c
+looking up...
+)
+END < arithmetic_expr
+expr comp_op_expr_kleene
+($2 == NULL)
+(IdentNode c
+looking up...
+)
+test
+(IdentNode c
+looking up...
+)
+bArgsNode
+(ArgsNode )
+bExprNode
+(ExprNode (IdentNode c
+looking up...
+))
+(ArgsNode (ExprNode (IdentNode c
+looking up...
+)))
+bPrintNode
+(PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+))))
+(PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+))))
+bSStmtListNode
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+)))))
+stmt:
+(SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+)))))
+bStmtListNode
+(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+))))))
+for _ in _ : _
+bForNode
+exprlist:
+(ExprListNode (IdentNode c
+looking up...
+))
+testlist:
+(ArgsNode (ExprNode (IdentNode cadena
+looking up...
+)))
+suite:
+(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+))))))
+(ForNode (ExprListNode (IdentNode c
+looking up...
+))(ArgsNode (ExprNode (IdentNode cadena
+looking up...
+)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+)))))))
+compound_stmt
+(ForNode (ExprListNode (IdentNode c
+looking up...
+))(ArgsNode (ExprNode (IdentNode cadena
+looking up...
+)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+)))))))
+stmt:
+(ForNode (ExprListNode (IdentNode c
+looking up...
+))(ArgsNode (ExprNode (IdentNode cadena
+looking up...
+)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+)))))))
+filein stmt
+filein newline
+ÿ
+file_input
+(FileNode (FuncNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IdentNode x)
+looking up...
+))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))(SStmtListNode (ReturnNode ))))(FuncNode (IdentNode nomePeine
+looking up...
+)(ArgsNode )(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode x
+looking up...
+)(ExprNode (IntNode 2)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+c =   | dynamic type
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x
+looking up...
+)))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode holaMundo
+looking up...
+)(ArgsNode (IntNode 2)))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode nomePeine
+looking up...
+)(ArgsNode ))))))(SStmtListNode (AssignNode (IdentNode Identifier
+looking up...
+)looking up...
+Es un flotante
+cambiando valor del apuntador
+(IdentNode Identifier
+looking up...
+)(ExprNode (FloatNode 3.022)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+an_id_with_Numb3rs = 12 | int
+x = 2 | int
+c =   | dynamic type
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (AssignNode (IdentNode an_id
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode an_id
+looking up...
+)(ExprNode (StrNode String!)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+Identifier = 3.022 | float
+an_id_with_Numb3rs = 12 | int
+x = 2 | int
+c =   | dynamic type
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+an_id = String! | string
+cadena = Palabra | string
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (AssignNode (IdentNode an_id_with_Numb3rs
+looking up...
+)looking up...
+Es un entero
+cambiando valor del apuntador
+(IdentNode an_id_with_Numb3rs
+looking up...
+)(ExprNode (IntNode 12)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+c =   | dynamic type
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+an_id = String! | string
+cadena = Palabra | string
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (AssignNode (IdentNode avanza
+looking up...
+)looking up...
+Es una Expresion!
+cambiando valor del apuntador
+(IdentNode avanza
+looking up...
+)(ExprNode (PlusNode (IntNode 2)(IntNode 3))))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+c =   | dynamic type
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+an_id = String! | string
+cadena = Palabra | string
+x) =   | dynamic type
+******************************************
+)(SStmtListNode (AssignNode (IdentNode cadena
+looking up...
+)looking up...
+Es una cadena
+cambiando valor del apuntador
+(IdentNode cadena
+looking up...
+)(ExprNode (StrNode Palabra)))
+Actualizando variable en la tabla
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+x = 2 | int
+c =   | dynamic type
+nomePeine =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+******************************************
+)(ForNode (ExprListNode (IdentNode c
+looking up...
+))(ArgsNode (ExprNode (IdentNode cadena
+looking up...
+)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c
+looking up...
+))))))))
+
+COMPILATION COMPLETE :)

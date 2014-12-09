@@ -53,10 +53,12 @@ public:
 
  	void visit(AssignNode* node){
 		cout << "(AssignNode ";
+		Visitor *v = this;
 		IdentNode* left = dynamic_cast<IdentNode*> (node->getLeftChild());
 		if (left != 0) {
+			left->accept(*v);
 			Node* right = node->getRightChild();
-			Visitor *v = this;
+			
 			node->insertInTable(left, right, v);
 		} else {
 			cout<<endl<<"ERROR: Assignment operation is only for variables"<<endl;
@@ -318,7 +320,7 @@ public:
 			 cout<<"Insertando nueva variable en la tabla"<<endl;
 			 s=new Simbolo(name);
 			 symbolTable->insertName(s);
-			 //symbolTable->printTable();
+			 symbolTable->printTable();
 		 }
 		cout << ")";
  	}
