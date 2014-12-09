@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+def holaMundo(x):
+	print "Hola Mundo"
+	return
+
+def nomePeine():
+	print "No me peine"
+	x=2
+	return x
+
+print holaMundo(2)
+print nomePeine()
+
+
+
+
+
+
+
+
+Identifier = 3.022
+an_id = "String!"
+an_id_with_Numb3rs = 12
+avanza = 2+3
+
+while True: #comentario a media linea
+		y = 1
+		if y == 8 :
+			#comentario nueva linea
+			print "Y es 8"
+			avanza = False
+		else:
+			#Comentario mal identado
+			print " esta es una cadenaa"
+			z = 10
+print "Termina el programa"
+
+num = 2
+while num < 11:
+	if num % 2 == 0:
+		print num , " es par"
+	else:
+		print num , " es impar"	
+	num += 1
+cadena = "Palabra"
+for c in cadena:
+    print c
+                       			   			                    	        ÿ
+
+(FileNode (FuncNode (IdentNode holaMundo)(ArgsNode (IdentNode x)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))(SStmtListNode (ReturnNode ))))(FuncNode (IdentNode nomePeine)(ArgsNode )(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x)(ExprNode (IntNode 2))))(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x)))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode holaMundo)(ArgsNode (IntNode 2)))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode nomePeine)(ArgsNode ))))))(SStmtListNode (AssignNode (IdentNode Identifier)(ExprNode (FloatNode 3.022))))(SStmtListNode (AssignNode (IdentNode an_id)(ExprNode (StrNode String!))))(SStmtListNode (AssignNode (IdentNode an_id_with_Numb3rs)(ExprNode (IntNode 12))))(SStmtListNode (AssignNode (IdentNode avanza)(ExprNode (PlusNode (IntNode 2)(IntNode 3)))))(WhileNode (ExprNode (BoolNode 1))(StmtListNode (SStmtListNode (AssignNode (IdentNode y)(ExprNode (IntNode 1))))(IfNode (ExprNode (EqNode (IdentNode y)(IntNode 8)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Y es 8)))))(SStmtListNode (AssignNode (IdentNode avanza)(ExprNode (BoolNode 0)))))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode  esta es una cadenaa)))))(SStmtListNode (AssignNode (IdentNode z)(ExprNode (IntNode 10))))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Termina el programa)))))(SStmtListNode (AssignNode (IdentNode num)(ExprNode (IntNode 2))))(WhileNode (ExprNode (LTNode (IdentNode num)(IntNode 11)))(StmtListNode (IfNode (ExprNode (EqNode (IdentNode num)(IntNode 0)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode num))(ExprNode (StrNode  es par))))))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode num))(ExprNode (StrNode  es impar)))))))(SStmtListNode (AssignNode (IdentNode num)(ExprNode (PlusNode (IdentNode num)(IntNode 1)))))))(SStmtListNode (AssignNode (IdentNode cadena)(ExprNode (StrNode Palabra))))(ForNode (ExprListNode (IdentNode c))(ArgsNode (ExprNode (IdentNode cadena)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c))))))))

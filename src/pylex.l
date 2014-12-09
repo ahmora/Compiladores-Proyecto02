@@ -7,7 +7,7 @@
 stack stack;
 int new_line = 1;
 int newline_dedent = 0;
-
+int print=0;
 extern int yyparse();
 
 
@@ -217,7 +217,7 @@ RIGHT		"->"
 				}
 
 {NAME}		{
-				std::cout << "NAME:" << yytext << std::endl;
+				//std::cout << "NAME:" << yytext << std::endl;
 				yylval.cadena = yytext;
 				BEGIN(INITIAL);
 				return NAME;
@@ -245,7 +245,7 @@ RIGHT		"->"
 				char* cstr = new char[str.size() + 1];
 				std::copy(str.begin(), str.end(), cstr);
 				cstr[str.size()] = '\0';
-				std::cout << "STRING: " << cstr << std::endl;
+				//std::cout << "STRING: " << cstr << std::endl;
 				yylval.cadena = cstr;
 				/*
 				delete[] cstr;
@@ -531,13 +531,12 @@ int main(int argc, char* argv[])
 {
 	stack.push(0);
 	BEGIN(START);
-	if (argc > 1)
-	{
+	if (argc > 1){
 		FILE *file =fopen(argv[1],"r");
 		yyin=file;
-	} 
-	else
-	{
+		if(argc >2)
+			print=atoi(argv[2]);
+	}else{
 		yyin = stdin;
 	}
 

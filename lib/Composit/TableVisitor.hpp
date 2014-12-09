@@ -67,7 +67,7 @@ public:
 
 		//cout << ")";
 		//cout<<endl<<"Actualizando variable en la tabla"<<endl;
-		symbolTable->printTable();
+		//symbolTable->printTable();
  	}
 
  	void visit(StmtListNode* node){
@@ -320,7 +320,7 @@ public:
 			 //cout<<"Insertando nueva variable en la tabla"<<endl;
 			 s=new Simbolo(name);
 			 symbolTable->insertName(s);
-			 symbolTable->printTable();
+			 //symbolTable->printTable();
 		 }
 		//cout << ")";
  	}

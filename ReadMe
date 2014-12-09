@@ -8,11 +8,20 @@ García García Alan Mauricio 	308639870	mauriciogarciag@ciencias.unam.mx
 Hernández Mora Alejandro	308551392	alejandrohmora@ciencias.unam.mx
 
 Ejecución:
-El programa se puede ejecutar como se pide en la especificación o haciendo uso del makefile, poniendo en la terminal dentro de la carpeta src los comandos:
-make 
-make run
+Dentro de la carpeta src se encuentra un script al que hay que darle permisos para ejecutar, se llama
+script.sh
+posteriormente se crea y se le dan permisos automáticamente dentro de la carpeta oolong un script llamado run que simplemente hay que ejecutar
 
-Para limpiar la carpeta de los archivos ejecutables generados se puede ejecutar el comando
-make clean
+si se desea ejecutar a mano y probar codigo basta con ejecutar dentro de la carpeta src los comandos:
+make
+./pylex nombreArchivo.py n
 
+donde n es un parámetro
+si no se le pasan parámetro n no mostrará nada en pantalla
+si se la pasa un 1, se generará código sin el uso de la tabla de símbolos
+si se le pasa un 2 se generará código con el uso de la tabla de símbolos
 
+Nota:
+Los archivos de prueba que se llaman prueba, es porque generan código correctamente.
+Los llamados tree , sólo son para mostrar el árbol formado correctamente con la sintáxis de python
+Los llamados table es porque se ejecutan bien con la tabla de símbolos, pero puede que no generen código correctamente.

@@ -1,0 +1,13 @@
+
+print "Hola Diana!, Este es un ejemplo de generacion de codigo"
+x = 2 * 3 + 4 - 1
+print "Tenemos la suma: ", 2 * 3 + 4 - 1
+print "Mismo valor que se guardo en x: ", x
+                   ÿ
+
+(FileNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Diana!, Este es un ejemplo de generacion de codigo)))))(SStmtListNode (AssignNode (IdentNode x)(ExprNode (MinusNode (PlusNode (MultNode (IntNode 2)(IntNode 3))(IntNode 4))(IntNode 1)))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Tenemos la suma: ))(ExprNode (MinusNode (PlusNode (MultNode (IntNode 2)(IntNode 3))(IntNode 4))(IntNode 1))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Mismo valor que se guardo en x: ))(ExprNode (IdentNode x))))))
+******************************************
+Nivel: 0
+x = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+******************************************
+

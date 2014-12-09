@@ -169,7 +169,7 @@ class LexList{
 		while(temp!=NULL){
 			for (auto& x: *temp->tabla){
 				arr[tam]=x.second;
-				x.second.imprime();
+				//x.second.imprime();
 				tam++;
 			}
 			temp=temp->next;

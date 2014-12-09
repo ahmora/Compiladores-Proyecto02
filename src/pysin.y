@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "../lib/Composit/OolongVisitor.hpp"
+#include "../lib/Composit/PrintVisitor.hpp"
 #include <string>
 
 
@@ -12,10 +13,13 @@ int yylex();
 int yyerror(const char *s) { printf ("\nError: %s\n", s); }
 
 extern "C" FILE *yyin;
+extern int print;
 
 MAST *asTree = new MAST();
 TableVisitor *tableVisitor = new TableVisitor;
-OolongVisitor *oolongVisitor;// = new OolongVisitor;
+OolongVisitor *oolongVisitor= new OolongVisitor;
+PrintVisitor *printVisitor = new PrintVisitor;
+SymbolTable *symbolTable= new SymbolTable;
 
 %}
 
@@ -50,10 +54,21 @@ file_input: /* (NEWLINE | stmt)* ENDMARKER */
 				if ($1 != NULL)
 				{
 					Node* node = $1;
-					node->accept(*tableVisitor); //cout << endl;
-					oolongVisitor= new OolongVisitor(tableVisitor);
-					node->accept(*oolongVisitor);
-					//visitor->symbolTable->printTable();
+					cout<<endl;
+					node->accept(*printVisitor);
+					if(print>1){
+						node->accept(*tableVisitor); 
+						symbolTable=tableVisitor->symbolTable;
+					}
+					if(print){
+						oolongVisitor= new OolongVisitor(symbolTable);
+						node->accept(*oolongVisitor);
+					}
+					if(print>1){
+						cout<<endl;
+						symbolTable->printTable();
+					}
+					cout<<endl;
 				}
 				//cout<<"\nCOMPILATION COMPLETE :)\n";
 			};
@@ -716,7 +731,7 @@ compound_stmt: /* (if_stmt | while_stmt | for_stmt | funcdef) --deprecated: clas
 
 if_stmt: /* 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite] */
 	IF test TWODOTS suite elif_test_td_suite_kleene ELSE TWODOTS suite 	{
-																			cout << "if _ : _ else : _" << endl;
+																			//cout << "if _ : _ else : _" << endl;
 																			Node *ifn = asTree->bIfNode();
 																			Node* exprn = asTree->bExprNode();
 																			exprn->addFChild($2);

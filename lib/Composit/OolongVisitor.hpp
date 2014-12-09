@@ -1,5 +1,5 @@
 /**
- * Visitor generar código en lenguaje Oolong
+ * Visitor concreto para generar código en lenguaje Oolong
  *
  * @author: Alejandro Hernández Mora
  * @author: Alan Mauricio García García
@@ -51,7 +51,6 @@ public:
 	 */
 	map<string, string> variables;
 
-	TableVisitor* tableVisitor;
 	SymbolTable* symbolTable;
 	vector<Simbolo>* arreglo_de_variables;
 	
@@ -59,17 +58,17 @@ public:
 	OolongVisitor() {
 		inAssignation = false;
 		inMainFunction = true;
-		output.open("prueba.j");
+		output.open("ejec.j");
+		symbolTable= new SymbolTable;
 	};
 
-	OolongVisitor(TableVisitor *tv) {
-		tableVisitor = new TableVisitor(*tv);
-		symbolTable = tv->symbolTable;
+	OolongVisitor(SymbolTable *tv) {
+		symbolTable = tv;
 		arreglo_de_variables = new vector<Simbolo>(symbolTable->getOrderedTable());
-		cout<<"CREADO EL OOLONG VISITOR\ntamanio = "<<endl<<tableVisitor->symbolTable->tamanio()<<endl;
+		//cout<<"CREADO EL OOLONG VISITOR\ntamanio = "<<endl<<tableVisitor->symbolTable->tamanio()<<endl;
 		inAssignation = false;
 		inMainFunction = true;
-		output.open("prueba.j");
+		output.open("ejec.j");
 	}
 
 	int getIndice(int lexLevel, string name) {
@@ -77,6 +76,7 @@ public:
 		for (auto& x: *arreglo_de_variables) {
 			string* nombre = x.getName();
 			if (*nombre == name) {
+				//cout<<nombre<<" "<<i;
 				return i;
 			}
 			i++;
@@ -124,14 +124,14 @@ public:
 	}
  
  	void visit(Node* node){
-	 	cout << "(Node ";
+	 	//cout << "(Node ";
 	 	visit(node);
-	 	cout << ")";
+	 	//cout << ")";
  	}
 
  	/* LeafNode's */
  	void visit(IdentNode* node){
-		cout << "(IdentNode " << node->getValue();
+		//cout << "(IdentNode " << node->getValue();
 		string name = node->getValue();
 		// if (variables.count(name) > 0) {
 		if (symbolTable->lookUp(name) != NULL) {
@@ -145,6 +145,7 @@ public:
 				emit("iload " + idtable);
 			}
 		} else {
+			cout<<endl<<"Fatal error: Undeclared variable found"<<endl;
 			throw "Fatal error: Undeclared variable found";
 			// if (inAssignation) {
 			// 	currentAssignation = to_string(currentVariable);
@@ -153,39 +154,39 @@ public:
 			// }
 			// variables.insert(pair<string, string>(name, to_string(currentVariable++)));
 		}
-		cout << ")";
+		//cout << ")";
  	}
 
  	void visit(IntNode* node){
-		cout << "(IntNode " << node->getValue() << ")";
+		//cout << "(IntNode " << node->getValue() << ")";
 		emit("bipush " + to_string(node->getValue()));
 		currentType = 'I';
  	}
 
  	void visit(FloatNode* node){
- 		cout << "(FloatNode "<< node->getValue() << ")";
+ 		//cout << "(FloatNode "<< node->getValue() << ")";
 		emit("ldc " + to_string(node->getValue()));
 		currentType = 'F';
  	}
 
  	void visit(StrNode* node){
- 		cout << "(StrNode "<< node->getValue() << ")";
+ 		//cout << "(StrNode "<< node->getValue() << ")";
 		emit("ldc \"" + node->getValue() + "\"");
 		currentType = 'S';
  	}
 
  	void visit(BoolNode* node){
-		cout << "(BoolNode "<< node->getValue() << ")";
+		//cout << "(BoolNode "<< node->getValue() << ")";
 		node->getValue() ? emit("iconst_1") : emit("iconst_0");
 		currentType = 'Z';
  	}
 
  	void visit(ReturnNode* node){
- 		cout << "(ReturnNode ";
+ 		//cout << "(ReturnNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
- 		cout << ")";
+ 		//cout << ")";
 
 		switch (currentType)
 		{
@@ -208,7 +209,7 @@ public:
  	}
 	
 	void visit(PrintNode* node){
-		cout << "(PrintNode ";
+		//cout << "(PrintNode ";
 		ArgsNode* args = dynamic_cast<ArgsNode*> ((node->getChildren()).front());
  		for (auto& it: args->getChildren()){
 			emit("getstatic java/lang/System/out Ljava/io/PrintStream;");
@@ -216,142 +217,142 @@ public:
 			emit("invokevirtual java/io/PrintStream/println");
 			emit("(" + parseCurrentType() + ")V");
 		}
-		cout << ")";
+		//cout << ")";
 	}
 
 	void visit(BreakNode* node){
-		cout << "(BreakNode)";
+		//cout << "(BreakNode)";
 		emit("goto break");
 	}
 
 	void visit(ContinueNode* node){
-		cout << "(ContinueNode)";
+		//cout << "(ContinueNode)";
 	}
 
 	/* END LeafNode's */
 
  	/* BinNode's */
  	void visit(AssignNode* node){
-		cout << "(AssignNode ";
+		//cout << "(AssignNode ";
 		inAssignation = true;
 		node->getLeftChild()->accept(*this);
 		inAssignation = false;
 		node->getRightChild()->accept(*this);
 		emit("istore " + currentAssignation);
-		cout << ")";
+		//cout << ")";
  	}
 
  	void visit(AndNode* node){
- 		cout << "(AndNode ";
+ 		//cout << "(AndNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
  		right->accept(*this);
  		emit("land");
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(OrNode* node){
- 		cout << "(OrNode ";
+ 		//cout << "(OrNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
  		right->accept(*this);
  		emit("lor");
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(XorNode* node){
- 		cout << "(XorNode ";
+ 		//cout << "(XorNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
  		right->accept(*this);
  		emit("lxor");
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(NotNode* node){
- 		cout << "(NotNode ";
+ 		//cout << "(NotNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
  		right->accept(*this);
  		emit("lneg");
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(PotNode* node){
- 		cout << "(PotNode ";
+ 		//cout << "(PotNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
  		right->accept(*this);
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(LTNode* node){
- 		cout << "(LTNode ";
+ 		//cout << "(LTNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(GTNode* node){
- 		cout << "(GTNode ";
+ 		//cout << "(GTNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(EqNode* node){
- 		cout << "(EqNode ";
+ 		//cout << "(EqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(NEqNode* node){
- 		cout << "(NEqNode ";
+ 		//cout << "(NEqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(LTEqNode* node){
- 		cout << "(LTEqNode ";
+ 		//cout << "(LTEqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(GTEqNode* node){
- 		cout << "(GTEqNode ";
+ 		//cout << "(GTEqNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		cout << ")";
+ 		//cout << ")";
  	}
  	
  	void visit(PlusNode* node){
- 		cout << "(PlusNode ";
+ 		//cout << "(PlusNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
 		left->accept(*this);
@@ -369,17 +370,18 @@ public:
 				emit("fadd");
 				break;
 			case 'S':
+				cout<<endl<<"Unsupported operation + for String type"<<endl;
 				throw "Unsupported operation + for String type";
 				break;
 			default:
 				emit("iadd");
 				break;
 		}
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(MinusNode* node){
- 		cout << "(MinusNode ";
+ 		//cout << "(MinusNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
@@ -396,17 +398,18 @@ public:
 				emit("fsub");
 				break;
 			case 'S':
+				cout<<endl<<"Unsupported operation + for String type"<<endl;
 				throw "Unsupported operation + for String type";
 				break;
 			default:
 				emit("isub");
 				break;
 		}
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(DiviNode* node){
- 		cout << "(DiviNode ";
+ 		//cout << "(DiviNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
@@ -423,17 +426,18 @@ public:
 				emit("fdiv");
 				break;
 			case 'S':
+				cout<<endl<<"Unsupported operation + for String type"<<endl;
 				throw "Unsupported operation + for String type";
 				break;
 			default:
 				emit("idiv");
 				break;
 		}
- 		cout << ")";
+ 		//cout << ")";
  	}
 
  	void visit(MultNode* node){
- 		cout << "(MultNode ";
+ 		//cout << "(MultNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
  		left->accept(*this);
@@ -450,19 +454,20 @@ public:
 				emit("fmul");
 				break;
 			case 'S':
+				cout<<endl<<"Unsupported operation + for String type"<<endl;
 				throw "Unsupported operation + for String type";
 				break;
 			default:
 				emit("imul");
 				break;
 		}
- 		cout << ")";
+ 		//cout << ")";
  	}
  	/* END BinNode's */
  	
  	/* INode's */
  	void visit(FileNode* node) {
-		cout << "(FileNode ";
+		//cout << "(FileNode ";
 		print(".class public prueba");
 		print(".super java/lang/Object");
  		for (auto& it: node->getChildren()){
@@ -478,11 +483,11 @@ public:
 
 		print(".end class");
 		output.close();
- 		cout << ")";
+ 		//cout << ")";
 	}
 	
  	void visit(FuncNode* node){
-		cout << "(FuncNode ";
+		//cout << "(FuncNode ";
 		inMainFunction = false;
 		instruction = ".method public static ";
  		for (auto& it: node->getChildren()){
@@ -527,11 +532,11 @@ public:
 		emit("return");
 		emit(".end method");
 		inMainFunction = true;
-		cout << ")";
+		//cout << ")";
 	}
 
 	void visit(CallNode* node) {
-		cout << "(CallNode ";
+		//cout << "(CallNode ";
 		instruction = "invokestatic prueba/";
  		for (auto& it: node->getChildren()){
 			IdentNode* name = dynamic_cast<IdentNode*> (it);
@@ -549,31 +554,31 @@ public:
 			}
 		}
 		emit(instruction + "()V");
- 		cout << ")";
+ 		//cout << ")";
 	}
 
  	void visit(IfNode* node){
-		cout << "(IfNode ";
+		//cout << "(IfNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		//cout << ")";
  	}
 
  	void visit(WhileNode* node){
-		cout << "(WhileNode ";
+		//cout << "(WhileNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		} 
-		cout << ")";
+		//cout << ")";
  	}
 
  	void visit(ForNode* node){
-		cout << "(ForNode ";
+		//cout << "(ForNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		//cout << ")";
  	}
  	
  	/**
@@ -583,58 +588,58 @@ public:
  	 */
 
 	void visit(ExprListNode* node) {
-		cout << "(ExprListNode ";
+		//cout << "(ExprListNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
- 		cout << ")";
+ 		//cout << ")";
 	}
 
  	void visit(StmtListNode* node){
-		cout << "(StmtListNode ";
+		//cout << "(StmtListNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		//cout << ")";
  	}
 	
  	void visit(SStmtListNode* node){
-		cout << "(SStmtListNode ";
+		//cout << "(SStmtListNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		//cout << ")";
  	}
 
  	void visit(ArgsNode* node){
- 		cout << "(ArgsNode ";
+ 		//cout << "(ArgsNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		//cout << ")";
  	}
 
  	void visit(ExprNode* node){
-		cout << "(ExprNode ";			
+		//cout << "(ExprNode ";			
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		////cout << ")";
  	}
  	
  	void visit(StmtNode* node){
-		cout << "(StmtNode ";
+		//cout << "(StmtNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		//cout << ")";
 	}
 
  	void visit(SStmtNode* node){
-		cout << "(SStmtNode ";
+		//cout << "(SStmtNode ";
  		for (auto& it: node->getChildren()){
 			(*it).accept(*this);
 		}
-		cout << ")";
+		//cout << ")";
 	}
  };

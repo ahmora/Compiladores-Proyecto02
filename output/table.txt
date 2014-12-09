@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+def holaMundo(x):
+	print "Hola Mundo"
+	return
+
+def nomePeine():
+	print "No me peine"
+	x=2
+	return x
+
+print holaMundo(2)
+print nomePeine()
+
+
+Identifier = 3.022
+an_id = "String!"
+an_id_with_Numb3rs = 12
+avanza = 2+3
+
+cadena = "Palabra"
+for c in cadena:
+    print c
+                     ÿ
+
+(FileNode (FuncNode (IdentNode holaMundo)(ArgsNode (IdentNode x)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode Hola Mundo)))))(SStmtListNode (ReturnNode ))))(FuncNode (IdentNode nomePeine)(ArgsNode )(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (StrNode No me peine)))))(SStmtListNode (AssignNode (IdentNode x)(ExprNode (IntNode 2))))(SStmtListNode (ReturnNode (ArgsNode (ExprNode (IdentNode x)))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode holaMundo)(ArgsNode (IntNode 2)))))))(SStmtListNode (PrintNode (ArgsNode (ExprNode (CallNode (IdentNode nomePeine)(ArgsNode ))))))(SStmtListNode (AssignNode (IdentNode Identifier)(ExprNode (FloatNode 3.022))))(SStmtListNode (AssignNode (IdentNode an_id)(ExprNode (StrNode String!))))(SStmtListNode (AssignNode (IdentNode an_id_with_Numb3rs)(ExprNode (IntNode 12))))(SStmtListNode (AssignNode (IdentNode avanza)(ExprNode (PlusNode (IntNode 2)(IntNode 3)))))(SStmtListNode (AssignNode (IdentNode cadena)(ExprNode (StrNode Palabra))))(ForNode (ExprListNode (IdentNode c))(ArgsNode (ExprNode (IdentNode cadena)))(StmtListNode (SStmtListNode (PrintNode (ArgsNode (ExprNode (IdentNode c))))))))
+******************************************
+Nivel: 0
+an_id_with_Numb3rs = 12 | int
+Identifier = 3.022 | float
+c =   | dynamic type
+x = 2 | int
+nomePeine =   | dynamic type
+cadena = Palabra | string
+an_id = String! | string
+x) =   | dynamic type
+avanza = OPERACION AUN NO EVALUADA, HASTA T. de E. | string
+holaMundo =   | dynamic type
+******************************************
+
