@@ -5,8 +5,8 @@ int main(){
 	MAST *asTree;
 	asTree= new MAST;
 	
-	VisitorNode *visitor;
-	visitor = new VisitorNode;
+	TableVisitor *visitor;
+	visitor = new TableVisitor;
 	string* s = new string("VARNAME");
 	string* x = new string("VARNAME_X");
 	string* y = new string("VARNAME_Y");

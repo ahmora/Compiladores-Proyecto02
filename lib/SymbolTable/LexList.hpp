@@ -155,7 +155,7 @@ class LexList{
 		while(temp!=NULL){
 			tamanio=tamanio+temp->tabla->size();
 			temp=temp->next;
-			cout<<tamanio<<endl;
+			//cout<<tamanio<<endl;
 		}
 		return tamanio;
 	}

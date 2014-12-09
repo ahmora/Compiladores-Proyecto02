@@ -1,6 +1,6 @@
 x=1
 y=2
-z="Ejemplo"
+z=3
 
 print x
 print y

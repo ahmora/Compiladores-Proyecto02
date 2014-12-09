@@ -13,102 +13,60 @@ using namespace std;
 class OolongVisitor : public Visitor{
 public:
 
-	/*
-	 * Archivo de salida para la generación de código
-	 */
 	ofstream output;
-	/*
-	 * Tipo del último nodo visitado
-	 */
 	char currentType;
-	/*
-	 * Bandera para saber si estamos del lado izquierdo de un asignación o del lado derecho
-	 * Esto nos sirve para saber si hay que emitir código de carga o guardado de variable
-	 */
 	bool inAssignation;
-	/*
-	 * Variable para una instrucción general de clase para utilizar un sólo espacio de memoria
-	 */
 	string instruction;
-	/*
-	 * Número de variable a asignar a una variable encontrada
-	 */
 	int currentVariable;
-	/*
-	 * Bandera para saber si se encuentra dentro del main o de una función el visitor
-	 */
 	bool inMainFunction;
-	/*
-	 * Cadena para encolar instrucciones que van en el main de la generación de código
-	 */
 	string mainOutputQueue;
-	/*
-	 * Número de variable a la que se le está asignando en un nodo AssigNode
-	 */
 	string currentAssignation;
-	/*
-	 * Mapeo de nombre de variable => número de variable ** temporal workaround **
-	 */
 	map<string, string> variables;
-
-	TableVisitor* tableVisitor;
+	VisitorNode* tableVisitor;
 	SymbolTable* symbolTable;
 	vector<Simbolo>* arreglo_de_variables;
 	
 	~OolongVisitor(){};
-	OolongVisitor() {
+	OolongVisitor(){
 		inAssignation = false;
 		inMainFunction = true;
 		output.open("prueba.j");
-	};
-
-	OolongVisitor(TableVisitor *tv) {
-		tableVisitor = new TableVisitor(*tv);
-		symbolTable = tv->symbolTable;
-		arreglo_de_variables = new vector<Simbolo>(symbolTable->getOrderedTable());
+	}
+	
+	OolongVisitor(VisitorNode *tv) {
+		tableVisitor=new VisitorNode(*tv);
+		symbolTable=tv->symbolTable;
+		arreglo_de_variables=new vector<Simbolo>(symbolTable->getOrderedTable());
 		cout<<"CREADO EL OOLONG VISITOR\ntamanio = "<<endl<<tableVisitor->symbolTable->tamanio()<<endl;
 		inAssignation = false;
 		inMainFunction = true;
 		output.open("prueba.j");
 	}
-
-	int getIndice(int lexLevel, string name) {
-		int i = 0;
-		for (auto& x: *arreglo_de_variables) {
-			string* nombre = x.getName();
-			if (*nombre == name) {
+	
+	int getIndice(int lexLevel, string name){
+		int i=0;
+		for (auto& x: *arreglo_de_variables){
+			string* nombre=x.getName();
+			if(*nombre==name)
 				return i;
-			}
 			i++;
 		}
 		return i;
 	}
+	
 
-	/**
-	 * Función que encola instrucciones que van a ser escritas en el main
-	 */
 	void enqueue(string iinstruction) {
 		mainOutputQueue += iinstruction + "\n";
 	}
 
-	/**
-	 * Función que escribe en el archivo de código generado una instrucción
-	 */
 	void print(string iinstruction) {
 		output << iinstruction << endl;
 	}
 
-	/**
-	 * Función que manda a llamar enqueue si la instrucción va dentro del main, 
-	 * en otro caso, la instrucción es parte de una función y se escribe al archivo
-	 */
 	void emit(string iinstruction) {
 		inMainFunction ? enqueue(iinstruction) : print(iinstruction);
 	}
 
-	/**
-	 * Función que parsea un tipo de variable al tipo mnemonic de Oolong
-	 */
 	string parseCurrentType() {
 		switch (currentType)
 		{
@@ -130,28 +88,30 @@ public:
  	}
 
  	/* LeafNode's */
+ 	
+ 	/**
+ 	 * OJO:
+ 	 * Los nodos hojas no tiene porque llamarse a sí mismos el accept, se ciclaría,
+ 	 * además de que teoricamente ya esos nodos ya los llamó el visit de un nodo que los tiene como hijos.
+ 	 */
+
  	void visit(IdentNode* node){
 		cout << "(IdentNode " << node->getValue();
 		string name = node->getValue();
-		// if (variables.count(name) > 0) {
-		if (symbolTable->lookUp(name) != NULL) {
-			// string id = variables[name];
-			string idtable = to_string(getIndice(0, name));
+		if (variables.count(name) > 0) {
+			string id = variables[name];
 			if (inAssignation) {
-				// currentAssignation = id;
-				currentAssignation = idtable;
+				currentAssignation = id;
 			} else {
-				// emit("iload " + id);
-				emit("iload " + idtable);
+				emit("iload_" + id);
 			}
 		} else {
-			throw "Fatal error: Undeclared variable found";
-			// if (inAssignation) {
-			// 	currentAssignation = to_string(currentVariable);
-			// } else {
-			// 	throw "Undeclared variable";
-			// }
-			// variables.insert(pair<string, string>(name, to_string(currentVariable++)));
+			if (inAssignation) {
+				currentAssignation = to_string(currentVariable);
+			} else {
+				throw "Undeclared variable";
+			}
+			variables.insert(pair<string, string>(name, to_string(currentVariable++)));
 		}
 		cout << ")";
  	}
@@ -182,8 +142,9 @@ public:
 
  	void visit(ReturnNode* node){
  		cout << "(ReturnNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+ 		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
  		cout << ")";
 
@@ -210,9 +171,10 @@ public:
 	void visit(PrintNode* node){
 		cout << "(PrintNode ";
 		ArgsNode* args = dynamic_cast<ArgsNode*> ((node->getChildren()).front());
- 		for (auto& it: args->getChildren()){
+		list<Node*> children = args->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
 			emit("getstatic java/lang/System/out Ljava/io/PrintStream;");
-			(*it).accept(*this);
+			(*it)->accept(*this);
 			emit("invokevirtual java/io/PrintStream/println");
 			emit("(" + parseCurrentType() + ")V");
 		}
@@ -237,7 +199,7 @@ public:
 		node->getLeftChild()->accept(*this);
 		inAssignation = false;
 		node->getRightChild()->accept(*this);
-		emit("istore " + currentAssignation);
+		emit("istore_" + currentAssignation);
 		cout << ")";
  	}
 
@@ -245,9 +207,9 @@ public:
  		cout << "(AndNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
+ 		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		emit("land");
  		cout << ")";
  	}
 
@@ -255,9 +217,9 @@ public:
  		cout << "(OrNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
+ 		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		emit("lor");
  		cout << ")";
  	}
 
@@ -265,9 +227,9 @@ public:
  		cout << "(XorNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
+ 		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		emit("lxor");
  		cout << ")";
  	}
 
@@ -275,9 +237,9 @@ public:
  		cout << "(NotNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
+ 		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
- 		emit("lneg");
  		cout << ")";
  	}
 
@@ -285,6 +247,7 @@ public:
  		cout << "(PotNode ";
  		Node *left = node->getLeftChild();
  		Node *right = node->getRightChild();
+ 		Visitor *v=this;
  		left->accept(*this);
  		right->accept(*this);
  		cout << ")";
@@ -465,8 +428,9 @@ public:
 		cout << "(FileNode ";
 		print(".class public prueba");
 		print(".super java/lang/Object");
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+ 		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 
 		/* Generate main at the end */
@@ -485,22 +449,23 @@ public:
 		cout << "(FuncNode ";
 		inMainFunction = false;
 		instruction = ".method public static ";
- 		for (auto& it: node->getChildren()){
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
 
- 			IdentNode* name = dynamic_cast<IdentNode*> (it);
- 			ArgsNode* argslist = dynamic_cast<ArgsNode*> (it);
- 			StmtListNode* suite = dynamic_cast<StmtListNode*> (it);
+ 			IdentNode* name = dynamic_cast<IdentNode*> (*it);
+ 			ArgsNode* argslist = dynamic_cast<ArgsNode*> (*it);
+ 			StmtListNode* suite = dynamic_cast<StmtListNode*> (*it);
 
  			if (name != 0)
  			{
  				instruction += name->getValue();
- 				emit(".method public static " +  name->getValue() + "()V");
  			}
 
  			if (argslist != 0)
  			{
 				instruction += "(";
- 				for (auto& it: argslist->getChildren()) {
+ 				list<Node*> args = argslist->getChildren();
+ 				for (list<Node*>::iterator it = args.begin(); it != args.end(); it++){
  					/* Parse argument type */
  					// instruction += 
  				}
@@ -510,130 +475,118 @@ public:
  			if (suite != 0)
  			{
  				string returnType;
- 				for (auto& it: suite->getChildren()){
+ 				list<Node*> stmts = suite->getChildren();
+ 				for (list<Node*>::iterator it = stmts.begin(); it != stmts.end(); it++){
  					/* Parse argument type */
-					(*it).accept(*this);
- 					// ReturnNode* returnn = dynamic_cast<ReturnNode*> (*it);
- 					// if (returnn != 0) {
- 					// 	/* Parse return type and append */
- 					// } else {
- 					// 	(*it).accept(*this);
- 					// }
+ 					ReturnNode* returnn = dynamic_cast<ReturnNode*> (*it);
+ 					if (returnn != 0) {
+ 						/* Parse return type and append */
+ 					} else {
+ 						(*it)->accept(*this);
+ 					}
  				}
  			}
 
-			// (*it).accept(*this);
-		}
-		emit("return");
-		emit(".end method");
+			(*it)->accept(*this);
+		}	
 		inMainFunction = true;
 		cout << ")";
 	}
 
 	void visit(CallNode* node) {
 		cout << "(CallNode ";
-		instruction = "invokestatic prueba/";
- 		for (auto& it: node->getChildren()){
-			IdentNode* name = dynamic_cast<IdentNode*> (it);
-			ArgsNode* argslist = dynamic_cast<ArgsNode*> (it);
-			if (name != 0)
-			{
-				instruction += name->getValue();
-			}
-
-			if (argslist != 0)
-			{
- 				for (auto& it: argslist->getChildren()){
- 					(*it).accept(*this);
- 				}
-			}
+ 		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
-		emit(instruction + "()V");
  		cout << ")";
 	}
 
  	void visit(IfNode* node){
 		cout << "(IfNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
  	}
 
  	void visit(WhileNode* node){
 		cout << "(WhileNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		} 
 		cout << ")";
  	}
 
  	void visit(ForNode* node){
 		cout << "(ForNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
  	}
  	
- 	/**
- 	 * *******************************************************
- 	 * Nodos que no requieren acciones de generación de código
- 	 * *******************************************************
- 	 */
-
 	void visit(ExprListNode* node) {
 		cout << "(ExprListNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+ 		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
  		cout << ")";
 	}
 
  	void visit(StmtListNode* node){
 		cout << "(StmtListNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
  	}
 	
  	void visit(SStmtListNode* node){
 		cout << "(SStmtListNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
  	}
 
  	void visit(ArgsNode* node){
  		cout << "(ArgsNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+ 		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
  	}
 
  	void visit(ExprNode* node){
 		cout << "(ExprNode ";			
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
  	}
  	
  	void visit(StmtNode* node){
 		cout << "(StmtNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
 	}
-
  	void visit(SStmtNode* node){
 		cout << "(SStmtNode ";
- 		for (auto& it: node->getChildren()){
-			(*it).accept(*this);
+		list<Node*> children = node->getChildren();
+ 		for (list<Node*>::iterator it = children.begin(); it != children.end(); it++){
+			(*it)->accept(*this);
 		}
 		cout << ")";
 	}

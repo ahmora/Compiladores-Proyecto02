@@ -56,12 +56,12 @@ public:
  	}
 
  	void setLeftChild(Node* node){
-		cout << "setLeftChild en VNodeList" << endl;
+		//cout << "setLeftChild en VNodeList" << endl;
  		children[0] = node;
  	}
 
  	void setRightChild(Node* node){
-		cout << "setRightChild en VNodeList" << endl;
+		//cout << "setRightChild en VNodeList" << endl;
  		children[1] = node;
  	}
  	
@@ -156,13 +156,13 @@ public:
 
  	void setFChild(Node* first){
  		children->setLeftChild(first);
- 		cout<<"Se agrego hijo izq"<<endl;
+ 		//cout<<"Se agrego hijo izq"<<endl;
  	}
 
  	void setSChild(Node* second){
- 		cout<<"Agregando hijo der..."<<endl;
+ 		//cout<<"Agregando hijo der..."<<endl;
  		children->setRightChild(second);
- 		cout<<"Se agrego hijo der"<<endl;
+ 		//cout<<"Se agrego hijo der"<<endl;
  	}
 
  	Node* getLeftChild(){

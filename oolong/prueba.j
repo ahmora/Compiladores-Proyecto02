@@ -2,23 +2,23 @@
 .super java/lang/Object
 .method public static main([Ljava/lang/String;)V
 bipush 1
-istore_0
+istore 0
 bipush 2
-istore_1
-ldc "Ejemplo"
-istore_2
+istore 0
+bipush 3
+istore 0
 getstatic java/lang/System/out Ljava/io/PrintStream;
-iload_0
+iload 0
 invokevirtual java/io/PrintStream/println
-(Ljava/lang/String;)V
+(I)V
 getstatic java/lang/System/out Ljava/io/PrintStream;
-iload_1
+iload 0
 invokevirtual java/io/PrintStream/println
-(Ljava/lang/String;)V
+(I)V
 getstatic java/lang/System/out Ljava/io/PrintStream;
-iload_2
+iload 0
 invokevirtual java/io/PrintStream/println
-(Ljava/lang/String;)V
+(I)V
 
 return
 .end method
